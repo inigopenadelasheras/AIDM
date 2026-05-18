@@ -1,0 +1,50 @@
+{
+  "nombre_del_cliente": {
+    "description": "Nombre del cliente o empresa",
+    "value": ""
+  },
+  "tipo_de_servicio": {
+    "description": "Texto legible de negocio/técnico - Tipo de servicio solicitado por el cliente",
+    "value": ""
+  },
+  "objetivo_del_proyecto": {
+    "description": "Objetivos principales del proyecto o caso de uso identificado",
+    "value": ""
+  },
+  "horizonte_temporal": {
+    "description": "Horizonte temporal del proyecto (corto, medio, largo plazo, o fechas específicas si se han mencionado)",
+    "value": ""
+  },
+  "modelo_de_despliegue": {
+    "description": "Modelo de despliegue preferido por el cliente (donde vivira la solución) (on-premises, cloud, híbrido...)",
+    "value": ""
+  },
+  "cloud_provider": {
+    "description": "Proveedor de nube detectado preferido por el cliente (Azure, AWS, GCP...)",
+    "value": ""
+  },
+  "tipo_de_arquitectura": {
+    "description": "Una simplificación de la forma de solución. Estilo de arquitectura preferido por el cliente",
+    "value": ""
+  },
+  "herramienta_de_visualizacion": {
+    "description": "Herramienta de visualización preferida por el cliente si se ha detectado alguna (Power BI, Tableau, Looker...)",
+    "value": ""
+  },
+  "enfoque_ai": {
+    "description": "Qué papel juega la IA. Enfoque de inteligencia artificial preferido por el cliente para su proyecto",
+    "value": ""
+  },
+  "integration_scope": {
+    "description": "Ámbito de integración de datos, qué nivel de integración parece requerir",
+    "value": ""
+  },
+  "evidencias": {
+    "description": "Evidencias detectadas durante la conversación que respaldan la información extraída y el análisis realizado, incluyendo información adicional útil",
+    "value": [
+
+    ]
+  },
+  "status": "pending_fields"
+}
+
