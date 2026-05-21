@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Resumen de Solución — AIDM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #f4f6fb;
@@ -52,16 +54,12 @@
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     padding: 0 32px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex; align-items: center; gap: 12px;
     height: 56px;
   }
   .topbar-logo {
-    width: 28px; height: 28px;
-    background: var(--accent);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; background: var(--accent);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
   }
   .topbar-logo svg { width: 16px; height: 16px; fill: #fff; }
   .topbar-title { font-size: 15px; font-weight: 600; color: var(--text); }
@@ -74,39 +72,19 @@
     padding: 36px 32px 28px;
   }
   .hero-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
   }
-  .hero h1 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1.25;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
+  .hero h1 { font-size: 1.75rem; font-weight: 700; line-height: 1.25; color: var(--text); margin-bottom: 8px; }
   .hero-desc { color: var(--muted); font-size: 14px; max-width: 640px; }
-
-  /* ── Status pills ── */
   .pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
   .pill {
     display: inline-flex; align-items: center; gap: 5px;
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    border: 1px solid var(--accent-light);
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 3px 10px 3px 8px;
+    background: var(--tag-bg); color: var(--tag-text);
+    border: 1px solid var(--accent-light); border-radius: 999px;
+    font-size: 12px; font-weight: 500; padding: 3px 10px 3px 8px;
   }
-  .pill-dot {
-    width: 6px; height: 6px;
-    background: var(--accent-mid);
-    border-radius: 50%;
-  }
+  .pill-dot { width: 6px; height: 6px; background: var(--accent-mid); border-radius: 50%; }
 
   /* ── Main layout ── */
   main { max-width: 1200px; margin: 32px auto; padding: 0 32px 60px; }
@@ -121,1278 +99,589 @@
     overflow: hidden;
   }
   .section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex; align-items: center; gap: 12px;
     padding: 18px 24px;
     border-bottom: 1px solid var(--border);
     background: var(--surface-alt);
-    cursor: pointer;
-    user-select: none;
+    cursor: pointer; user-select: none;
     transition: background 0.15s;
   }
   .section-header:hover { background: var(--border); }
   .section-icon {
-    width: 34px; height: 34px;
-    border-radius: 9px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    width: 34px; height: 34px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .icon-arch  { background: #e0f2fe; }
   .icon-gov   { background: #fef3c7; }
   .icon-ai    { background: #ede9fe; }
   .icon-bi    { background: #fce7f3; }
+  /* Roadmap stage icon colours */
+  .icon-sources   { background: #fef3c7; color: #b45309; }
+  .icon-ingestion { background: #dbeafe; color: #1d4ed8; }
+  .icon-storage   { background: #ccfbf1; color: #0f766e; }
+  .icon-etl       { background: #ffedd5; color: #c2410c; }
+  .icon-modeling  { background: #ede9fe; color: #6d28d9; }
+  .icon-ml        { background: #fce7f3; color: #9d174d; }
+  .icon-rdmbi     { background: #d1fae5; color: #065f46; }
   @media (prefers-color-scheme: dark) {
     .icon-arch  { background: #0c2a3d; }
     .icon-gov   { background: #2d2008; }
     .icon-ai    { background: #1e1635; }
     .icon-bi    { background: #2d0f1f; }
+    .icon-sources   { background: #2d2008; color: #fbbf24; }
+    .icon-ingestion { background: #0c2a3d; color: #60a5fa; }
+    .icon-storage   { background: #0a2420; color: #2dd4bf; }
+    .icon-etl       { background: #2d1708; color: #fb923c; }
+    .icon-modeling  { background: #1e1635; color: #a78bfa; }
+    .icon-ml        { background: #2d0f1f; color: #f472b6; }
+    .icon-rdmbi     { background: #0a2818; color: #34d399; }
   }
   .section-icon svg { width: 18px; height: 18px; }
-  .section-header-text h2 {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-  }
-  .section-header-text span {
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  /* ── Chevron ── */
+  .section-header-text h2 { font-size: 15px; font-weight: 600; color: var(--text); }
+  .section-header-text span { font-size: 12px; color: var(--muted); }
   .chevron {
-    margin-left: auto;
-    flex-shrink: 0;
-    width: 18px; height: 18px;
-    color: var(--muted);
+    margin-left: auto; flex-shrink: 0;
+    width: 18px; height: 18px; color: var(--muted);
     transition: transform 0.22s ease;
   }
   .section-card.collapsed .chevron { transform: rotate(-90deg); }
-
-  /* ── Collapsible body ── */
   .section-body {
     padding: 22px 24px;
-    overflow: hidden;
-    max-height: 9999px;
+    overflow: hidden; max-height: 9999px;
     transition: max-height 0.35s ease, padding 0.2s ease;
   }
-  .section-card.collapsed .section-body {
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+  .section-card.collapsed .section-body { max-height: 0; padding-top: 0; padding-bottom: 0; }
   .section-card.collapsed .section-header { border-bottom: none; }
 
-  /* ── Prose rendering ── */
+  /* ── Prose ── */
   .prose { color: var(--text); font-size: 14.5px; line-height: 1.7; }
   .prose p { margin-bottom: 12px; }
   .prose p:last-child { margin-bottom: 0; }
   .prose strong { font-weight: 600; color: var(--text); }
   .prose em { font-style: italic; }
-  .prose h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin: 18px 0 6px;
-    padding-left: 10px;
-    border-left: 3px solid var(--accent);
-  }
-  .prose h4 {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--muted);
-    margin: 14px 0 4px;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-  }
-  .prose ul, .prose ol {
-    padding-left: 20px;
-    margin: 8px 0 12px;
-  }
+  .prose h3 { font-size: 14px; font-weight: 600; color: var(--text); margin: 18px 0 6px; padding-left: 10px; border-left: 3px solid var(--accent); }
+  .prose h4 { font-size: 13.5px; font-weight: 600; color: var(--muted); margin: 14px 0 4px; text-transform: uppercase; letter-spacing: .04em; }
+  .prose ul, .prose ol { padding-left: 20px; margin: 8px 0 12px; }
   .prose li { margin-bottom: 5px; }
-  .prose code {
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1px 5px;
-    font-family: 'Cascadia Code', 'Fira Code', monospace;
-    font-size: 13px;
-  }
-
-  /* ── Empty state ── */
-  .empty-state {
-    padding: 32px 24px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 14px;
-  }
+  .prose code { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-family: 'Cascadia Code','Fira Code',monospace; font-size: 13px; }
+  .empty-state { padding: 32px 24px; text-align: center; color: var(--muted); font-size: 14px; }
+  .phase-empty { color: var(--muted); font-size: 14px; font-style: italic; }
 
   /* ── Tabs ── */
   .tab-bar {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    display: flex;
-    gap: 4px;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 0 32px; display: flex; gap: 4px;
   }
   .tab-btn {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 14px 16px 12px;
-    font-size: 13.5px;
-    font-weight: 500;
-    color: var(--muted);
-    background: none;
-    border: none;
+    display: flex; align-items: center; gap: 7px;
+    padding: 14px 16px 12px; font-size: 13.5px; font-weight: 500;
+    color: var(--muted); background: none; border: none;
     border-bottom: 2px solid transparent;
-    cursor: pointer;
-    transition: color 0.15s, border-color 0.15s;
-    white-space: nowrap;
+    cursor: pointer; transition: color 0.15s, border-color 0.15s; white-space: nowrap;
   }
   .tab-btn:hover { color: var(--text); }
-  .tab-btn.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
   .tab-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
+  /* ── Footer ── */
+  footer { text-align: center; font-size: 12px; color: var(--muted); padding: 24px 32px; border-top: 1px solid var(--border); }
 
-  /* ── Roadmap ── */
-  .roadmap-container {
-    max-width: 900px;
-    margin: 32px auto;
-    padding: 0 32px 60px;
-  }
-  .roadmap-header {
-    margin-bottom: 32px;
-  }
-  .roadmap-header h2 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-  .roadmap-header p {
-    font-size: 13.5px;
-    color: var(--muted);
-  }
+  /* ════════════════════════════════════════════
+     ROADMAP TAB — integrated pipeline view
+  ════════════════════════════════════════════ */
 
-  /* Pipeline vertical */
-  .pipeline {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  /* Línea conectora vertical central */
-  .pipeline::before {
-    content: '';
-    position: absolute;
-    left: 27px;
-    top: 54px;
-    bottom: 54px;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--accent), color-mix(in srgb, var(--accent) 30%, transparent));
-    z-index: 0;
-  }
-
-  .pipeline-phase {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    position: relative;
-    z-index: 1;
-    margin-bottom: 12px;
-  }
-
-  /* Nodo circular de la fase */
-  .phase-node {
-    flex-shrink: 0;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 2px solid var(--accent);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 12%, transparent);
-    position: relative;
-    z-index: 2;
-  }
-  .phase-node-number {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .phase-node svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  /* Card de contenido */
-  .phase-card {
-    flex: 1;
+  /* Pipeline navigation card */
+  .rdm-nav-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 14px;
     box-shadow: var(--shadow);
-    overflow: hidden;
     margin-bottom: 16px;
+    padding: 16px 24px 20px;
   }
-  .phase-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 18px;
-    background: var(--surface-alt);
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.15s;
+  .rdm-nav-label {
+    font-size: 10.5px; font-weight: 600; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 16px;
   }
-  .phase-card-header:hover { background: var(--border); }
-  .phase-label {
-    flex: 1;
+  .rdm-pipeline {
+    display: flex; align-items: center;
+    overflow-x: auto; padding-top: 6px; padding-bottom: 4px;
+    scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent;
   }
-  .phase-label h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin: 0 0 2px;
-  }
-  .phase-label span {
-    font-size: 11.5px;
-    color: var(--muted);
-  }
-  .phase-badge {
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 9px;
-    border-radius: 999px;
-    border: 1px solid var(--accent-light);
-    color: var(--accent);
-    background: var(--tag-bg);
-    white-space: nowrap;
-  }
-  .phase-chevron {
-    width: 16px; height: 16px;
-    color: var(--muted);
-    transition: transform 0.22s ease;
-    flex-shrink: 0;
-  }
-  .phase-card.collapsed .phase-chevron { transform: rotate(-90deg); }
-  .phase-card-body {
-    padding: 18px 20px;
-    overflow: hidden;
-    max-height: 9999px;
-    transition: max-height 0.35s ease, padding 0.2s ease;
-  }
-  .phase-card.collapsed .phase-card-body {
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  .phase-card.collapsed .phase-card-header { border-bottom: none; }
+  .rdm-pipeline::-webkit-scrollbar { height: 3px; }
+  .rdm-pipeline::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
 
-  /* Prose dentro de fase */
-  .phase-prose { font-size: 13.5px; line-height: 1.7; color: var(--text); }
-  .phase-prose p { margin-bottom: 10px; }
-  .phase-prose p:last-child { margin-bottom: 0; }
-  .phase-prose strong { font-weight: 600; }
-  .phase-prose h3 {
-    font-size: 13px; font-weight: 600;
-    border-left: 3px solid var(--accent);
-    padding-left: 8px;
-    margin: 14px 0 5px;
-    color: var(--text);
+  .rdm-pipe-node {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    cursor: pointer; flex: 1; min-width: 72px; padding: 0 4px;
+    transition: transform .15s; -webkit-tap-highlight-color: transparent;
   }
-  .phase-prose h4 {
-    font-size: 12px; font-weight: 600;
-    color: var(--muted); text-transform: uppercase;
-    letter-spacing: .04em; margin: 12px 0 4px;
-  }
-  .phase-prose ul, .phase-prose ol {
-    padding-left: 18px; margin: 6px 0 10px;
-  }
-  .phase-prose li { margin-bottom: 4px; }
-  .phase-prose code {
-    background: var(--surface-alt);
+  .rdm-pipe-node:hover { transform: translateY(-2px); }
+  .rdm-pipe-icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
     border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1px 4px;
-    font-family: 'Cascadia Code','Fira Code',monospace;
-    font-size: 12px;
+    transition: box-shadow .15s;
+  }
+  .rdm-pipe-node:hover .rdm-pipe-icon { box-shadow: 0 0 0 2px var(--accent-mid); }
+  .rdm-pipe-icon svg { width: 16px; height: 16px; }
+  .rdm-pipe-name { font-size: 9.5px; font-weight: 600; color: var(--muted); text-align: center; white-space: nowrap; }
+  .rdm-pipe-tech {
+    font-family: 'Space Mono', monospace;
+    font-size: 7.5px; color: var(--border-strong);
+    text-align: center; white-space: nowrap; letter-spacing: .02em;
+  }
+  .rdm-pipe-arrow {
+    flex-shrink: 0; display: flex; align-items: center;
+    padding: 0 2px; margin-bottom: 22px; color: var(--border-strong);
+  }
+  .rdm-pipe-arrow svg { width: 12px; height: 12px; }
+
+  /* Controls row inside roadmap tab */
+  .rdm-controls {
+    display: flex; justify-content: flex-end; gap: 8px;
+    padding: 4px 0 4px;
+  }
+  .rdm-ctrl-btn {
+    font-size: 12px; padding: 5px 14px; border-radius: 8px;
+    border: 1px solid var(--border-strong); background: var(--surface);
+    color: var(--muted); cursor: pointer; transition: background .15s, color .15s; font-family: inherit;
+  }
+  .rdm-ctrl-btn:hover { background: var(--border); color: var(--text); }
+
+  /* Tech chip badge — shown inside section-header for roadmap cards */
+  .rdm-tech-chip {
+    font-family: 'Space Mono', monospace;
+    font-size: 9.5px; color: var(--muted);
+    background: var(--surface-alt); border: 1px solid var(--border);
+    border-radius: 5px; padding: 2px 8px;
+    white-space: nowrap; flex-shrink: 0;
+    letter-spacing: .03em; margin-right: 8px;
   }
 
-  /* Empty state fase */
-  .phase-empty {
-    padding: 20px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 13px;
+  /* Highlighted card (after pipeline-nav click) */
+  .section-card.rdm-highlighted {
+    border-color: var(--accent-mid) !important;
+    box-shadow: 0 0 0 2px rgba(195,151,21,.14), var(--shadow) !important;
+    transition: border-color .15s, box-shadow .15s;
   }
 
-  /* Footer ── */
-  footer {
-    text-align: center;
-    font-size: 12px;
-    color: var(--muted);
-    padding: 24px 32px;
-    border-top: 1px solid var(--border);
+  /* Roadmap stage number prefix */
+  .rdm-step {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px; font-weight: 700;
+    color: var(--border-strong); margin-right: 6px;
+    letter-spacing: .02em;
   }
+
+  /* Staggered entrance animation */
+  @keyframes rdmFadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+  #rdm-stages-container.rdm-animate .section-card { animation: rdmFadeUp .34s ease both; }
+  #rdm-stages-container.rdm-animate .section-card:nth-child(1){animation-delay:.02s}
+  #rdm-stages-container.rdm-animate .section-card:nth-child(2){animation-delay:.06s}
+  #rdm-stages-container.rdm-animate .section-card:nth-child(3){animation-delay:.10s}
+  #rdm-stages-container.rdm-animate .section-card:nth-child(4){animation-delay:.14s}
+  #rdm-stages-container.rdm-animate .section-card:nth-child(5){animation-delay:.18s}
+  #rdm-stages-container.rdm-animate .section-card:nth-child(6){animation-delay:.22s}
+  #rdm-stages-container.rdm-animate .section-card:nth-child(7){animation-delay:.26s}
 </style>
 </head>
 <body>
+
 <div class="topbar">
-<div class="topbar-logo">
-<svg viewbox="0 0 16 16"><path d="M8 1L2 4v4c0 3.31 2.58 6.4 6 7 3.42-.6 6-3.69 6-7V4L8 1z"></path></svg>
+  <div class="topbar-logo">
+    <svg viewbox="0 0 16 16"><path d="M8 1L2 4v4c0 3.31 2.58 6.4 6 7 3.42-.6 6-3.69 6-7V4L8 1z"/></svg>
+  </div>
+  <span class="topbar-title">AIDM Solution Builder</span>
+  <span class="topbar-sub" id="report-date"></span>
 </div>
-<span class="topbar-title">AIDM Solution Builder</span>
-<span class="topbar-sub" id="report-date"></span>
-</div>
+
 <div class="hero">
-<div class="hero-eyebrow">Propuesta generada por agentes IA</div>
-<h1 id="hero-title">Respuesta Final del Solution Builder</h1>
-<p class="hero-desc" id="hero-desc">Resumen consolidado de las propuestas generadas por los agentes especializados.</p>
-<div class="pills">
-<span class="pill"><span class="pill-dot"></span>Arquitectura</span>
-<span class="pill"><span class="pill-dot"></span>Gobernanza</span>
-<span class="pill"><span class="pill-dot"></span>Estrategia de Datos &amp; IA</span>
-<span class="pill"><span class="pill-dot"></span>Visualización BI</span>
+  <div class="hero-eyebrow">Propuesta generada por agentes IA</div>
+  <h1 id="hero-title">Respuesta Final del Solution Builder</h1>
+  <p class="hero-desc" id="hero-desc">Resumen consolidado de las propuestas generadas por los agentes especializados.</p>
+  <div class="pills">
+    <span class="pill"><span class="pill-dot"></span>Arquitectura</span>
+    <span class="pill"><span class="pill-dot"></span>Gobernanza</span>
+    <span class="pill"><span class="pill-dot"></span>Estrategia de Datos &amp; IA</span>
+    <span class="pill"><span class="pill-dot"></span>Visualización BI</span>
+  </div>
 </div>
-</div>
+
 <nav class="tab-bar">
-<button class="tab-btn active" onclick="switchTab('propuesta', this)">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line></svg>
+  <button class="tab-btn active" onclick="switchTab('propuesta', this)">
+    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
     Propuesta de solución
   </button>
-<button class="tab-btn" onclick="switchTab('roadmap', this)">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect></svg>
+  <button class="tab-btn" onclick="switchTab('roadmap', this)">
+    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"/><rect height="7" rx="1" width="7" x="14" y="3"/><rect height="7" rx="1" width="7" x="3" y="14"/><rect height="7" rx="1" width="7" x="14" y="14"/></svg>
     Roadmap
   </button>
 </nav>
+
 <main>
-<div class="tab-panel active" id="tab-propuesta">
-<div style="display:flex; justify-content:flex-end; padding: 20px 0 4px;">
-<button id="toggle-all" onclick="toggleAll()" style="font-size:12px;padding:5px 14px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);cursor:pointer;">Colapsar todo</button>
-</div>
-<!-- Arquitectura -->
-<div class="section-card">
-<div class="section-header">
-<div class="section-icon icon-arch">
-<svg fill="none" stroke="#0369a1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<rect height="10" rx="1" width="6" x="2" y="7"></rect><rect height="14" rx="1" width="6" x="9" y="3"></rect><rect height="7" rx="1" width="6" x="16" y="10"></rect><path d="M5 17v2M12 17v2M19 17v2"></path>
-</svg>
-</div>
-<div class="section-header-text">
-<h2>Propuesta de Arquitectura</h2>
-<span>Diseño técnico y plataformas recomendadas</span>
-</div>
-<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-</div>
-<div class="section-body">
-<div class="prose" id="content-architecture"><p><strong>Arquitectura Propuesta para la Optimización de Gestión de Inventario y Previsión de Demanda en MediSupply Iberia</strong></p>
-<p><strong>Introducción</strong></p>
-<p>MediSupply Iberia busca mejorar la previsión de demanda y optimizar la gestión de stock para reducir costes y mejorar el servicio a clientes. Para lograr este objetivo, proponemos una arquitectura de solución escalable y práctica que aproveche las capacidades de Azure, el proveedor de nube preferido por el cliente. Nuestra propuesta se basa en un enfoque de inteligencia artificial (IA) para la predicción de demanda y recomendaciones para mejorar la planificación.</p>
-<p><strong>Componentes de la Arquitectura</strong></p>
-<p>La arquitectura propuesta se compone de varios componentes clave que trabajan juntos para lograr los objetivos del proyecto. El primer componente es la ingesta de datos, que se realizará mediante Azure Data Factory (ADF). ADF es una herramienta de integración de datos que permite recopilar y transformar datos de diferentes fuentes, como ERP y bases de datos. Esto permitirá a MediSupply Iberia integrar sus datos de ventas, pedidos y stock en una única plataforma.</p>
-<p><strong>Almacenamiento de Datos</strong></p>
-<p>El almacenamiento de datos será proporcionado por Azure Data Lake Storage (ADLS), que ofrece un almacenamiento seguro y escalable para datos a gran escala. ADLS permitirá a MediSupply Iberia almacenar sus datos históricos y procesados de manera segura y eficiente.</p>
-<p><strong>Procesamiento y Análisis de Datos</strong></p>
-<p>El procesamiento y análisis de datos se realizará mediante Azure Databricks, que es una plataforma de análisis de datos en memoria que permite procesar y analizar datos a gran escala. Azure Databricks es ideal para este proyecto, ya que permite a los equipos de datos trabajar de manera colaborativa y realizar análisis avanzados de datos.</p>
-<p><strong>Aprendizaje Automático</strong></p>
-<p>La predicción de demanda se realizará mediante Azure Machine Learning (AML), que es una plataforma de aprendizaje automático que permite entrenar y desplegar modelos de predicción de demanda. AML es ideal para este proyecto, ya que permite a los equipos de datos entrenar modelos de predicción de demanda precisos y desplegarlos de manera eficiente.</p>
-<p><strong>Visualización de Datos</strong></p>
-<p>La visualización de datos se realizará mediante Power BI, que es una herramienta de visualización de datos fácil de usar que permite crear informes y dashboards personalizados. Power BI es la herramienta de visualización preferida por el cliente, y se integrará con los demás componentes de la arquitectura para proporcionar una visión integral de los datos.</p>
-<p><strong>Justificación de la Arquitectura</strong></p>
-<p>La arquitectura propuesta se basa en un enfoque escalable y práctico que aprovecha las capacidades de Azure. La ingesta de datos se realiza mediante ADF, que permite la integración con diferentes fuentes de datos. El almacenamiento de datos se realiza en ADLS, que ofrece un almacenamiento seguro y escalable. El procesamiento y análisis de datos se realiza en Azure Databricks, que ofrece una plataforma de análisis de datos en memoria. La predicción de demanda se realiza mediante AML, que ofrece una plataforma de aprendizaje automático escalable. Finalmente, la visualización de datos se realiza mediante Power BI, que ofrece una herramienta de visualización de datos fácil de usar.</p>
-<p><strong>Supuestos y Limitaciones</strong></p>
-<p>Se asume que los datos de ventas, pedidos y stock están disponibles en un formato compatible con ADF. Se asume también que el cliente tiene acceso a los recursos necesarios para desplegar y mantener la solución en Azure. En caso de que se requiera una mayor complejidad en la solución, se podrán realizar ajustes adicionales a la arquitectura propuesta.</p>
-<p>En resumen, la arquitectura propuesta para MediSupply Iberia es una solución escalable y práctica que aprovecha las capacidades de Azure para mejorar la previsión de demanda y optimizar la gestión de stock. La arquitectura se compone de varios componentes clave, incluyendo ingesta de datos, almacenamiento de datos, procesamiento y análisis de datos, aprendizaje automático y visualización de datos. Cada componente ha sido seleccionado cuidadosamente para asegurarse de que la solución sea escalable, segura y fácil de usar.</p></div>
-</div>
-</div>
-<!-- Gobernanza -->
-<div class="section-card">
-<div class="section-header">
-<div class="section-icon icon-gov">
-<svg fill="none" stroke="#92400e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<path d="M12 2l9 4v6c0 5-3.8 9.7-9 11C3.8 21.7 3 17 3 12V6l9-4z"></path>
-<polyline points="9 12 11 14 15 10"></polyline>
-</svg>
-</div>
-<div class="section-header-text">
-<h2>Propuesta de Gobernanza de Dato e IA</h2>
-<span>Marco de gobierno, calidad y ética del dato</span>
-</div>
-<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-</div>
-<div class="section-body">
-<div class="prose" id="content-governance"><p><strong>Propuesta de Gobernanza del Dato y AI para MediSupply Iberia</strong></p>
-<p><strong>Introducción</strong></p>
-<p>La propuesta de gobernanza del dato y AI para MediSupply Iberia tiene como objetivo asegurar la calidad, seguridad y cumplimiento normativo de los datos y modelos de inteligencia artificial (IA) utilizados en la solución de optimización de gestión de inventario y previsión de demanda. La gobernanza del dato y AI es fundamental para garantizar que los datos sean precisos, completos y seguros, y que los modelos de IA sean transparentes, explicables y éticos.</p>
-<p><strong>Roles y Responsabilidades</strong></p>
-<p>La gobernanza del dato y AI para MediSupply Iberia involucrará a varios roles y responsabilidades, incluyendo:</p>
-<ul>
-<li><strong>Data Owner</strong>: responsable de la calidad y seguridad de los datos, y de garantizar que los datos sean precisos y completos.</li>
-<li><strong>Data Steward</strong>: responsable de la gestión y mantenimiento de los datos, y de garantizar que los datos sean consistentes y estén actualizados.</li>
-<li><strong>Data Scientist</strong>: responsable de desarrollar y desplegar modelos de IA, y de garantizar que los modelos sean transparentes y explicables.</li>
-<li><strong>AI Ethicist</strong>: responsable de garantizar que los modelos de IA sean éticos y no discriminatorios.</li>
-</ul>
-<p><strong>Políticas y Procedimientos</strong></p>
-<p>La gobernanza del dato y AI para MediSupply Iberia se basará en varias políticas y procedimientos, incluyendo:</p>
-<ul>
-<li><strong>Política de Calidad de Datos</strong>: establece los estándares para la calidad de los datos, incluyendo la precisión, completitud y consistencia.</li>
-<li><strong>Política de Seguridad de Datos</strong>: establece los estándares para la seguridad de los datos, incluyendo la protección de datos personales y la prevención de accesos no autorizados.</li>
-<li><strong>Política de Transparencia y Explicabilidad</strong>: establece los estándares para la transparencia y explicabilidad de los modelos de IA, incluyendo la documentación de los modelos y la explicación de las decisiones tomadas.</li>
-<li><strong>Política de Ética</strong>: establece los estándares para la ética en la utilización de modelos de IA, incluyendo la prevención de discriminación y la protección de derechos humanos.</li>
-</ul>
-<p><strong>Mecanismos de Control</strong></p>
-<p>La gobernanza del dato y AI para MediSupply Iberia contará con varios mecanismos de control, incluyendo:</p>
-<ul>
-<li><strong>Auditorías de Calidad de Datos</strong>: se realizarán auditorías periódicas para garantizar que los datos sean precisos y completos.</li>
-<li><strong>Auditorías de Seguridad de Datos</strong>: se realizarán auditorías periódicas para garantizar que los datos sean seguros y que se prevengan accesos no autorizados.</li>
-<li><strong>Validación de Modelos de IA</strong>: se realizarán validaciones periódicas para garantizar que los modelos de IA sean precisos y transparentes.</li>
-</ul>
-<p><strong>Tecnologías y Herramientas</strong></p>
-<p>La gobernanza del dato y AI para MediSupply Iberia utilizará varias tecnologías y herramientas, incluyendo:</p>
-<ul>
-<li><strong>Azure Data Factory</strong>: se utilizará para la ingesta de datos y la integración de datos de diferentes fuentes.</li>
-<li><strong>Azure Data Lake Storage</strong>: se utilizará para el almacenamiento de datos a gran escala.</li>
-<li><strong>Azure Databricks</strong>: se utilizará para el procesamiento y análisis de datos a gran escala.</li>
-<li><strong>Azure Machine Learning</strong>: se utilizará para el desarrollo y despliegue de modelos de IA.</li>
-</ul>
-<p><strong>Implementación y Monitoreo</strong></p>
-<p>La implementación de la gobernanza del dato y AI para MediSupply Iberia se realizará en varias fases, incluyendo:</p>
-<ul>
-<li><strong>Fase de Planificación</strong>: se planificará la implementación de la gobernanza del dato y AI.</li>
-<li><strong>Fase de Implementación</strong>: se implementarán las políticas, procedimientos y mecanismos de control.</li>
-<li><strong>Fase de Monitoreo</strong>: se monitorearán los resultados de la implementación y se realizarán ajustes según sea necesario.</li>
-</ul>
-<p>En resumen, la propuesta de gobernanza del dato y AI para MediSupply Iberia tiene como objetivo asegurar la calidad, seguridad y cumplimiento normativo de los datos y modelos de IA utilizados en la solución de optimización de gestión de inventario y previsión de demanda. La gobernanza del dato y AI se basará en roles y responsabilidades claras, políticas y procedimientos establecidos, mecanismos de control efectivos y tecnologías y herramientas adecuadas.</p></div>
-</div>
-</div>
-<!-- Estrategia de Datos e IA -->
-<div class="section-card">
-<div class="section-header">
-<div class="section-icon icon-ai">
-<svg fill="none" stroke="#6d28d9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"></path>
-</svg>
-</div>
-<div class="section-header-text">
-<h2>Propuesta de Estrategia de Datos e IA</h2>
-<span>Funcionalidades clave, roadmap técnico y valor de negocio</span>
-</div>
-<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-</div>
-<div class="section-body">
-<div class="prose" id="content-data-ai"><p><strong>Análisis Crítico del Problema de Negocio y Madurez de Datos Actual</strong></p>
-<p>MediSupply Iberia enfrenta un desafío significativo en la gestión de inventario y previsión de demanda, lo que impacta directamente en su capacidad para brindar un servicio óptimo a sus clientes y mantener una posición competitiva en el mercado. La empresa experimenta roturas de stock en productos críticos y exceso de inventario en otros, lo que sugiere una falta de precisión en la previsión de demanda y una ineficiencia en la gestión de stock.</p>
-<p>La madurez de datos actual en MediSupply Iberia parece estar en un nivel intermedio. Por un lado, la empresa cuenta con datos de ventas, pedidos y stock, lo que es un buen punto de partida para implementar soluciones de análisis de datos y aprendizaje automático. Por otro lado, la falta de integración de estos datos y la dependencia de la experiencia del equipo para la planificación sugieren que hay oportunidades para mejorar la madurez de datos y aprovechar tecnologías más avanzadas.</p>
-<p><strong>Propuesta de Funcionalidades Clave de IA/Data</strong></p>
-<p>Para abordar los desafíos de MediSupply Iberia, proponemos las siguientes funcionalidades clave de IA/data:</p>
-<ol>
-<li><strong>Modelo Predictivo de Demanda</strong>: Desarrollar un modelo de aprendizaje automático que prediga la demanda futura de productos basado en datos históricos de ventas, estacionales y tendencias del mercado. Esto permitirá a MediSupply Iberia ajustar su inventario y planificación para satisfacer la demanda esperada.</li>
-</ol>
-<ol>
-<li><strong>Sistema de Recomendación de Inventario Óptimo</strong>: Implementar un sistema que, basado en el modelo predictivo de demanda, recomiende niveles óptimos de inventario para cada producto, considerando factores como la velocidad de rotación del inventario, el lead time de los proveedores y las restricciones de almacenamiento.</li>
-</ol>
-<ol>
-<li><strong>Análisis de Causa Raíz de Roturas de Stock y Exceso de Inventario</strong>: Realizar análisis de datos para identificar las causas raíz de las roturas de stock y el exceso de inventario. Esto permitirá a MediSupply Iberia abordar los problemas subyacentes y mejorar continuamente su gestión de inventario.</li>
-</ol>
-<p><strong>Roadmap Técnico</strong></p>
-<p>Para cada funcionalidad propuesta, detallamos a continuación el enfoque técnico:</p>
-<ol>
-<li><strong>Modelo Predictivo de Demanda</strong>:</li>
-</ol>
-<ul>
-<li><strong>Fuentes de Datos</strong>: Datos históricos de ventas, información de productos, datos de mercado y estacionales.</li>
-<li><strong>Análisis Aplicado</strong>: Aprendizaje automático con técnicas de series temporales y regresión.</li>
-<li><strong>Integración en el Flujo de Trabajo</strong>: El modelo se integrará con el sistema de planificación existente para proporcionar previsiones de demanda precisas.</li>
-</ul>
-<ol>
-<li><strong>Sistema de Recomendación de Inventario Óptimo</strong>:</li>
-</ol>
-<ul>
-<li><strong>Fuentes de Datos</strong>: Resultados del modelo predictivo de demanda, datos de inventario actuales, información de proveedores.</li>
-<li><strong>Análisis Aplicado</strong>: Algoritmos de optimización que consideren restricciones de inventario, costos de almacenamiento y objetivos de servicio.</li>
-<li><strong>Integración en el Flujo de Trabajo</strong>: El sistema de recomendación se integrará con el sistema de gestión de inventario para ajustar automáticamente los niveles de stock.</li>
-</ul>
-<ol>
-<li><strong>Análisis de Causa Raíz de Roturas de Stock y Exceso de Inventario</strong>:</li>
-</ol>
-<ul>
-<li><strong>Fuentes de Datos</strong>: Datos de ventas, pedidos, inventario, información de proveedores.</li>
-<li><strong>Análisis Aplicado</strong>: Análisis exploratorio de datos, minería de datos y visualización para identificar patrones y tendencias.</li>
-<li><strong>Integración en el Flujo de Trabajo</strong>: Los resultados del análisis se utilizarán para informar decisiones estratégicas y mejorar la gestión de inventario.</li>
-</ul>
-<p><strong>Valor de Negocio</strong></p>
-<p>La implementación de estas funcionalidades de IA/data tendrá un impacto significativo en las métricas de éxito de MediSupply Iberia:</p>
-<ul>
-<li><strong>Reducción de Roturas de Stock</strong>: Mejora en la previsión de demanda y gestión de inventario reducirá las roturas de stock, mejorando la satisfacción del cliente.</li>
-<li><strong>Optimización del Inventario</strong>: Niveles óptimos de inventario reducirán los costos de almacenamiento y manejo, mejorando la eficiencia operativa.</li>
-<li><strong>Mejora en el Servicio al Cliente</strong>: Con una mejor previsión de demanda y gestión de inventario, MediSupply Iberia podrá brindar un servicio más confiable y eficiente a sus clientes.</li>
-</ul>
-<p>En resumen, la estrategia propuesta combina tecnologías de IA/data para abordar los desafíos específicos de MediSupply Iberia en gestión de inventario y previsión de demanda. Al aprovechar datos y tecnologías avanzadas, la empresa puede mejorar su eficiencia operativa, reducir costos y mejorar la satisfacción del cliente.</p></div>
-</div>
-</div>
-<!-- Visualización BI -->
-<div class="section-card">
-<div class="section-header">
-<div class="section-icon icon-bi">
-<svg fill="none" stroke="#9d174d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line>
-</svg>
-</div>
-<div class="section-header-text">
-<h2>Propuesta de Visualización de Datos</h2>
-<span>KPIs, dashboards, UX y stack de BI</span>
-</div>
-<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-</div>
-<div class="section-body">
-<div class="prose" id="content-bi"><p><strong>Estrategia de Visualización de Datos para MediSupply Iberia</strong></p>
-<p><strong>Introducción</strong></p>
-<p>La estrategia de visualización de datos para MediSupply Iberia tiene como objetivo proporcionar una visión clara y concisa de los indicadores clave de rendimiento (KPIs) relacionados con la gestión de inventario y la previsión de demanda. La visualización de datos efectiva permitirá a los usuarios tomar decisiones informadas y basadas en datos para mejorar la eficiencia operativa y reducir costos.</p>
-<p><strong>Definición de KPIs de Visualización</strong></p>
-<p>A continuación, se presentan los KPIs de visualización que se utilizarán para evaluar el desempeño de la gestión de inventario y la previsión de demanda:</p>
-<ul>
-<li><strong>Tasa de Rotura de Stock</strong>: Porcentaje de productos que se agotan en un período determinado.</li>
-<li><strong>Nivel de Inventario</strong>: Cantidad de productos en stock en un momento determinado.</li>
-<li><strong>Precisión de Previsión de Demanda</strong>: Diferencia entre la demanda prevista y la demanda real.</li>
-<li><strong>Costo de Almacenamiento</strong>: Costo total de almacenamiento de productos en un período determinado.</li>
-<li><strong>Satisfacción del Cliente</strong>: Nivel de satisfacción del cliente con la entrega de productos.</li>
-</ul>
-<p><strong>Diseño de Dashboards</strong></p>
-<p>Se proponen dos dashboards para proporcionar una visión clara y concisa de los KPIs de visualización:</p>
-<ul>
-<li><strong>Dashboard Ejecutivo</strong>: Este dashboard proporcionará una visión general de los KPIs de visualización clave, incluyendo la tasa de rotura de stock, el nivel de inventario, la precisión de previsión de demanda y el costo de almacenamiento. El dashboard estará diseñado para ser fácil de entender y navegar, con gráficos y tablas que permitan a los usuarios identificar tendencias y patrones.</li>
-<li><strong>Dashboard de Operaciones Detallado</strong>: Este dashboard proporcionará una visión más detallada de los KPIs de visualización, incluyendo la tasa de rotura de stock por producto, el nivel de inventario por almacén y la precisión de previsión de demanda por período. El dashboard estará diseñado para permitir a los usuarios profundizar en los datos y analizarlos en detalle.</li>
-</ul>
-<p><strong>User Experience (UX)</strong></p>
-<p>Los usuarios de la plataforma de visualización de datos serán los responsables de la gestión de inventario y la previsión de demanda en MediSupply Iberia. Para garantizar una experiencia de usuario efectiva, se han considerado las siguientes características:</p>
-<ul>
-<li><strong>Filtros</strong>: Los usuarios podrán filtrar los datos por período, producto, almacén y otros criterios relevantes.</li>
-<li><strong>Drill-downs</strong>: Los usuarios podrán profundizar en los datos para analizarlos en detalle.</li>
-<li><strong>Alertas</strong>: Los usuarios podrán configurar alertas para notificarles cuando se produzcan cambios significativos en los KPIs de visualización.</li>
-</ul>
-<p><strong>Stack de BI</strong></p>
-<p>Se recomienda utilizar Power BI como herramienta de visualización de datos, ya que es la herramienta preferida por el cliente y se integra bien con los demás componentes de la arquitectura. Power BI ofrece una variedad de características y funciones que permiten crear dashboards personalizados y interactivos, incluyendo:</p>
-<ul>
-<li><strong>Gráficos y tablas</strong>: Power BI ofrece una variedad de gráficos y tablas que permiten visualizar los datos de manera efectiva.</li>
-<li><strong>Filtros y drill-downs</strong>: Power BI permite a los usuarios filtrar y profundizar en los datos para analizarlos en detalle.</li>
-<li><strong>Alertas y notificaciones</strong>: Power BI permite a los usuarios configurar alertas y notificaciones para notificarles cuando se produzcan cambios significativos en los KPIs de visualización.</li>
-</ul>
-<p>En resumen, la estrategia de visualización de datos para MediSupply Iberia tiene como objetivo proporcionar una visión clara y concisa de los KPIs de visualización clave relacionados con la gestión de inventario y la previsión de demanda. La utilización de Power BI como herramienta de visualización de datos permitirá a los usuarios tomar decisiones informadas y basadas en datos para mejorar la eficiencia operativa y reducir costos.</p></div>
-</div>
-</div>
-<!-- Estimación de Costos -->
-<div class="section-card">
-<div class="section-header">
-<div class="section-icon icon-cost">
-<svg fill="none" stroke="#15803d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<circle cx="12" cy="12" r="10"></circle>
-<path d="M14.5 9.5a3.5 3.5 0 1 0 0 5"></path>
-<line x1="9" x2="15" y1="12" y2="12"></line>
-</svg>
-</div>
-<div class="section-header-text">
-<h2>Propuesta de Estimación de Costos</h2>
-<span>Costos aproximados de implementación y operación</span>
-</div>
-<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-</div>
-<div class="section-body">
-<div class="prose" id="content-cost-estimation"><p><strong>Informe Detallado de Estimación de Costos para la Implementación de la Solución Propuesta</strong></p>
-<p><strong>Introducción</strong></p>
-<p>La implementación de la solución propuesta para MediSupply Iberia implica una serie de costos asociados con la infraestructura, licencias, desarrollo, mantenimiento y otros servicios necesarios para el despliegue exitoso de la solución. A continuación, se presenta un desglose detallado de los costos estimados para cada categoría y una justificación para cada partida presupuestaria.</p>
-<p><strong>Infraestructura</strong></p>
-<p>La infraestructura necesaria para la implementación de la solución incluye:</p>
-<ul>
-<li><strong>Azure Data Factory (ADF)</strong>: $1,500 al mes (aproximadamente $18,000 al año)</li>
-<li>Justificación: ADF es necesario para la ingesta de datos y la integración con diferentes fuentes de datos.</li>
-<li><strong>Azure Data Lake Storage (ADLS)</strong>: $2,500 al mes (aproximadamente $30,000 al año)</li>
-<li>Justificación: ADLS es necesario para el almacenamiento de datos a gran escala y seguro.</li>
-<li><strong>Azure Databricks</strong>: $3,500 al mes (aproximadamente $42,000 al año)</li>
-<li>Justificación: Azure Databricks es necesario para el procesamiento y análisis de datos a gran escala.</li>
-<li><strong>Azure Machine Learning (AML)</strong>: $2,000 al mes (aproximadamente $24,000 al año)</li>
-<li>Justificación: AML es necesario para el desarrollo y despliegue de modelos de aprendizaje automático.</li>
-</ul>
-<p><strong>Total Infraestructura</strong>: $93,000 al año</p>
-<p><strong>Licencias</strong></p>
-<p>Las licencias necesarias para la implementación de la solución incluyen:</p>
-<ul>
-<li><strong>Power BI</strong>: $1,000 al mes (aproximadamente $12,000 al año)</li>
-<li>Justificación: Power BI es necesario para la visualización de datos y la creación de dashboards.</li>
-<li><strong>Otras licencias de software</strong>: $5,000 al año</li>
-<li>Justificación: Otras licencias de software necesarias para la implementación de la solución.</li>
-</ul>
-<p><strong>Total Licencias</strong>: $17,000 al año</p>
-<p><strong>Desarrollo</strong></p>
-<p>Los costos de desarrollo necesarios para la implementación de la solución incluyen:</p>
-<ul>
-<li><strong>Desarrolladores de software</strong>: $150,000 al año (2 desarrolladores con un salario promedio de $75,000 al año)</li>
-<li>Justificación: Los desarrolladores de software son necesarios para el desarrollo de la solución y la integración con los sistemas existentes.</li>
-<li><strong>Científicos de datos</strong>: $100,000 al año (1 científico de datos con un salario promedio de $100,000 al año)</li>
-<li>Justificación: Los científicos de datos son necesarios para el desarrollo de modelos de aprendizaje automático y la análisis de datos.</li>
-</ul>
-<p><strong>Total Desarrollo</strong>: $250,000 al año</p>
-<p><strong>Mantenimiento</strong></p>
-<p>Los costos de mantenimiento necesarios para la implementación de la solución incluyen:</p>
-<ul>
-<li><strong>Mantenimiento de la infraestructura</strong>: $20,000 al año</li>
-<li>Justificación: El mantenimiento de la infraestructura es necesario para garantizar la disponibilidad y el rendimiento de la solución.</li>
-<li><strong>Mantenimiento de las licencias</strong>: $5,000 al año</li>
-<li>Justificación: El mantenimiento de las licencias es necesario para garantizar la actualización y el soporte de las licencias de software.</li>
-</ul>
-<p><strong>Total Mantenimiento</strong>: $25,000 al año</p>
-<p><strong>Otros</strong></p>
-<p>Otros costos necesarios para la implementación de la solución incluyen:</p>
-<ul>
-<li><strong>Servicios de consultoría</strong>: $50,000 al año</li>
-<li>Justificación: Los servicios de consultoría son necesarios para la implementación y la configuración de la solución.</li>
-<li><strong>Capacitación y soporte</strong>: $20,000 al año</li>
-<li>Justificación: La capacitación y el soporte son necesarios para garantizar que los usuarios finales puedan utilizar la solución de manera efectiva.</li>
-</ul>
-<p><strong>Total Otros</strong>: $70,000 al año</p>
-<p><strong>Total Estimado</strong>: $555,000 al año</p>
-<p>En resumen, la estimación de costos para la implementación de la solución propuesta para MediSupply Iberia es de aproximadamente $555,000 al año. Los costos se desglosan en infraestructura, licencias, desarrollo, mantenimiento y otros servicios necesarios para el despliegue exitoso de la solución.</p></div>
-</div>
-</div>
-<!-- Perfiles de Equipo -->
-<div class="section-card">
-<div class="section-header">
-<div class="section-icon icon-team">
-<svg fill="none" stroke="#b91c1c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<circle cx="9" cy="7" r="3"></circle>
-<path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
-<circle cx="18" cy="7" r="2.5"></circle>
-<path d="M21 21v-1.5a3.5 3.5 0 0 0-2.5-3.35"></path>
-</svg>
-</div>
-<div class="section-header-text">
-<h2>Propuesta de Perfiles de Equipo</h2>
-<span>Roles y habilidades recomendadas para el equipo</span>
-</div>
-<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-</div>
-<div class="section-body">
-<div class="prose" id="content-team-profiles"><p><strong>Informe Detallado de Perfiles Profesionales Necesarios para la Implementación de la Solución Propuesta</strong></p>
-<p><strong>Introducción</strong></p>
-<p>La implementación de la solución propuesta para MediSupply Iberia requiere un equipo de profesionales con habilidades y experiencia en diversas áreas, incluyendo la gestión de datos, el desarrollo de software, la ciencia de datos y la inteligencia artificial. A continuación, se presentan los perfiles profesionales necesarios para la implementación de la solución propuesta.</p>
-<p><strong>1. Arquitecto de Datos</strong></p>
-<ul>
-<li><strong>Responsabilidades clave</strong>:</li>
-<li>Diseñar y implementar la arquitectura de datos para la solución.</li>
-<li>Integrar datos de diferentes fuentes y sistemas.</li>
-<li>Garantizar la calidad y seguridad de los datos.</li>
-<li><strong>Habilidades requeridas</strong>:</li>
-<li>Experiencia en la diseño y implementación de arquitecturas de datos.</li>
-<li>Conocimiento de tecnologías de integración de datos (ADF, ETL, etc.).</li>
-<li>Comprensión de la gestión de datos y la seguridad de la información.</li>
-</ul>
-<p><strong>2. Ingeniero de Datos</strong></p>
-<ul>
-<li><strong>Responsabilidades clave</strong>:</li>
-<li>Desarrollar y mantener la infraestructura de datos.</li>
-<li>Implementar procesos de ETL (Extract, Transform, Load) para la ingesta de datos.</li>
-<li>Garantizar la calidad y disponibilidad de los datos.</li>
-<li><strong>Habilidades requeridas</strong>:</li>
-<li>Experiencia en el desarrollo de infraestructuras de datos.</li>
-<li>Conocimiento de tecnologías de ETL (ADF, Informatica, etc.).</li>
-<li>Comprensión de la gestión de datos y la seguridad de la información.</li>
-</ul>
-<p><strong>3. Científico de Datos</strong></p>
-<ul>
-<li><strong>Responsabilidades clave</strong>:</li>
-<li>Desarrollar modelos de aprendizaje automático para la previsión de demanda.</li>
-<li>Analizar datos para identificar tendencias y patrones.</li>
-<li>Implementar modelos de machine learning para la toma de decisiones.</li>
-<li><strong>Habilidades requeridas</strong>:</li>
-<li>Experiencia en la ciencia de datos y el aprendizaje automático.</li>
-<li>Conocimiento de tecnologías de machine learning (Python, R, etc.).</li>
-<li>Comprensión de la estadística y la matemática.</li>
-</ul>
-<p><strong>4. Desarrollador de Software</strong></p>
-<ul>
-<li><strong>Responsabilidades clave</strong>:</li>
-<li>Desarrollar la solución de software para la gestión de inventario y la previsión de demanda.</li>
-<li>Integrar la solución con sistemas existentes.</li>
-<li>Garantizar la calidad y disponibilidad de la solución.</li>
-<li><strong>Habilidades requeridas</strong>:</li>
-<li>Experiencia en el desarrollo de software.</li>
-<li>Conocimiento de tecnologías de desarrollo (Python, Java, etc.).</li>
-<li>Comprensión de la gestión de proyectos y la colaboración en equipo.</li>
-</ul>
-<p><strong>5. Analista de BI</strong></p>
-<ul>
-<li><strong>Responsabilidades clave</strong>:</li>
-<li>Desarrollar informes y dashboards para la visualización de datos.</li>
-<li>Analizar datos para identificar tendencias y patrones.</li>
-<li>Implementar soluciones de inteligencia de negocios para la toma de decisiones.</li>
-<li><strong>Habilidades requeridas</strong>:</li>
-<li>Experiencia en la inteligencia de negocios y la visualización de datos.</li>
-<li>Conocimiento de tecnologías de BI (Power BI, Tableau, etc.).</li>
-<li>Comprensión de la estadística y la matemática.</li>
-</ul>
-<p><strong>6. Especialista en Machine Learning</strong></p>
-<ul>
-<li><strong>Responsabilidades clave</strong>:</li>
-<li>Desarrollar y desplegar modelos de machine learning para la previsión de demanda.</li>
-<li>Implementar soluciones de inteligencia artificial para la toma de decisiones.</li>
-<li>Garantizar la calidad y disponibilidad de los modelos.</li>
-<li><strong>Habilidades requeridas</strong>:</li>
-<li>Experiencia en la ciencia de datos y el aprendizaje automático.</li>
-<li>Conocimiento de tecnologías de machine learning (Python, R, etc.).</li>
-<li>Comprensión de la estadística y la matemática.</li>
-</ul>
-<p><strong>7. Gestor de Proyectos</strong></p>
-<ul>
-<li><strong>Responsabilidades clave</strong>:</li>
-<li>Gestionar el proyecto de implementación de la solución.</li>
-<li>Coordinar el equipo de desarrollo y los stakeholders.</li>
-<li>Garantizar la calidad y disponibilidad de la solución.</li>
-<li><strong>Habilidades requeridas</strong>:</li>
-<li>Experiencia en la gestión de proyectos.</li>
-<li>Conocimiento de metodologías de gestión de proyectos (Agile, Waterfall, etc.).</li>
-<li>Comprensión de la gestión de equipos y la comunicación.</li>
-</ul>
-<p>En resumen, la implementación de la solución propuesta para MediSupply Iberia requiere un equipo de profesionales con habilidades y experiencia en diversas áreas, incluyendo la gestión de datos, el desarrollo de software, la ciencia de datos y la inteligencia artificial. Los perfiles profesionales necesarios incluyen arquitectos de datos, ingenieros de datos, científicos de datos, desarrolladores de software, analistas de BI, especialistas en machine learning y gestores de proyectos.</p></div>
-</div>
-</div></div>
-<!-- /tab-propuesta -->
-<div class="tab-panel" id="tab-roadmap"><div class="roadmap-container">
-<div class="roadmap-header">
-<h2>Roadmap de Implantación</h2>
-<p>Guía de implementación por capas tecnológicas, generada por agentes especializados.</p>
-</div>
-<div class="pipeline">
-<div class="pipeline-phase">
-<div class="phase-node">
-<span class="phase-node-number">01</span>
-<svg fill="none" stroke="var(--accent)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M4 7v10M4 7l3-3M4 7l-3-3M20 17V7M20 17l3 3M20 17l-3 3M8 7h4M8 12h8M8 17h4"></path>
-</svg>
-</div>
-<div class="phase-card" id="phase-card-roadmap-sources">
-<div class="phase-card-header" onclick="togglePhase('phase-card-roadmap-sources')">
-<div class="phase-label">
-<h3>Fuentes de Datos</h3>
-<span>Sistemas origen e inventario de datos disponibles</span>
-</div>
-<span class="phase-badge">Fase 1</span>
-<svg class="phase-chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<polyline points="6 9 12 15 18 9"></polyline>
-</svg>
-</div>
-<div class="phase-card-body">
-<div class="phase-prose" id="roadmap-sources"><p><strong>Análisis de Fuentes de Datos para MediSupply Iberia</strong></p>
-<h4>1. Inventario de Fuentes Identificadas</h4>
-<p>A continuación, se presentan las fuentes de datos identificadas como relevantes para el proyecto de MediSupply Iberia:</p>
-<ol>
-<li><strong>Sistema de Gestión de Inventario (ERP)</strong>:</li>
-</ol>
-<ul>
-<li>Tipo de datos: Transacciones de inventario, niveles de stock, movimiento de mercaderías.</li>
-<li>Relevancia: Datos esenciales para la previsión de demanda y gestión de stock.</li>
-<li>Formato probable: Estructurado.</li>
-<li>Frecuencia de actualización estimada: En tiempo real o batch diario, dependiendo de la configuración del sistema.</li>
-<li>Sistema o plataforma de origen: El ERP actual de MediSupply Iberia.</li>
-</ul>
-<ol>
-<li><strong>Sistema de Gestión de Ventas (CRM)</strong>:</li>
-</ol>
-<ul>
-<li>Tipo de datos: Pedidos, facturas, clientes, histórico de ventas.</li>
-<li>Relevancia: Crucial para entender patrones de demanda y comportamiento de clientes.</li>
-<li>Formato probable: Estructurado.</li>
-<li>Frecuencia de actualización estimada: En tiempo real o batch diario.</li>
-<li>Sistema o plataforma de origen: El CRM actual de MediSupply Iberia.</li>
-</ul>
-<ol>
-<li><strong>Sistema de Gestión de Almacenes</strong>:</li>
-</ol>
-<ul>
-<li>Tipo de datos: Ubicación de productos, gestión de almacenes, capacidad de almacenamiento.</li>
-<li>Relevancia: Importante para la optimización de la gestión de inventario y la planificación de la capacidad.</li>
-<li>Formato probable: Estructurado.</li>
-<li>Frecuencia de actualización estimada: Batch diario o semanal, dependiendo de la operación del almacén.</li>
-<li>Sistema o plataforma de origen: El sistema de gestión de almacenes de MediSupply Iberia.</li>
-</ul>
-<ol>
-<li><strong>Datos de Mercado y Competidores</strong>:</li>
-</ol>
-<ul>
-<li>Tipo de datos: Tendencias de mercado, comportamiento de la competencia, datos económicos.</li>
-<li>Relevancia: Útil para la previsión de demanda y estrategias competitivas.</li>
-<li>Formato probable: Semiestructurado o no estructurado (informes, artículos, etc.).</li>
-<li>Frecuencia de actualización estimada: Ad-hoc o periódica, dependiendo de la fuente.</li>
-<li>Sistema o plataforma de origen: Varías fuentes externas, incluyendo informes de investigación de mercado y bases de datos económicas.</li>
-</ul>
-<ol>
-<li><strong>Datos Climáticos y Estacionales</strong>:</li>
-</ol>
-<ul>
-<li>Tipo de datos: Patrones climáticos, feast days, estaciones del año.</li>
-<li>Relevancia: Relevante para la previsión de demanda y ajustes estacionales.</li>
-<li>Formato probable: Estructurado.</li>
-<li>Frecuencia de actualización estimada: Batch diario o semanal.</li>
-<li>Sistema o plataforma de origen: Servicios de datos climáticos y calendarios estacionales.</li>
-</ul>
-<ol>
-<li><strong>Encuestas y Retroalimentación de Clientes</strong>:</li>
-</ol>
-<ul>
-<li>Tipo de datos: Preferencias de los clientes, satisfacción, comportamiento de compra.</li>
-<li>Relevancia: Importante para entender las necesidades de los clientes y mejorar el servicio.</li>
-<li>Formato probable: Semiestructurado (textos abiertos) o estructurado (escalas de satisfacción).</li>
-<li>Frecuencia de actualización estimada: Ad-hoc o periódica, dependiendo de la frecuencia de las encuestas.</li>
-<li>Sistema o plataforma de origen: Herramientas de encuesta y sistemas de gestión de la relación con el cliente.</li>
-</ul>
-<h4>2. Evaluación de Calidad y Riesgos por Fuente</h4>
-<ul>
-<li><strong>Sistema de Gestión de Inventario (ERP)</strong>: Riesgo de datos obsoletos o inconsistentes si no se actualiza correctamente. Calidad: Alta.</li>
-<li><strong>Sistema de Gestión de Ventas (CRM)</strong>: Riesgo de datos incompletos si no se registran todas las interacciones. Calidad: Alta.</li>
-<li><strong>Sistema de Gestión de Almacenes</strong>: Riesgo de datos desactualizados si no se sincroniza regularmente con el ERP. Calidad: Media-Alta.</li>
-<li><strong>Datos de Mercado y Competidores</strong>: Riesgo de datos no fiables si se basan en fuentes no confiables. Calidad: Variable.</li>
-<li><strong>Datos Climáticos y Estacionales</strong>: Riesgo bajo de inexactitud, ya que se basan en patrones históricos y pronósticos confiables. Calidad: Alta.</li>
-<li><strong>Encuestas y Retroalimentación de Clientes</strong>: Riesgo de sesgo en la muestra si no es representativa. Calidad: Media.</li>
-</ul>
-<h4>3. Dependencias y Supuestos Asumidos</h4>
-<ul>
-<li>Se asume que todos los sistemas (ERP, CRM, Gestión de Almacenes) están funcionando correctamente y actualizándose en tiempo real o batch diario según sea necesario.</li>
-<li>Se supone que los datos de mercado y competidores son accesibles a través de fuentes externas confiables.</li>
-<li>Se asume que las encuestas y la retroalimentación de los clientes se llevan a cabo de manera regular y se recopilan de forma sistemática.</li>
-<li>Se depende de la cooperación de los departamentos de TI y operaciones para acceder a los sistemas y datos necesarios.</li>
-</ul>
-<h4>4. Recomendaciones Prioritarias para la Fase de Ingesta</h4>
-<ol>
-<li><strong>Validación de la Calidad de los Datos</strong>: Realizar un análisis exhaustivo de la calidad de los datos en cada fuente identificada para asegurar su precisión y consistencia.</li>
-<li><strong>Establecimiento de Acuerdos de Acceso a Datos</strong>: Negociar y establecer acuerdos formales con los propietarios de los datos y los departamentos involucrados para garantizar el acceso continuo a los datos necesarios.</li>
-<li><strong>Desarrollo de un Plan de Integración de Datos</strong>: Crear un plan detallado para la integración de los datos de diversas fuentes, considerando los formatos, frecuencias de actualización y posibles riesgos identificados.</li>
-<li><strong>Implementación de Procesos de Monitoreo y Actualización</strong>: Establecer procesos para monitorear la calidad y la disponibilidad de los datos a lo largo del tiempo y actualizar los planes de ingesta según sea necesario para reflejar cambios en las fuentes de datos o en los requisitos del proyecto.</li>
-</ol></div>
-</div>
-</div>
-</div>
-<div class="pipeline-phase">
-<div class="phase-node">
-<span class="phase-node-number">02</span>
-<svg fill="none" stroke="var(--accent)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M5 12h14M12 5l7 7-7 7"></path>
-</svg>
-</div>
-<div class="phase-card" id="phase-card-roadmap-ingestion">
-<div class="phase-card-header" onclick="togglePhase('phase-card-roadmap-ingestion')">
-<div class="phase-label">
-<h3>Ingesta de Datos</h3>
-<span>Azure Data Factory · Pipelines y conectores</span>
-</div>
-<span class="phase-badge">Fase 2</span>
-<svg class="phase-chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<polyline points="6 9 12 15 18 9"></polyline>
-</svg>
-</div>
-<div class="phase-card-body">
-<div class="phase-prose" id="roadmap-ingestion"><p><strong>Propuesta de Estrategia de Ingesta de Datos para MediSupply Iberia</strong></p>
-<h4>1. Patrón de Ingesta por Fuente o Grupo de Fuentes</h4>
-<p>Basándonos en el análisis de las fuentes de datos identificadas, se recomiendan los siguientes patrones de ingesta:</p>
-<ul>
-<li><strong>Sistema de Gestión de Inventario (ERP)</strong>: Ingesta en tiempo real o batch diario, dependiendo de la configuración del sistema. Se sugiere utilizar un conector de ADF para ERP que permita la captura de cambios en tiempo real (CDC) para garantizar la consistencia de los datos.</li>
-<li><strong>Sistema de Gestión de Ventas (CRM)</strong>: Ingesta en tiempo real o batch diario. Se recomienda utilizar un conector de ADF para CRM que pueda manejar tanto la ingestión en tiempo real como la recuperación de datos históricos.</li>
-<li><strong>Sistema de Gestión de Almacenes</strong>: Ingesta batch diario o semanal, dependiendo de la operación del almacén. Un conector de ADF que admita la carga de datos por lotes será adecuado para esta fuente.</li>
-<li><strong>Datos de Mercado y Competidores</strong>: Ingesta ad-hoc o periódica, dependiendo de la disponibilidad de los datos. Se sugiere utilizar un conector de ADF que permita la ingestión de datos desde fuentes externas variadas, como APIs o archivos descargados.</li>
-<li><strong>Datos Climáticos y Estacionales</strong>: Ingesta batch diaria o semanal. Un conector de ADF que permita la recuperación de datos desde servicios climáticos y calendarios estacionales será adecuado.</li>
-<li><strong>Encuestas y Retroalimentación de Clientes</strong>: Ingesta ad-hoc o periódica, dependiendo de la frecuencia de las encuestas. Se recomienda utilizar un conector de ADF que admita la ingestión de datos desde herramientas de encuesta y sistemas de gestión de la relación con el cliente.</li>
-</ul>
-<h4>2. Estructura de Pipelines Recomendada en ADF</h4>
-<p>Se propone la siguiente estructura de pipelines para cada grupo de fuentes:</p>
-<ul>
-<li><strong>Pipeline de Inventario</strong>: Un pipeline que ingiera datos del ERP y del sistema de gestión de almacenes, con transformaciones para calcular niveles de stock y movimientos de mercaderías.</li>
-<li><strong>Pipeline de Ventas</strong>: Un pipeline que ingiera datos del CRM, con transformaciones para calcular patrones de ventas y comportamiento de clientes.</li>
-<li><strong>Pipeline de Mercado y Competidores</strong>: Un pipeline que ingiera datos de fuentes externas, con transformaciones para calcular tendencias de mercado y comportamiento de la competencia.</li>
-<li><strong>Pipeline de Climatología y Estacionalidad</strong>: Un pipeline que ingiera datos climáticos y estacionales, con transformaciones para calcular impactos potenciales en la demanda.</li>
-<li><strong>Pipeline de Encuestas y Retroalimentación</strong>: Un pipeline que ingiera datos de encuestas y retroalimentación de clientes, con transformaciones para calcular satisfacción del cliente y preferencias.</li>
-</ul>
-<h4>3. Conectores y Configuraciones Clave</h4>
-<ul>
-<li><strong>Conector de ADF para ERP</strong>: Se requiere un conector que admita la captura de cambios en tiempo real (CDC) y la recuperación de datos históricos.</li>
-<li><strong>Conector de ADF para CRM</strong>: Se requiere un conector que pueda manejar tanto la ingestión en tiempo real como la recuperación de datos históricos.</li>
-<li><strong>Conector de ADF para Datos de Mercado y Competidores</strong>: Se requiere un conector que permita la ingestión de datos desde fuentes externas variadas.</li>
-<li><strong>Conector de ADF para Datos Climáticos y Estacionales</strong>: Se requiere un conector que permita la recuperación de datos desde servicios climáticos y calendarios estacionales.</li>
-<li><strong>Conector de ADF para Encuestas y Retroalimentación de Clientes</strong>: Se requiere un conector que admita la ingestión de datos desde herramientas de encuesta y sistemas de gestión de la relación con el cliente.</li>
-</ul>
-<h4>4. Cadencias y Dependencias entre Pipelines</h4>
-<ul>
-<li><strong>Cadencia</strong>: Los pipelines se ejecutarán con la siguiente cadencia:</li>
-<li>Pipeline de Inventario: Cada hora.</li>
-<li>Pipeline de Ventas: Cada hora.</li>
-<li>Pipeline de Mercado y Competidores: Diariamente.</li>
-<li>Pipeline de Climatología y Estacionalidad: Semanalmente.</li>
-<li>Pipeline de Encuestas y Retroalimentación: Mensualmente.</li>
-<li><strong>Dependencias</strong>: Los pipelines dependerán de la disponibilidad de los datos en las fuentes respectivas. Se establecerán alertas para cuando un pipeline no pueda ejecutarse debido a la falta de datos.</li>
-</ul>
-<h4>5. Riesgos Identificados y Recomendaciones de Mitigación</h4>
-<ul>
-<li><strong>Riesgo de Datos Obsoletos o Inconsistentes</strong>: Se mitigará mediante la validación de la calidad de los datos en cada fuente identificada y la implementación de procesos de monitoreo y actualización.</li>
-<li><strong>Riesgo de Acceso a Datos</strong>: Se mitigará mediante la negociación y establecimiento de acuerdos formales con los propietarios de los datos y los departamentos involucrados.</li>
-<li><strong>Riesgo de Calidad de los Datos</strong>: Se mitigará mediante la implementación de procesos de validación y limpieza de los datos antes de su ingestión.</li>
-<li><strong>Riesgo de Cambios en las Fuentes de Datos</strong>: Se mitigará mediante la monitorización continua de las fuentes de datos y la actualización de los planes de ingesta según sea necesario.</li>
-</ul>
-<p>En conclusión, la estrategia de ingesta de datos propuesta para MediSupply Iberia se enfoca en la ingesta de datos en tiempo real o batch desde diversas fuentes, utilizando conectores de ADF especializados para cada tipo de fuente. La estructura de pipelines se ha diseñado para permitir la transformación y el análisis de los datos de manera eficiente, y se han identificado los riesgos potenciales y se han recomendado medidas de mitigación para garantizar la calidad y la disponibilidad de los datos.</p></div>
-</div>
-</div>
-</div>
-<div class="pipeline-phase">
-<div class="phase-node">
-<span class="phase-node-number">03</span>
-<svg fill="none" stroke="var(--accent)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
-</svg>
-</div>
-<div class="phase-card" id="phase-card-roadmap-storage">
-<div class="phase-card-header" onclick="togglePhase('phase-card-roadmap-storage')">
-<div class="phase-label">
-<h3>Almacenamiento</h3>
-<span>Data Lake · Arquitectura medallion · ADLS Gen2</span>
-</div>
-<span class="phase-badge">Fase 3</span>
-<svg class="phase-chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<polyline points="6 9 12 15 18 9"></polyline>
-</svg>
-</div>
-<div class="phase-card-body">
-<div class="phase-prose" id="roadmap-storage"><p><strong>Propuesta de Arquitectura de Almacenamiento para MediSupply Iberia</strong></p>
-<p><strong>1. Decisión y Justificación sobre la Estructura de Capas (Medallion Completa o Simplificada)</strong></p>
-<p>Basándonos en el análisis de las fuentes de datos y la estrategia de ingesta definida, se propone una arquitectura de almacenamiento en Azure que sigue un enfoque de arquitectura medallion simplificada. Considerando el volumen de datos estimado y la complejidad de las transformaciones necesarias, se recomienda implementar una arquitectura con dos capas: Bronze y Silver. La capa Bronze actuará como un depósito inicial para los datos ingestionados, mientras que la capa Silver se utilizará para almacenar los datos transformados y listos para ser utilizados en análisis y modelado.</p>
-<p>La arquitectura medallion completa (Bronze, Silver, Gold) se considera excesiva para este caso, ya que no se requiere una capa Gold para almacenar datos altamente agregados y listos para la visualización, dado que se utilizarán herramientas de análisis y visualización como Power BI y Azure Synapse Analytics para este propósito.</p>
-<p><strong>2. Servicios de Azure Recomendados y Justificación</strong></p>
-<ul>
-<li><strong>Azure Data Lake Storage (ADLS) Gen2</strong>: Se recomienda utilizar ADLS Gen2 como el almacenamiento principal para el Data Lake. ADLS Gen2 ofrece un almacenamiento escalable, seguro y de alto rendimiento para todos los tipos de datos.</li>
-<li><strong>Azure Data Factory (ADF)</strong>: ADF se utilizará para la ingesta de datos y las transformaciones iniciales. Su capacidad para manejar diversas fuentes de datos y para realizar transformaciones complejas lo hace ideal para este proyecto.</li>
-<li><strong>Azure Synapse Analytics (formerly Azure SQL Data Warehouse)</strong>: Synapse Analytics se utilizará para el análisis avanzado y la modelación de datos. Su capacidad para manejar grandes volúmenes de datos y realizar consultas complejas lo hace adecuado para este propósito.</li>
-</ul>
-<p><strong>3. Estructura de Carpetas y Estrategia de Particionado</strong></p>
-<p>Se propone la siguiente estructura de carpetas en ADLS Gen2:</p>
-<ul>
-<li><code>/bronze/</code>: Carpeta para almacenar los datos en su forma raw, post-ingesta.</li>
-<li><code>/bronze/inventario/</code>: Datos de inventario.</li>
-<li><code>/bronze/ventas/</code>: Datos de ventas.</li>
-<li><code>/bronze/mercadeo/</code>: Datos de mercado y competidores.</li>
-<li><code>/bronze/climatologia/</code>: Datos climáticos y estacionales.</li>
-<li><code>/bronze/encuestas/</code>: Datos de encuestas y retroalimentación de clientes.</li>
-</ul>
-<ul>
-<li><code>/silver/</code>: Carpeta para almacenar los datos transformados y listos para análisis.</li>
-<li><code>/silver/inventario/</code>: Datos de inventario transformados.</li>
-<li><code>/silver/ventas/</code>: Datos de ventas transformados.</li>
-<li><code>/silver/mercadeo/</code>: Datos de mercado y competidores transformados.</li>
-<li><code>/silver/climatologia/</code>: Datos climáticos y estacionales transformados.</li>
-<li><code>/silver/encuestas/</code>: Datos de encuestas y retroalimentación de clientes transformados.</li>
-</ul>
-<p>La estrategia de particionado se basará en la fecha de carga y en campos relevantes específicos de cada conjunto de datos (por ejemplo, fecha de venta, fecha de inventario, etc.).</p>
-<p><strong>4. Políticas de Retención y Tier de Acceso</strong></p>
-<ul>
-<li><strong>Política de Retención</strong>: Se establecerá una política de retención que garantice que los datos se conserven durante al menos 5 años, con la posibilidad de extensión según los requisitos regulatorios o de negocio.</li>
-<li><strong>Tier de Acceso</strong>: Se implementarán diferentes tiers de acceso basados en la frecuencia de uso de los datos:</li>
-<li><strong>Acceso Frecuente (Hot)</strong>: Datos en la capa Silver utilizados con frecuencia para análisis y modelado.</li>
-<li><strong>Acceso Infrecuente (Cool)</strong>: Datos en la capa Bronze y datos históricos en la capa Silver.</li>
-<li><strong>Archivado (Archive)</strong>: Datos antiguos que ya no se utilizan activamente pero que deben conservarse por requisitos regulatorios.</li>
-</ul>
-<p><strong>5. Consideraciones de Seguridad y Gobierno de Acceso</strong></p>
-<ul>
-<li><strong>Autenticación y Autorización</strong>: Se implementarán políticas de autenticación y autorización estrictas utilizando Azure Active Directory (AAD) y roles de Azure para garantizar que solo el personal autorizado tenga acceso a los datos.</li>
-<li><strong>Cifrado</strong>: Todos los datos en tránsito y en reposo estarán cifrados utilizando tecnologías como SSL/TLS y Azure Storage Service Encryption.</li>
-<li><strong>Auditorías y Registros</strong>: Se configurarán auditorías y registros detallados para todas las actividades relacionadas con los datos, para asegurar la trazabilidad y el cumplimiento normativo.</li>
-</ul>
-<p><strong>6. Riesgos y Recomendaciones Operativas</strong></p>
-<ul>
-<li><strong>Monitoreo Continuo</strong>: Es crucial monitorear continuamente el rendimiento, la seguridad y la disponibilidad del Data Lake para identificar y mitigar posibles riesgos.</li>
-<li><strong>Actualizaciones Regulares</strong>: Realizar actualizaciones regulares de software y sistemas para proteger contra vulnerabilidades de seguridad.</li>
-<li><strong>Capacitación del Personal</strong>: Asegurarse de que el personal involucrado tenga las habilidades y conocimientos necesarios para operar y mantener el Data Lake de manera efectiva.</li>
-</ul>
-<p>En resumen, la arquitectura de almacenamiento propuesta para MediSupply Iberia en Azure está diseñada para ser escalable, segura y eficiente, apoyando las necesidades del negocio en términos de análisis de datos y modelado. La implementación de una arquitectura medallion simplificada con ADLS Gen2, ADF y Synapse Analytics permitirá un manejo efectivo de los datos, mientras que las políticas de retención, tier de acceso y consideraciones de seguridad garantizarán la integridad y disponibilidad de los datos a largo plazo.</p></div>
-</div>
-</div>
-</div>
-<div class="pipeline-phase">
-<div class="phase-node">
-<span class="phase-node-number">04</span>
-<svg fill="none" stroke="var(--accent)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-</svg>
-</div>
-<div class="phase-card" id="phase-card-roadmap-etl">
-<div class="phase-card-header" onclick="togglePhase('phase-card-roadmap-etl')">
-<div class="phase-label">
-<h3>Procesamiento / ETL</h3>
-<span>Databricks · Synapse · Transformaciones por capa</span>
-</div>
-<span class="phase-badge">Fase 4</span>
-<svg class="phase-chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<polyline points="6 9 12 15 18 9"></polyline>
-</svg>
-</div>
-<div class="phase-card-body">
-<div class="phase-prose" id="roadmap-etl"><p><strong>Propuesta de Capa de Procesamiento y ETL para MediSupply Iberia</strong></p>
-<p><strong>1. Decisión y justificación entre Databricks y Synapse (o combinación)</strong></p>
-<p>Después de analizar la arquitectura de almacenamiento y la estrategia de ingesta definidas en el análisis previo, se ha decidido utilizar Azure Synapse Analytics como herramienta principal para el procesamiento de datos. La justificación para esta decisión se basa en los siguientes factores:</p>
-<ul>
-<li>Volumen de datos: El volumen de datos que se espera procesar es moderado, y Synapse es capaz de manejarlo de manera efectiva.</li>
-<li>Complejidad de las transformaciones: Las transformaciones requeridas no son extremadamente complejas, y Synapse proporciona las herramientas necesarias para realizarlas de manera eficiente.</li>
-<li>Capacidad del equipo: El equipo de MediSupply Iberia tiene experiencia en el uso de herramientas de Microsoft, lo que facilitará la adopción y el uso de Synapse.</li>
-</ul>
-<p>Si bien Databricks es una herramienta potente para el procesamiento de datos a gran escala, se considera que Synapse es suficiente para satisfacer las necesidades actuales de MediSupply Iberia. Además, Synapse es más fácil de mantener y operar que Databricks, lo que es importante considerar dado el perfil del equipo del cliente.</p>
-<p><strong>2. Transformaciones principales por capa (Bronze→Silver, Silver→Gold)</strong></p>
-<p>La capa de procesamiento se divide en tres capas: Bronze, Silver y Gold. A continuación, se describen las transformaciones principales que deben ocurrir en cada capa:</p>
-<ul>
-<li><strong>Capa Bronze</strong>: En esta capa, se realizan las siguientes transformaciones:</li>
-<li>Ingesta de datos desde diversas fuentes (Azure Data Factory)</li>
-<li>Almacenamiento de datos en formato raw (Azure Data Lake Storage)</li>
-<li>Validación básica de datos (comprobación de formato, etc.)</li>
-<li><strong>Capa Silver</strong>: En esta capa, se realizan las siguientes transformaciones:</li>
-<li>Limpieza y transformación de datos (eliminación de datos duplicados, formato de fechas, etc.)</li>
-<li>Integración de datos de diferentes fuentes</li>
-<li>Creación de agregados y resúmenes de datos</li>
-<li><strong>Capa Gold</strong>: En esta capa, se realizan las siguientes transformaciones:</li>
-<li>Análisis avanzado de datos ( Machine Learning, etc.)</li>
-<li>Creación de informes y dashboards</li>
-<li>Publicación de datos para consumo de los usuarios finales</li>
-</ul>
-<p><strong>3. Estrategia de calidad de datos y validaciones</strong></p>
-<p>La estrategia de calidad de datos se basa en la siguiente secuencia de validaciones y comprobaciones:</p>
-<ul>
-<li><strong>Validación básica de datos</strong>: Comprobación de formato, tipo de datos, etc.</li>
-<li><strong>Validación de integridad de datos</strong>: Comprobación de la consistencia de los datos y la integridad referencial.</li>
-<li><strong>Detección de anomalías</strong>: Uso de algoritmos de detección de anomalías para identificar patrones inusuales en los datos.</li>
-<li><strong>Reconciliación de datos</strong>: Comprobación de la coherencia de los datos entre diferentes fuentes y sistemas.</li>
-</ul>
-<p><strong>4. Orquestación y scheduling de jobs</strong></p>
-<p>La orquestación y el scheduling de los jobs de procesamiento se realizarán mediante Azure Data Factory (ADF). ADF permitirá programar y ejecutar los jobs de manera automática, asegurando que los datos se procesen de manera oportuna y eficiente.</p>
-<p><strong>5. Riesgos operativos y recomendaciones de mantenimiento</strong></p>
-<p>Los riesgos operativos asociados con la capa de procesamiento incluyen:</p>
-<ul>
-<li><strong>Fallas en la ingesta de datos</strong>: Si los datos no se ingieren correctamente, los procesos de procesamiento no podrán ejecutarse.</li>
-<li><strong>Fallas en la transformación de datos</strong>: Si las transformaciones de datos no se realizan correctamente, los datos procesados pueden ser incorrectos o incompletos.</li>
-<li><strong>Fallas en la publicación de datos</strong>: Si los datos no se publican correctamente, los usuarios finales no podrán acceder a la información.</li>
-</ul>
-<p>Para mitigar estos riesgos, se recomiendan las siguientes acciones de mantenimiento:</p>
-<ul>
-<li><strong>Monitoreo constante de los jobs de procesamiento</strong>: Asegurarse de que los jobs se estén ejecutando correctamente y de manera oportuna.</li>
-<li><strong>Validación de los datos procesados</strong>: Comprobar la calidad y la integridad de los datos procesados antes de publicarlos.</li>
-<li><strong>Mantenimiento de la documentación</strong>: Mantener la documentación de los procesos de procesamiento y de los jobs de ADF actualizada y accesible.</li>
-</ul>
-<p>En resumen, la propuesta de capa de procesamiento y ETL para MediSupply Iberia se basa en el uso de Azure Synapse Analytics como herramienta principal para el procesamiento de datos, con transformaciones principales que ocurren en las capas Bronze, Silver y Gold. La estrategia de calidad de datos se basa en validaciones y comprobaciones constantes, y la orquestación y el scheduling de los jobs de procesamiento se realizarán mediante Azure Data Factory. Finalmente, se recomiendan acciones de mantenimiento para mitigar los riesgos operativos y asegurar la calidad y la integridad de los datos procesados.</p></div>
-</div>
-</div>
-</div>
-<div class="pipeline-phase">
-<div class="phase-node">
-<span class="phase-node-number">05</span>
-<svg fill="none" stroke="var(--accent)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M3 3h18v18H3zM9 9h6M9 12h6M9 15h4"></path>
-</svg>
-</div>
-<div class="phase-card" id="phase-card-roadmap-modeling">
-<div class="phase-card-header" onclick="togglePhase('phase-card-roadmap-modeling')">
-<div class="phase-label">
-<h3>Modelado y Serving</h3>
-<span>Data Warehouse · Modelo analítico · Capa semántica</span>
-</div>
-<span class="phase-badge">Fase 5</span>
-<svg class="phase-chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<polyline points="6 9 12 15 18 9"></polyline>
-</svg>
-</div>
-<div class="phase-card-body">
-<div class="phase-prose" id="roadmap-modeling"><h3>1️⃣ Decisión sobre el tipo de modelo analítico y justificación  </h3>
-<p>| Opción | Ventajas | Desventajas | Recomendación para MediSupply Iberia |<br/>|--------|----------|-------------|--------------------------------------|<br/>| <strong>Esquema en estrella clásico (DW tradicional)</strong>  &lt;br&gt;‑ Fact tables + dimensiones en Synapse (dedicated pool). | • Modelo bien documentado y fácil de entender para analistas y usuarios de negocio.&lt;br&gt;• Optimizado para consultas agregadas (OLAP).&lt;br&gt;• Permite crear índices columnstore y particiones que garantizan alto rendimiento.&lt;br&gt;• Soporta fácilmente procesos de carga incremental y snapshots. | • Menos flexible para cambios estructurales rápidos (nuevas fuentes).&lt;br&gt;• Requiere mayor esfuerzo de modelado inicial. | ✔️ <strong>Sí</strong> – El negocio necesita una visión “claramente estructurada” de inventario, ventas y previsiones. La prioridad es la <strong>comprensibilidad</strong> y la <strong>estabilidad</strong> del modelo. |<br/>| <strong>Modelo flexible (Data Vault / Snowflake)</strong> | • Muy adaptable a cambios de fuentes.&lt;br&gt;• Buen historial de auditoría. | • Más complejo de explicar a usuarios de negocio.&lt;br&gt;• Requiere capas de presentación extra para llegar a métricas “listas para consumir”. | ❌ No es la primera opción; la complejidad añadida superaría el valor para los usuarios finales. |<br/>| <strong>Capa semántica directa en Power BI (Semantic Model / Composite Model)</strong> | • Los usuarios consumen el modelo sin pasar por una base DW explícita.&lt;br&gt;• Rápida puesta en marcha, buen soporte de filtros y cálculos DAX.&lt;br&gt;• Menor latencia de desarrollo. | • Limita el control fino de performance a gran escala (volúmenes de cientos de millones de filas).&lt;br&gt;• Dependencia total del motor de Power BI para cálculo. | <strong>Complementario</strong> – Se crea un <strong>Semantic Layer</strong> sobre el DW (Azure Analysis Services o Power BI Premium) para ofrecer la “capa de consumo” sin sacrificar la robustez del modelo estrella. |</p>
-<p><strong>Conclusión</strong> <br/>Se implementará <strong>un esquema en estrella</strong> en <strong>Azure Synapse Dedicated SQL Pool</strong> como núcleo del Data Warehouse (DW) y, sobre él, una <strong>capa semántica</strong> con <strong>Azure Analysis Services</strong> (o Power BI Premium dataset) que exponga los objetos de negocio en términos amigables.  Esta combinación brinda:</p>
-<ul>
-<li><strong>Facilidad de comprensión</strong> (dimensiones y hechos claros).  </li>
-<li><strong>Alto rendimiento</strong> (columnstore, particiones, índices).  </li>
-<li><strong>Flexibilidad de consumo</strong> (Power BI, APIs, notebooks, modelos de ML).  </li>
-<li><strong>Gobernanza centralizada</strong> (seguridad a nivel de tabla/columna, políticas de retención).  </li>
-</ul>
-<hr/>
-<h3>2️⃣ Entidades principales del modelo (hechos, dimensiones o equivalentes)</h3>
-<h4>2.1 Dimensiones (dim_*)  </h4>
-<p>| Dimensión | Clave primaria | Atributos clave (ejemplo) | Comentario de negocio |<br/>|-----------|----------------|---------------------------|-----------------------|<br/>| <strong>dim<em>date</em></strong> | datekey (int, YYYYMMDD) | full<em>date, day, month, quarter, year, fiscal</em>year, is<em>weekend, is</em>holiday | Calendario fiscal y comercial. |<br/>| <strong>dim<em>product</em></strong> | productkey (int) | sku, product<em>name, category, subcategory, brand, uom, product</em>group, lead<em>time</em>days, safety<em>stock, is</em>active | Catálogo maestro de productos. |<br/>| <strong>dim<em>location</em></strong> | locationkey (int) | site<em>code, site</em>name, site<em>type (warehouse / distribution</em>center / store), region, country, latitude, longitude, capacity_sqmt | Ubicaciones físicas donde se almacena o vende. |<br/>| <strong>dim<em>supplier</em></strong> | supplierkey (int) | supplier<em>id, supplier</em>name, contract<em>type, lead</em>time_days, rating, country | Información contractual y de desempeño. |<br/>| <strong>dim<em>customer</em></strong> | customerkey (int) | customer<em>id, customer</em>name, segment (pharma, hospital, retail), tier, region, contract<em>start, contract</em>end | Segmentación de clientes para análisis de demanda. |<br/>| <strong>dim<em>promotion</em></strong> | promotionkey (int) | promo<em>id, promo</em>type, start<em>date, end</em>date, discount<em>pct, affected</em>skus | Afecta la demanda y el consumo de stock. |<br/>| <strong>dim<em>forecast</em>run</strong> | forecast<em>run</em>key (int) | run<em>id, run</em>timestamp, model<em>version, horizon</em>days, accuracy<em>score, created</em>by | Cada ejecución del modelo de IA queda registrada. |</p>
-<p>&gt; <strong>Tip de usabilidad:</strong> Cada dimensión incluye “descripciones legibles” (p.ej. <code>product<em>name</em></code>) y “códigos” internos (<code>productkey</code>). En los reportes se mostrará el nombre y el código, pero los joins internos usarán la clave surrogate.</p>
-<h4>2.2 Tablas de hechos (fact_*)  </h4>
-<p>| Tabla de Hecho | Granularidad | Claves foráneas | Métricas principales | Comentario |<br/>|----------------|--------------|-----------------|----------------------|------------|<br/>| <strong>fact<em>sales</em></strong> | Una fila por línea de venta (order‑line) | datekey, product<em>key, location</em>key, customer<em>key, promotion</em>key | qty<em>sold, sales</em>amount, discount<em>amount, gross</em>margin, cost<em>of</em>goods_sold | Fuente: ERP/CRM → usada para entrenar el modelo de demanda y para cálculo de precisión. |<br/>| <strong>fact<em>inventory</em></strong> | Snapshot diario por SKU‑Location | datekey, product<em>key, location</em>key | on<em>hand</em>qty, reserved<em>qty, damaged</em>qty, aging<em>days, inventory</em>value | Generado en la capa Silver → Gold (snapshot). |<br/>| <strong>fact<em>stock</em>movement</strong> | Movimiento de inventario (inbound/outbound/adjustment) | date<em>key, product</em>key, location<em>key, supplier</em>key, customer<em>key | movement</em>qty, movement<em>type (IN, OUT, ADJ), movement</em>cost, reference_document | Permite análisis de rotación y de rupturas. |<br/>| <strong>fact<em>demand</em>forecast</strong> | Predicción por SKU‑Location‑fecha<em>horizon | forecast</em>run<em>key, product</em>key, location<em>key, date</em>key | forecast<em>qty, lower</em>bound, upper<em>bound, confidence</em>level | Resultado del modelo ML (Azure ML) publicado en Gold. |<br/>| <strong>fact<em>purchase</em>order</strong> | Pedido a proveedor (línea) | date<em>key, product</em>key, location<em>key, supplier</em>key | po<em>qty, po</em>amount, expected<em>receipt</em>date, actual<em>receipt</em>date, lead<em>time</em>actual | Base para cálculo de cumplimiento de proveedor y lead‑time real. |<br/>| <strong>fact<em>breakage</em></strong> | Registro de ruptura de stock (evento) | datekey, product<em>key, location</em>key, customer<em>key | breakage</em>qty, lost<em>sales</em>amount, reason_code | Métrica crítica para el KPI “Tasa de Rotura”. |</p>
-<p>&gt; <strong>Nota:</strong> Todas las tablas de hechos usan <strong>columnstore indexes</strong> y <strong>particionamiento por <code>date_key</code></strong> (por año/mes). Las tablas de dimensiones usan <strong>rowstore</strong> con índices de clave primaria y columnas de búsqueda frecuentes (p.ej. <code>sku</code>).  </p>
-<h4>2.3 Vistas de apoyo (view_*)  </h4>
-<p>| Vista | Propósito | Comentario |<br/>|-------|-----------|------------|<br/>| <strong>vw<em>inventory</em>balances</strong> | Combina <code>fact<em>inventory</em></code> con <code>dimproduct</code> y <code>dim_location</code> para mostrar balances por nivel jerárquico. | Usada por los dashboards operacionales. |<br/>| <strong>vw<em>forecast</em>vs<em>actual</em></strong> | Une <code>factdemand<em>forecast</em></code> y <code>factsales</code> para medir precisión (MAPE, RMSE). | Alimenta el KPI “Precisión de Previsión”. |<br/>| <strong>vw<em>supplier</em>performance</strong> | Agrega <code>fact<em>purchase</em>order</code> y <code>fact<em>stock</em>movement</code> para calcular OTIF, lead‑time promedio. | Consumida por el equipo de compras. |</p>
-<hr/>
-<h3>3️⃣ Métricas de negocio clave y cálculos precalculados  </h3>
-<p>| Métrica (nombre técnico) | Fórmula / cálculo | Tipo | Comentario de negocio |<br/>|--------------------------|-------------------|------|-----------------------|<br/>| <strong>KPI<em>Tasa</em>Ruptura<em>Stock</em></strong> (<code>stockbreakage<em>rate</em></code>) | <code>SUM(breakageqty) / (SUM(on<em>hand</em>qty) + SUM(breakage_qty))</code> | Decimal (0‑1) | Expresa la proporción de unidades que no pudieron venderse por falta de inventario. |<br/>| <strong>KPI<em>Nivel</em>Inventario<em>Promedio</em></strong> (<code>avgon<em>hand</em>qty</code>) | <code>AVG(on<em>hand</em>qty)</code> (por SKU‑Location‑mes) | Decimal | Base para decidir re‑stock. |<br/>| <strong>KPI<em>Precisión</em>Previsión</strong> (<code>forecast<em>accuracy</em></code>) | <code>1 - (ABS(SUM(actualqty) - SUM(forecast<em>qty)) / SUM(actual</em>qty))</code> | Decimal | Se calcula a nivel mensual, por categoría, etc. |<br/>| <strong>KPI<em>Costo</em>Almacenamiento</strong> (<code>storage<em>cost</em></code>) | <code>SUM(inventoryvalue) * cost<em>per</em>sqmt<em>per</em>day / 365</code> | Monetario | Coste estimado del espacio ocupado. |<br/>| <strong>KPI<em>Satisfacción</em>Cliente</strong> (<code>customer<em>satisfaction</em></code>) | Valor importado del sistema CRM (NPS) o calculado como <code>1 - (breakageqty / total<em>demand</em>qty)</code> | Decimal | Se muestra a nivel regional. |<br/>| <strong>Métrica<em>Rotación</em>Inventario</strong> (<code>inventory<em>turnover</em></code>) | <code>SUM(salesamount) / AVG(inventory_value)</code> | Decimal | Indicador de eficiencia. |<br/>| <strong>Métrica<em>OTIF</em>Proveedor</strong> (<code>supplier<em>otif</em></code>) | <code>COUNT(CASE WHEN actualreceipt<em>date &lt;= expected</em>receipt_date THEN 1 END) / COUNT(*)</code> | Decimal | Cumplimiento a tiempo e íntegro. |<br/>| <strong>Métrica<em>Lead</em>Time<em>Real</em></strong> (<code>actuallead<em>time</em></code>) | <code>DATEDIFF(day, podate, actual<em>receipt</em>date)</code> | Entero | Comparado con <code>lead<em>time</em>days</code> del producto. |<br/>| <strong>Métrica<em>Nivel</em>Seguridad</strong> (<code>safety<em>stock</em>coverage</code>) | <code>SUM(on<em>hand</em>qty) / SUM(safety_stock)</code> | Decimal | Cuanto del stock de seguridad está cubierto. |<br/>| <strong>Métrica<em>Demanda</em>Prevista</strong> (<code>forecast<em>qty</em></code>) | Valor pre‑calculado en <code>factdemand_forecast</code>. | Entero | Se publica directamente; no se recalcula en tiempo de consulta. |</p>
-<p><strong>Pre‑cálculo</strong> </p>
-<ul>
-<li><strong>Aggregaciones mensuales y trimestrales</strong> se materializan en <strong>tablas de agregación</strong> (<code>agg<em>sales</em>monthly</code>, <code>agg<em>inventory</em>monthly</code>) usando <strong>materialized views</strong> o <strong>indexed views</strong> en Synapse.  </li>
-<li><strong>KPIs de nivel superior</strong> (p.ej. rotación, OTIF) se guardan en una tabla de “KPI snapshot” (<code>fact<em>kpi</em>snapshot</code>) con una fila por día y por dimensión de negocio (region, categoría). Esto permite consultas de dashboard en <strong>milisegundos</strong> sin recálculo dinámico.  </li>
-</ul>
-<hr/>
-<h3>4️⃣ Estrategia de actualización y latencia de datos  </h3>
-<p>| Tipo de dato | Fuente | Frecuencia de carga | Técnica de carga | Comentario de latencia |<br/>|--------------|--------|---------------------|------------------|------------------------|<br/>| <strong>Datos transaccionales (ventas, PO, movimientos)</strong> | ERP / WMS (SQL Server, Oracle) | <strong>Casi‑tiempo real</strong> (cada 5‑15 min) | <strong>CDC (Change Data Capture) → Azure Data Factory → Synapse Dedicated (incremental MERGE)</strong> | Latencia &lt; 15 min → suficiente para dashboards operacionales. |<br/>| <strong>Datos de referencia (productos, clientes, proveedores, calendario)</strong> | Sistemas maestros | <strong>Diaria</strong> (a las 02:00 h) | <strong>Carga completa</strong> → tabla de dimensiones (slowly changing dimension Type 2). | Latencia 24 h (cambio de referencia no crítico). |<br/>| <strong>Snapshots de inventario</strong> | WMS (stock diario) | <strong>Diaria</strong> (a las 04:00 h) | <strong>Insert‑only</strong> en <code>fact_inventory</code> (partitioned by date). | Disponible a las 06:00 h para usuarios de mañana. |<br/>| <strong>Resultado del modelo de demanda</strong> | Azure Machine Learning (batch) | <strong>Diaria</strong> (ejecución nocturna) | <strong>Export → Parquet → ADLS → Synapse COPY INTO → <code>fact<em>demand</em>forecast</code></strong> | Disponible a las 08:00 h, usado en planificación del día. |<br/>| <strong>KPIs y métricas agregadas</strong> | Todas las fact tables | <strong>Cada 30 min</strong> (via proceso de <em>incremental aggregation</em>) | <strong>Stored Procedure</strong> que lee datos nuevos y actualiza tablas de agregación/KPI snapshot. | Dashboard de monitorización casi‑tiempo real. |<br/>| <strong>Datos para modelos de ML (feature store)</strong> | Fact tables + Dimensiones | <strong>Semanal</strong> (lunes 02:00 h) | <strong>Export a Azure ML Feature Store</strong> (Parquet). | No afecta la capa de reporting. |</p>
-<p><strong>Mecanismo de orquestación</strong> </p>
-<ul>
-<li><strong>ADF Pipelines</strong> con <strong>triggers</strong> (schedule y event‑based).  </li>
-<li>Cada pipeline tiene <strong>actividad de validación</strong> (row count, checksum) y <strong>alertas</strong> a través de <strong>Azure Monitor</strong> y <strong>Logic Apps</strong> en caso de error.  </li>
-</ul>
-<p><strong>Gestión de cambios</strong> </p>
-<ul>
-<li>Se utilizan <strong>tablas de control</strong> (<code>etl<em>job</em>log</code>, <code>etl<em>error</em>log</code>) para auditoría.  </li>
-<li>**Versionado de</li>
-</ul></div>
-</div>
-</div>
-</div>
-<div class="pipeline-phase">
-<div class="phase-node">
-<span class="phase-node-number">06</span>
-<svg fill="none" stroke="var(--accent)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M12 2a5 5 0 1 0 0 10A5 5 0 0 0 12 2zM2 20c0-4 4-7 10-7s10 3 10 7"></path>
-</svg>
-</div>
-<div class="phase-card" id="phase-card-roadmap-ml">
-<div class="phase-card-header" onclick="togglePhase('phase-card-roadmap-ml')">
-<div class="phase-label">
-<h3>Machine Learning / MLOps</h3>
-<span>Azure ML · Ciclo de vida del modelo · Monitorización</span>
-</div>
-<span class="phase-badge">Fase 6</span>
-<svg class="phase-chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<polyline points="6 9 12 15 18 9"></polyline>
-</svg>
-</div>
-<div class="phase-card-body">
-<div class="phase-prose" id="roadmap-ml"><h3>1️⃣ Casos de uso de ML priorizados y tipo de modelo recomendado por caso  </h3>
-<p>| # | Caso de uso | Objetivo | Modelo recomendado | Justificación |<br/>|---|-------------|----------|--------------------|---------------|<br/>| <strong>1</strong> | <strong>Pronóstico de demanda de SKU‑location</strong> | Predecir la cantidad que se venderá en el próximo horizonte (7, 14, 30 días) para cada producto y almacén | <strong>Prophet (Facebook)</strong> para series de tiempo con estacionalidad y eventos; <strong>XGBoost / LightGBM</strong> (regresión) sobre features agregados cuando la serie no es suficientemente larga. | Prophet es ligero, requiere pocos recursos, captura automáticamente patrones de día de la semana, fines de semana, promo y holidays. Para series muy ruidosas o con alta granularidad (minutos) se combina con un modelo de árbol que aprovecha features externas. |<br/>| <strong>2</strong> | <strong>Recomendación de stock óptimo (safety‑stock + reorder‑point)</strong> | Generar sugerencias de ordenes de compra (qué SKU, cuánto, cuándo) que minimicen roturas y sobre‑stock | <strong>Regresión con LightGBM</strong> (o XGBoost) que predice la variación de inventario y la demanda futura para estimar nivel de seguridad; <strong>RL (Reinforcement Learning)</strong> en fase 2. | Los modelos de regresión son robustos y fáciles de explicar a los usuarios finales; no requieren enormes volúmenes de datos y se integran directamente con el DW. |<br/>| <strong>3</strong> | <strong>Análisis de causa raíz de roturas y exceso de inventario</strong> | Identificar los factores que más influyen en eventos de ruptura y exceso | <strong>Random Forest / Gradient Boosted Trees</strong> (clasificación binaria) + <strong>Análisis de feature importance</strong>. | Los árboles ofrecen interpretabilidad (SHAP) y manejan variables categóricas sin codificación pesada. |<br/>| <strong>4</strong> | <strong>Detección de anomalías en movimientos de stock</strong> | Señalar desviaciones súbitas de consumo o entrada (por error humano, fraude, etc.) | <strong>Isolation Forest</strong> (unsupervised) + <strong>K‑means</strong> sobre embeddings de SKU. | La detección debe ser rápida y no depende de etiquetas; Isolation Forest funciona con pocos recursos y detecta outliers en tiempo real. |<br/>| <strong>5</strong> | <strong>Forecast‑vs‑Actual KPI (MAPE, RMSE)</strong> | Medir y reportar la precisión de los modelos de demanda a nivel de negocio | <strong>Score‑only</strong> (no modelo). Se calcula sobre datos históricos con métricas de regresión. | No es un modelo en sí, pero es esencial para la monitorización. |</p>
-<p>&gt; <strong>Prioridad</strong> <br/>&gt; 1. Pronóstico de demanda (punto de entrada a la cadena de valor).  <br/>&gt; 2. Análisis de causa raíz de roturas (valor agregado rápido).  <br/>&gt; 3. Recomendación de stock (se construye sobre el pronóstico).  <br/>&gt; 4. Detección de anomalías (monitorización operativa).  <br/>&gt; 5. Métricas de rendimiento (para governance).  </p>
-<hr/>
-<h3>2️⃣ Datos de entrenamiento necesarios y disponibilidad real  </h3>
-<p>| Fuente | Tabla Gold | Variables clave | Disponibilidad (frecuencia) | Observaciones |<br/>|--------|------------|-----------------|-----------------------------|---------------|<br/>| <strong>Ventas</strong> | <code>fact<em>sales</em></code> | <code>datekey</code>, <code>product<em>key</em></code>, <code>locationkey</code>, <code>qty<em>sold</em></code>, <code>salesamount</code>, <code>promo<em>key</em></code>, <code>customerkey</code> | Diaria (últimos 3 años) | Disponible en ADLS en formato parquet; la tabla está particionada por <code>date_key</code>. |<br/>| <strong>Inventario</strong> | <code>fact<em>inventory</em></code> | <code>onhand<em>qty</em></code>, <code>reservedqty</code>, <code>damaged<em>qty</em></code>, <code>agingdays</code> | Diaria (últimos 3 años) | Se genera a partir de WMS; los datos son de calidad (validación de integridad). |<br/>| <strong>Stock movement</strong> | <code>fact<em>stock</em>movement</code> | <code>movement<em>qty</em></code>, <code>movementtype</code>, <code>supplier<em>key</em></code>, <code>customerkey</code> | Diario | Usado para calcular lead‑time, OTIF y rotación. |<br/>| <strong>Promociones</strong> | <code>dim<em>promotion</em></code> | <code>promotype</code>, <code>start<em>date</em></code>, <code>enddate</code>, <code>discount_pct</code> | Diario (actualizado al inicio de cada promo) | Se integra en la fase de feature engineering. |<br/>| <strong>Calendario</strong> | <code>dim<em>date</em></code> | <code>isweekend</code>, <code>is_holiday</code>, <code>quarter</code> | Permanente | Se crea una tabla de referencia en Synapse y se sincroniza con ADLS. |<br/>| <strong>Otros (climáticos, macro‑econ)</strong> | <strong>No disponible</strong> | - | - | Fase 2 – se contempla si la empresa dispone de datos externos. |</p>
-<h4>Resumen de disponibilidad</h4>
-<p>| Caso de uso | Datos disponibles ahora | Datos que faltan / requieren madurez |<br/>|-------------|------------------------|--------------------------------------|<br/>| Pronóstico de demanda | ✔️ (ventas, inventario, promos, calendario) | ❌ (datos de “demanda futura” con precisión alta, datos de socio logístico) |<br/>| Recomendación de stock | ✔️ (inventario + pronóstico) | ❌ (costo de almacenaje por ubicación, lead‑time real en tiempo real) |<br/>| Root‑cause de roturas | ✔️ (inventario + stock_movement + promos) | ❌ (información de calidad de producto, feedback de clientes) |<br/>| Anomalías | ✔️ (ventas + stock_movement) | ❌ (historico de “alertas” previas) |<br/>| Métricas de negocio | ✔️ (todos los hechos) | ❌ (datos de satisfacción del cliente, NPS) |</p>
-<p>&gt; <strong>Conclusión</strong> <br/>&gt; Los modelos de pronóstico y de causa raíz pueden construirse con los datos actuales. Los modelos de recomendación y de anomalías requieren un ligero esfuerzo de ingeniería de features (por ejemplo, cálculo de lead‑time real, costos de almacén) que se puede realizar en la fase 1. Los modelos de RL y de deep learning están fuera del alcance de la fase 1.</p>
-<hr/>
-<h3>3️⃣ Infraestructura Azure ML requerida  </h3>
-<p>| Componente | Descripción | Configuración recomendada | Razonamiento |<br/>|------------|-------------|---------------------------|--------------|<br/>| <strong>Compute – Training</strong> | Clusters autoscale con CPU | <em>Standard<em>DS3</em>v2</em> (4 vCPU, 14 GB RAM) – 2 nodos en modo autoscale | Suficiente para Prophet / XGBoost / Random Forest. No requiere GPU. |<br/>| <strong>Compute – Inference</strong> | <em>Managed endpoints</em> (online) | <em>S1</em> (2 vCPU, 4 GB RAM) para pronóstico a 1 día; <em>S2</em> (4 vCPU, 8 GB RAM) para pronóstico a 30 días | Asegura latencia &lt; 1 s para 100 requests/seg. |<br/>|</p></div>
-</div>
-</div>
-</div>
-<div class="pipeline-phase">
-<div class="phase-node">
-<span class="phase-node-number">07</span>
-<svg fill="none" stroke="var(--accent)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M18 20V10M12 20V4M6 20v-6"></path>
-</svg>
-</div>
-<div class="phase-card" id="phase-card-roadmap-bi">
-<div class="phase-card-header" onclick="togglePhase('phase-card-roadmap-bi')">
-<div class="phase-label">
-<h3>Visualización</h3>
-<span>Power BI · Dashboards · Plan de adopción</span>
-</div>
-<span class="phase-badge">Fase 7</span>
-<svg class="phase-chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<polyline points="6 9 12 15 18 9"></polyline>
-</svg>
-</div>
-<div class="phase-card-body">
-<div class="phase-prose" id="roadmap-bi"><h4>Propuesta de Estrategia de Visualización y Adopción de Power BI</h4>
-<h4>1. Arquitectura de Power BI: Modo de Conexión y Justificación</h4>
-<p>Basándonos en el modelo de datos definido y los requisitos del proyecto, recomendamos utilizar un <strong>modelo de conexión Composite</strong> en Power BI. Este enfoque combina las ventajas de los modos Import y DirectQuery, permitiendo una mayor flexibilidad y rendimiento.</p>
-<ul>
-<li><strong>Justificación</strong>: El volumen de datos es moderado y la frecuencia de actualización es diaria. El modo Composite nos permite cargar datos en memoria para un acceso rápido y también conectar directamente a la fuente de datos para actualizaciones en tiempo real.</li>
-</ul>
-<h4>2. Estructura de Workspaces y Modelo de Gobernanza</h4>
-<ul>
-<li><strong>Estructura de Workspaces</strong>: Organizaremos los workspaces en función de las áreas de negocio:</li>
-<li><strong>Workspace de Administración</strong>: para la gestión de usuarios, roles y permisos.</li>
-<li><strong>Workspace de Desarrollo</strong>: para el desarrollo y pruebas de informes y dashboards.</li>
-<li><strong>Workspace de Producción</strong>: para la publicación de informes y dashboards finales.</li>
-<li><strong>Modelo de Gobernanza</strong>: Estableceremos un modelo de gobernanza que incluya:</li>
-<li><strong>Data Owner</strong>: responsable de la calidad y seguridad de los datos.</li>
-<li><strong>Data Steward</strong>: responsable de la gestión y mantenimiento de los datos.</li>
-<li><strong>Power BI Administrator</strong>: responsable de la gestión y configuración de Power BI.</li>
-</ul>
-<h4>3. Catálogo de Informes y Dashboards por Perfil de Usuario</h4>
-<ul>
-<li><strong>Perfil de Dirección</strong>:</li>
-<li><strong>Dashboard de KPI's</strong>: visión general de los indicadores clave de rendimiento.</li>
-<li><strong>Informe de Análisis de Tendencias</strong>: análisis de tendencias y patrones en los datos.</li>
-<li><strong>Perfil de Operaciones</strong>:</li>
-<li><strong>Dashboard de Operaciones</strong>: visión detallada de las operaciones diarias.</li>
-<li><strong>Informe de Inventario</strong>: análisis de los niveles de inventario y alertas de stock bajo.</li>
-<li><strong>Perfil de Analistas</strong>:</li>
-<li><strong>Dashboard de Análisis de Datos</strong>: visión detallada de los datos para análisis y modelado.</li>
-<li><strong>Informe de Modelado de Datos</strong>: informe de modelado de datos para la toma de decisiones.</li>
-</ul>
-<h4>4. Plan de Adopción: Formación, Rollout y Métricas de Éxito</h4>
-<ul>
-<li><strong>Formación</strong>: proporcionaremos formación a los usuarios finales sobre el uso de Power BI y los informes y dashboards disponibles.</li>
-<li><strong>Rollout</strong>: implementaremos un plan de rollout gradual, comenzando con un grupo piloto y expandiendo a todos los usuarios finales.</li>
-<li><strong>Métricas de Éxito</strong>:</li>
-<li><strong>Adopción</strong>: número de usuarios que acceden a los informes y dashboards.</li>
-<li><strong>Uso</strong>: frecuencia y duración de uso de los informes y dashboards.</li>
-<li><strong>Satisfacción</strong>: encuestas de satisfacción para evaluar la utilidad y facilidad de uso de los informes y dashboards.</li>
-</ul>
-<h4>5. Riesgos de Adopción y Recomendaciones</h4>
-<ul>
-<li><strong>Riesgos</strong>:</li>
-<li><strong>Resistencia al cambio</strong>: algunos usuarios pueden resistirse al cambio a Power BI.</li>
-<li><strong>Falta de formación</strong>: los usuarios pueden no tener las habilidades necesarias para utilizar Power BI de manera efectiva.</li>
-<li><strong>Recomendaciones</strong>:</li>
-<li><strong>Comunicación efectiva</strong>: comunicar claramente los beneficios y ventajas de Power BI.</li>
-<li><strong>Formación y soporte</strong>: proporcionar formación y soporte adecuados a los usuarios.</li>
-</ul></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- /tab-roadmap -->
+
+  <!-- ══ TAB: PROPUESTA ══ -->
+  <div class="tab-panel active" id="tab-propuesta">
+    <div style="display:flex;justify-content:flex-end;padding:20px 0 4px">
+      <button id="toggle-all" onclick="toggleAll()" style="font-size:12px;padding:5px 14px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);cursor:pointer;">Colapsar todo</button>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-arch">
+          <svg fill="none" stroke="#0369a1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+            <rect height="10" rx="1" width="6" x="2" y="7"/><rect height="14" rx="1" width="6" x="9" y="3"/><rect height="7" rx="1" width="6" x="16" y="10"/><path d="M5 17v2M12 17v2M19 17v2"/>
+          </svg>
+        </div>
+        <div class="section-header-text"><h2>Propuesta de Arquitectura</h2><span>Diseño técnico y plataformas recomendadas</span></div>
+        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="section-body"><div class="prose" id="content-architecture"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-gov">
+          <svg fill="none" stroke="#92400e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+            <path d="M12 2l9 4v6c0 5-3.8 9.7-9 11C3.8 21.7 3 17 3 12V6l9-4z"/><polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <div class="section-header-text"><h2>Propuesta de Gobernanza de Dato e IA</h2><span>Marco de gobierno, calidad y ética del dato</span></div>
+        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="section-body"><div class="prose" id="content-governance"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-ai">
+          <svg fill="none" stroke="#6d28d9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+          </svg>
+        </div>
+        <div class="section-header-text"><h2>Propuesta de Estrategia de Datos e IA</h2><span>Funcionalidades clave, roadmap técnico y valor de negocio</span></div>
+        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="section-body"><div class="prose" id="content-data-ai"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon icon-bi">
+          <svg fill="none" stroke="#9d174d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+            <line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>
+          </svg>
+        </div>
+        <div class="section-header-text"><h2>Propuesta de Visualización de Datos</h2><span>KPIs, dashboards, UX y stack de BI</span></div>
+        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="section-body"><div class="prose" id="content-bi"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon" style="background:#d1fae5">
+          <svg fill="none" stroke="#15803d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><path d="M14.5 9.5a3.5 3.5 0 1 0 0 5"/><line x1="9" x2="15" y1="12" y2="12"/>
+          </svg>
+        </div>
+        <div class="section-header-text"><h2>Propuesta de Estimación de Costos</h2><span>Costos aproximados de implementación y operación</span></div>
+        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="section-body"><div class="prose" id="content-cost-estimation"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon" style="background:#fee2e2">
+          <svg fill="none" stroke="#b91c1c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+            <circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="18" cy="7" r="2.5"/><path d="M21 21v-1.5a3.5 3.5 0 0 0-2.5-3.35"/>
+          </svg>
+        </div>
+        <div class="section-header-text"><h2>Propuesta de Perfiles de Equipo</h2><span>Roles y habilidades recomendadas para el equipo</span></div>
+        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="section-body"><div class="prose" id="content-team-profiles"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
+    </div>
+  </div><!-- /tab-propuesta -->
+
+
+  <!-- ══ TAB: ROADMAP ══ -->
+  <div class="tab-panel" id="tab-roadmap">
+
+    <!-- Pipeline navigation widget -->
+    <div class="rdm-nav-card" style="margin-top:20px">
+      <div class="rdm-nav-label">Flujo de arquitectura — clic en cada capa para navegar</div>
+      <div class="rdm-pipeline">
+
+        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-sources')">
+          <div class="rdm-pipe-icon icon-sources">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+            </svg>
+          </div>
+          <span class="rdm-pipe-name">Fuentes</span>
+          <span class="rdm-pipe-tech">ERP · CRM · APIs</span>
+        </div>
+
+        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+
+        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-ingestion')">
+          <div class="rdm-pipe-icon icon-ingestion">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/>
+            </svg>
+          </div>
+          <span class="rdm-pipe-name">Ingesta</span>
+          <span class="rdm-pipe-tech">Azure Data Factory</span>
+        </div>
+
+        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+
+        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-storage')">
+          <div class="rdm-pipe-icon icon-storage">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </div>
+          <span class="rdm-pipe-name">Almacenamiento</span>
+          <span class="rdm-pipe-tech">ADLS Gen2</span>
+        </div>
+
+        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+
+        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-etl')">
+          <div class="rdm-pipe-icon icon-etl">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+            </svg>
+          </div>
+          <span class="rdm-pipe-name">ETL</span>
+          <span class="rdm-pipe-tech">Databricks · Synapse</span>
+        </div>
+
+        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+
+        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-modeling')">
+          <div class="rdm-pipe-icon icon-modeling">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>
+            </svg>
+          </div>
+          <span class="rdm-pipe-name">Modelado</span>
+          <span class="rdm-pipe-tech">Analysis Services</span>
+        </div>
+
+        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+
+        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-ml')">
+          <div class="rdm-pipe-icon icon-ml">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04Z"/>
+            </svg>
+          </div>
+          <span class="rdm-pipe-name">ML &amp; MLOps</span>
+          <span class="rdm-pipe-tech">Azure ML</span>
+        </div>
+
+        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+
+        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-bi')">
+          <div class="rdm-pipe-icon icon-rdmbi">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+            </svg>
+          </div>
+          <span class="rdm-pipe-name">Visualización</span>
+          <span class="rdm-pipe-tech">Power BI</span>
+        </div>
+
+      </div>
+    </div><!-- /rdm-nav-card -->
+
+    <!-- Controls -->
+    <div class="rdm-controls">
+      <button class="rdm-ctrl-btn" onclick="expandAllStages()">Expandir todo</button>
+      <button class="rdm-ctrl-btn" onclick="collapseAllStages()">Colapsar todo</button>
+    </div>
+
+    <!-- Stage cards -->
+    <div id="rdm-stages-container">
+
+      <div class="section-card collapsed" id="card-roadmap-sources">
+        <div class="section-header">
+          <div class="section-icon icon-sources">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
+            </svg>
+          </div>
+          <div class="section-header-text">
+            <h2><span class="rdm-step">01</span> Fuentes de Datos</h2>
+            <span>Identificación y clasificación de fuentes de origen</span>
+          </div>
+          <span class="rdm-tech-chip">ERP · CRM · APIs · Archivos</span>
+          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="section-body">
+          <div class="prose" id="roadmap-sources"><div class="empty-state">Análisis de fuentes pendiente de generación por el agente.</div></div>
+        </div>
+      </div>
+
+      <div class="section-card collapsed" id="card-roadmap-ingestion">
+        <div class="section-header">
+          <div class="section-icon icon-ingestion">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/>
+            </svg>
+          </div>
+          <div class="section-header-text">
+            <h2><span class="rdm-step">02</span> Ingesta de Datos</h2>
+            <span>Estrategia y pipelines con Azure Data Factory</span>
+          </div>
+          <span class="rdm-tech-chip">Azure Data Factory</span>
+          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="section-body">
+          <div class="prose" id="roadmap-ingestion"><div class="empty-state">Diseño de ingesta pendiente de generación por el agente.</div></div>
+        </div>
+      </div>
+
+      <div class="section-card collapsed" id="card-roadmap-storage">
+        <div class="section-header">
+          <div class="section-icon icon-storage">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </div>
+          <div class="section-header-text">
+            <h2><span class="rdm-step">03</span> Almacenamiento</h2>
+            <span>Arquitectura de Data Lake con capas medallion</span>
+          </div>
+          <span class="rdm-tech-chip">ADLS Gen2 · Synapse</span>
+          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="section-body">
+          <div class="prose" id="roadmap-storage"><div class="empty-state">Arquitectura de almacenamiento pendiente de generación por el agente.</div></div>
+        </div>
+      </div>
+
+      <div class="section-card collapsed" id="card-roadmap-etl">
+        <div class="section-header">
+          <div class="section-icon icon-etl">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+            </svg>
+          </div>
+          <div class="section-header-text">
+            <h2><span class="rdm-step">04</span> Procesamiento ETL</h2>
+            <span>Transformación, calidad de datos y orquestación</span>
+          </div>
+          <span class="rdm-tech-chip">Databricks · Synapse</span>
+          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="section-body">
+          <div class="prose" id="roadmap-etl"><div class="empty-state">Capa de procesamiento pendiente de generación por el agente.</div></div>
+        </div>
+      </div>
+
+      <div class="section-card collapsed" id="card-roadmap-modeling">
+        <div class="section-header">
+          <div class="section-icon icon-modeling">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>
+            </svg>
+          </div>
+          <div class="section-header-text">
+            <h2><span class="rdm-step">05</span> Modelado &amp; Serving</h2>
+            <span>Modelo analítico, métricas y exposición de datos</span>
+          </div>
+          <span class="rdm-tech-chip">Analysis Services · Gold</span>
+          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="section-body">
+          <div class="prose" id="roadmap-modeling"><div class="empty-state">Modelado analítico pendiente de generación por el agente.</div></div>
+        </div>
+      </div>
+
+      <div class="section-card collapsed" id="card-roadmap-ml">
+        <div class="section-header">
+          <div class="section-icon icon-ml">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04Z"/>
+            </svg>
+          </div>
+          <div class="section-header-text">
+            <h2><span class="rdm-step">06</span> Machine Learning &amp; MLOps</h2>
+            <span>Modelos de IA, ciclo de vida y monitorización</span>
+          </div>
+          <span class="rdm-tech-chip">Azure Machine Learning</span>
+          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="section-body">
+          <div class="prose" id="roadmap-ml"><div class="empty-state">Estrategia ML pendiente de generación por el agente.</div></div>
+        </div>
+      </div>
+
+      <div class="section-card collapsed" id="card-roadmap-bi">
+        <div class="section-header">
+          <div class="section-icon icon-rdmbi">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+            </svg>
+          </div>
+          <div class="section-header-text">
+            <h2><span class="rdm-step">07</span> Visualización BI</h2>
+            <span>Arquitectura Power BI, dashboards y plan de adopción</span>
+          </div>
+          <span class="rdm-tech-chip">Power BI · Workspaces</span>
+          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="section-body">
+          <div class="prose" id="roadmap-bi"><div class="empty-state">Estrategia de visualización pendiente de generación por el agente.</div></div>
+        </div>
+      </div>
+
+    </div><!-- /rdm-stages-container -->
+  </div><!-- /tab-roadmap -->
+
 </main>
+
 <footer>
   Generado por AIDM Solution Builder — <span id="footer-date"></span>
 </footer>
+
 <script>
+  // ── Date ──
   const now = new Date();
-  const fmt = new Intl.DateTimeFormat('es-ES', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const fmt = new Intl.DateTimeFormat('es-ES', { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' });
   const dateStr = fmt.format(now);
   document.getElementById('report-date').textContent = dateStr;
   document.getElementById('footer-date').textContent = dateStr;
 
+  // ── Tab switching ──
   function switchTab(id, btn) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + id).classList.add('active');
     btn.classList.add('active');
+    if (id === 'roadmap') initRoadmap();
   }
 
+  // ── Propuesta: collapsible sections ──
   document.querySelectorAll('.section-header').forEach(header => {
     header.addEventListener('click', () => {
       header.closest('.section-card').classList.toggle('collapsed');
       updateToggleBtn();
     });
   });
-
   function updateToggleBtn() {
     const cards = document.querySelectorAll('#tab-propuesta .section-card');
     const allCollapsed = [...cards].every(c => c.classList.contains('collapsed'));
     document.getElementById('toggle-all').textContent = allCollapsed ? 'Expandir todo' : 'Colapsar todo';
   }
-
   function toggleAll() {
     const cards = document.querySelectorAll('#tab-propuesta .section-card');
     const allCollapsed = [...cards].every(c => c.classList.contains('collapsed'));
@@ -1400,8 +689,39 @@
     updateToggleBtn();
   }
 
-  function togglePhase(cardId) {
-    document.getElementById(cardId).classList.toggle('collapsed');
+  // ── Roadmap ──
+  let rdmInitialized = false;
+
+  function initRoadmap() {
+    if (rdmInitialized) return;
+    rdmInitialized = true;
+    const container = document.getElementById('rdm-stages-container');
+    if (container) container.classList.add('rdm-animate');
+    // Auto-open cards whose agent content has been injected
+    document.querySelectorAll('#rdm-stages-container .section-card').forEach(card => {
+      const prose = card.querySelector('.prose');
+      if (prose && !prose.querySelector('.empty-state') && prose.textContent.trim()) {
+        card.classList.remove('collapsed');
+      }
+    });
+  }
+
+  function expandAllStages() {
+    document.querySelectorAll('#rdm-stages-container .section-card').forEach(c => c.classList.remove('collapsed'));
+  }
+
+  function collapseAllStages() {
+    document.querySelectorAll('#rdm-stages-container .section-card').forEach(c => c.classList.add('collapsed'));
+  }
+
+  function scrollToStage(proseId) {
+    const card = document.getElementById('card-' + proseId);
+    if (!card) return;
+    document.querySelectorAll('#rdm-stages-container .section-card').forEach(c => c.classList.remove('rdm-highlighted'));
+    card.classList.remove('collapsed');
+    card.classList.add('rdm-highlighted');
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 40);
+    setTimeout(() => card.classList.remove('rdm-highlighted'), 2400);
   }
 </script>
 </body>
