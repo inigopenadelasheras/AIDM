@@ -1,15 +1,34 @@
 import json
+import re
+import yaml
+from html import escape
 from pathlib import Path
 from typing import Any
 from typing import List, Literal, Optional
 
-from pydantic import BaseModel, Field
+import litellm
+from bs4 import BeautifulSoup, FeatureNotFound
 from crewai import Agent
+from pydantic import BaseModel, Field
+
+litellm.drop_params = True
+
+# CrewAI 1.14.x añade {"cache_breakpoint": True} a todos los mensajes para el
+# prompt caching de Anthropic, pero el proveedor de Groq no lo filtra y la API
+# lo rechaza. Se reemplaza la función por un no-op para evitar el error.
+try:
+    import crewai.llms.cache as _crewai_cache
+    _crewai_cache.mark_cache_breakpoint = lambda msg: msg
+except Exception:
+    pass
 
 
 LIST_FIELDS = {"evidencias"}
 TEXT_FIELDS = {
     "nombre_del_cliente",
+    "tamaño_empresa",
+    "sector",
+    "tiene_equipo_datos",
     "tipo_de_servicio",
     "objetivo_del_proyecto",
     "modelo_de_despliegue",
@@ -18,6 +37,14 @@ TEXT_FIELDS = {
     "herramienta_de_visualizacion",
     "enfoque_ai",
     "integration_scope",
+    "volumen_de_datos",
+    "madurez_analitica_actual",
+    "tamano_equipo_tecnico",
+    "stack_tecnologico_actual",
+    "restriccion_presupuestaria",
+    "plazo_objetivo",
+    "regulacion_y_compliance",
+    "kpis_de_exito",
 }
 VALID_STATUSES = {"pending fields", "completed"}
 PROBLEM_CASE_PATH = Path("data_structures/problem_case.json")
@@ -144,3 +171,115 @@ def update_problem_scope_tool(request: ProblemScopeUpdateRequest) -> dict:
         "updated_fields": [u.field_key for u in request.updates],
         "status": problem_case["status"],
     }
+
+
+def _recent_chat_transcript(chat_history: list[dict[str, str]] | None, max_messages: int = 6) -> str:
+    if not chat_history:
+        return ""
+    recent_messages = chat_history[-max_messages:]
+    lines: list[str] = []
+    for message in recent_messages:
+        role = message.get("role", "user")
+        content = (message.get("content") or "").strip()
+        if content:
+            lines.append(f"{role}: {content}")
+    return "\n".join(lines)
+
+
+def load_agents_config() -> dict:
+    with open(AGENTS_FILE, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f) or {}
+
+
+def parse_html(markup: str) -> BeautifulSoup:
+    try:
+        return BeautifulSoup(markup, "lxml")
+    except FeatureNotFound:
+        return BeautifulSoup(markup, "html.parser")
+
+
+def md_to_html(text: str) -> str:
+    if not text or not text.strip():
+        return "<p>No se ha generado contenido.</p>"
+
+    lines = text.splitlines()
+    html_parts: list[str] = []
+    in_ul = False
+    in_ol = False
+
+    def close_lists():
+        nonlocal in_ul, in_ol
+        if in_ul:
+            html_parts.append("</ul>")
+            in_ul = False
+        if in_ol:
+            html_parts.append("</ol>")
+            in_ol = False
+
+    def inline(s: str) -> str:
+        s = escape(s)
+        s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
+        s = re.sub(r"\*(.+?)\*",     r"<em>\1</em>", s)
+        s = re.sub(r"_(.+?)_",       r"<em>\1</em>", s)
+        s = re.sub(r"`(.+?)`",       r"<code>\1</code>", s)
+        return s
+
+    pending_paragraph: list[str] = []
+
+    def flush_paragraph():
+        if pending_paragraph:
+            html_parts.append("<p>" + "<br>".join(pending_paragraph) + "</p>")
+            pending_paragraph.clear()
+
+    for line in lines:
+        heading_match = re.match(r"^(#{1,4})\s+(.*)", line)
+        if heading_match:
+            close_lists()
+            flush_paragraph()
+            level = len(heading_match.group(1))
+            tag = "h3" if level <= 2 else "h4"
+            html_parts.append(f"<{tag}>{inline(heading_match.group(2))}</{tag}>")
+            continue
+
+        if re.match(r"^[-*_]{3,}$", line.strip()):
+            close_lists()
+            flush_paragraph()
+            html_parts.append("<hr>")
+            continue
+
+        ul_match = re.match(r"^[\s]*[-*+]\s+(.*)", line)
+        if ul_match:
+            flush_paragraph()
+            if in_ol:
+                html_parts.append("</ol>")
+                in_ol = False
+            if not in_ul:
+                html_parts.append("<ul>")
+                in_ul = True
+            html_parts.append(f"<li>{inline(ul_match.group(1))}</li>")
+            continue
+
+        ol_match = re.match(r"^[\s]*\d+[.)]\s+(.*)", line)
+        if ol_match:
+            flush_paragraph()
+            if in_ul:
+                html_parts.append("</ul>")
+                in_ul = False
+            if not in_ol:
+                html_parts.append("<ol>")
+                in_ol = True
+            html_parts.append(f"<li>{inline(ol_match.group(1))}</li>")
+            continue
+
+        if not line.strip():
+            close_lists()
+            flush_paragraph()
+            continue
+
+        close_lists()
+        pending_paragraph.append(inline(line))
+
+    close_lists()
+    flush_paragraph()
+
+    return "\n".join(html_parts) if html_parts else "<p>No se ha generado contenido.</p>"

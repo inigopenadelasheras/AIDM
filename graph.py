@@ -4,7 +4,7 @@ from langgraph.graph import END, START, StateGraph
 from agents.discovery_agent_logic import run_agent
 from agents.structure_proposal_agent_logic import build_structure_proposal
 from agents.solution_builder_crew import propose_solution
-from agents.roadmap_builder import exec_roadmap as roadmap_builder
+from agents.roadmap_builder import roadmap_builder
 
 from utils import load_problem_case
 
@@ -14,21 +14,20 @@ class AgentState(TypedDict):
     assistant_response: str
     problem_case: dict[str, Any]
     completion_reached: bool
-    problem_solution: str
+    problem_solution: dict[str, Any]
     roadmap:str
 
 
 def discovery_node(state: AgentState) -> AgentState:
     prompt = state.get("user_prompt", "")
     history = state.get("chat_history", [])
-    previous_status = state.get("problem_case", {}).get("status")
-    
     assistant_response = run_agent(prompt, chat_history=history)
     
     # Recargamos el JSON tras ejecutar el agente para rutear con el estado actualizado.
     problem_case = load_problem_case()
     current_status = problem_case.get("status")
-    completion_reached = previous_status != "completed" and current_status == "completed"
+    # Activar fase de solución si el status es "completed", independientemente de si ya lo era al entrar.
+    completion_reached = current_status == "completed"
     
     return {
         **state,

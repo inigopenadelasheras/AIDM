@@ -1,11 +1,9 @@
 ﻿import json
 import os
 import re
-from pathlib import Path
 from typing import Any
 
-import yaml
-from crewai import Agent, Crew, Process, Task
+import litellm
 from dotenv import load_dotenv
 
 from utils import (
@@ -15,26 +13,11 @@ from utils import (
     TEXT_FIELDS,
     update_problem_scope_tool,
     load_problem_case,
-    AGENTS_FILE
+    _recent_chat_transcript,
 )
 
 load_dotenv(".env")
-os.environ["OTEL_SDK_DISABLED"] = "true"
-os.environ["CREWAI_TELEMETRY_OPT_OUT"] = "true"
 
-
-def _recent_chat_transcript(chat_history: list[dict[str, str]] | None, max_messages: int = 6) -> str:
-    if not chat_history:
-        return ""
-
-    recent_messages = chat_history[-max_messages:]
-    lines: list[str] = []
-    for message in recent_messages:
-        role = message.get("role", "user")
-        content = (message.get("content") or "").strip()
-        if content:
-            lines.append(f"{role}: {content}")
-    return "\n".join(lines)
 
 
 def _get_pending_fields(problem_case: dict[str, Any]) -> list[str]:
@@ -144,7 +127,7 @@ def _build_assistant_reply(
 
     # Cierre determinista: cuando el caso está completo no dependemos del texto del LLM.
     if completed_now:
-        return "Perfecto, ya tengo todo lo que necesitaba. El discovery ha quedado completado. Ahiora voy a analizar toda la información para proponerte una estructura de solución."
+        return "Perfecto, ya tengo todo lo que necesitaba. El discovery ha quedado completado. Ahora voy a analizar toda la información para proponerte una estructura de solución."
 
     if llm_reply.strip():
         return llm_reply.strip()
@@ -188,60 +171,51 @@ def _propose_plan_with_agent(user_prompt: str, chat_history: list[dict[str, str]
     if not model_name:
         return {"updates": [], "assistant_reply": "", "update_status": None}
 
-    if not AGENTS_FILE.exists():
-        return {"updates": [], "assistant_reply": "", "update_status": None}
-
-    with open(AGENTS_FILE, "r", encoding="utf-8") as f:
-        agents_config = yaml.safe_load(f) or {}
-
-    agent_data = agents_config.get("discovery_agent", {})
-    role = agent_data.get("role")
-    goal = agent_data.get("goal")
-    backstory = agent_data.get("backstory")
-
     problem_case = load_problem_case()
     pending = _get_pending_fields(problem_case)
     print(f"Campos pendientes detectados: {pending}")
     transcript = _recent_chat_transcript(chat_history)
-    current_json = json.dumps(problem_case, ensure_ascii=False)
+    current_json = json.dumps(problem_case, ensure_ascii=False, indent=2)
 
-    discovery_agent = Agent(
-        role=role,
-        goal=goal,
-        backstory=backstory,
-        llm=model_name,
-        verbose=False,
-        allow_delegation=False,
+    system_prompt = (
+        "Eres un agente de discovery para proyectos de Data & AI de Inetum. "
+        "Tu objetivo es extraer información del cliente en cada mensaje y actualizar el caso de problema campo a campo.\n\n"
+        "REGLAS ESTRICTAS:\n"
+        "1. En CADA turno, extrae y actualiza TODOS los campos que puedas deducir del mensaje actual o del historial.\n"
+        "2. No acumules información: si el usuario menciona algo relevante, escríbelo YA en 'updates'.\n"
+        "3. Haz UNA sola pregunta clara y concreta sobre el campo pendiente más relevante.\n"
+        "4. Devuelve EXCLUSIVAMENTE un JSON válido sin markdown ni texto extra, con este esquema:\n"
+        '{"updates": [{"field_key": "...", "value": "...", "operation": "replace"}], '
+        '"assistant_reply": "...", "update_status": "pending fields" | "completed" | null}\n\n'
+        f"Campos válidos (únicos permitidos en field_key): {sorted(allowed_fields)}\n\n"
+        "Para el campo 'evidencias' (lista), usa operation 'merge' y value como array de strings.\n"
+        "Regla de cierre: si tras tus updates no quedan campos pendientes, usa update_status='completed' "
+        "y assistant_reply sin preguntas de seguimiento.\n"
+        "Sé descriptivo en los values: evita palabras genéricas o vacías."
     )
 
-    discovery_task = Task(
-        description=(
-            "Analiza el mensaje del usuario y el historial reciente para proponer actualizaciones sobre problem_case.json. "
-            f"Mensaje actual: '{user_prompt}'. "
-            f"Historial reciente:\n{transcript}\n"
-            f"Estado actual del JSON: {current_json}. "
-            f"Campos válidos: {sorted(allowed_fields)}. "
-            f"Campos pendientes y missing information ahora: {pending}. "
-            "Devuelve EXCLUSIVAMENTE un JSON válido, sin markdown ni texto extra, con este esquema exacto: "
-            "{\"updates\": [{\"field_key\": \"...\", \"value\": \"...\" o [\"...\"], \"operation\": \"replace\"|\"append\"|\"merge\"}], \"assistant_reply\": \"...\", \"update_status\": \"pending fields\"|\"completed\"|null}. "
-            "No inventes campos fuera de los permitidos. "
-            "Intenta ser un poco explicativo a la hora de rellenar el \"value\" de cada campo, evitando pabras vacías o genéricas, para que el caso se vaya completando de forma clara."
-            "Si no hay cambios claros, usa updates vacio. "
-            "Regla de cierre: si tras tus updates no queda ningun campo pendiente, usa update_status='completed' y assistant_reply sin preguntas de seguimiento."
-        ),
-        expected_output="JSON válido para actualizar problem_case.",
-        agent=discovery_agent,
+    user_message = (
+        f"Estado actual del JSON:\n{current_json}\n\n"
+        f"Campos pendientes: {pending}\n\n"
+        f"Historial reciente:\n{transcript}\n\n"
+        f"Mensaje actual del usuario: {user_prompt}\n\n"
+        "Devuelve el JSON con las actualizaciones y la siguiente pregunta al usuario."
     )
 
-    crew = Crew(
-        agents=[discovery_agent],
-        tasks=[discovery_task],
-        process=Process.sequential,
+    print(f"Ejecutando discovery con modelo {model_name}...")
+    response = litellm.completion(
+        model=model_name,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_message},
+        ],
+        temperature=0.1,
     )
 
-    result = crew.kickoff()
-    raw_output = getattr(result, "raw", str(result))
+    raw_output = response.choices[0].message.content or ""
+    print(f"Raw output del agente de discovery:\n{raw_output}\n")
     parsed_output = _parse_plan(raw_output, allowed_fields)
+    print(f"Parsed output del agente de discovery:\n{parsed_output}\n")
 
     return parsed_output
 
@@ -256,7 +230,7 @@ def run_agent(user_prompt, chat_history: list[dict[str, str]] | None = None):
     try:
         plan = _propose_plan_with_agent(user_prompt, chat_history)
     except Exception:
-        # Si falla el LLM o CrewAI, se mantiene flujo de fallback determinista.
+        # Si falla el LLM, se mantiene flujo de fallback determinista.
         plan = {"updates": [], "assistant_reply": "", "update_status": None}
 
     if plan.get("updates") or plan.get("update_status") is not None:

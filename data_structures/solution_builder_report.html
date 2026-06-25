@@ -4,9 +4,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Resumen de Solución — AIDM</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <style>
   :root {
     --bg: #f4f6fb;
@@ -289,370 +289,893 @@
 </style>
 </head>
 <body>
-
 <div class="topbar">
-  <div class="topbar-logo">
-    <svg viewbox="0 0 16 16"><path d="M8 1L2 4v4c0 3.31 2.58 6.4 6 7 3.42-.6 6-3.69 6-7V4L8 1z"/></svg>
-  </div>
-  <span class="topbar-title">AIDM Solution Builder</span>
-  <span class="topbar-sub" id="report-date"></span>
+<div class="topbar-logo">
+<svg viewbox="0 0 16 16"><path d="M8 1L2 4v4c0 3.31 2.58 6.4 6 7 3.42-.6 6-3.69 6-7V4L8 1z"></path></svg>
 </div>
-
+<span class="topbar-title">AIDM Solution Builder</span>
+<span class="topbar-sub" id="report-date"></span>
+</div>
 <div class="hero">
-  <div class="hero-eyebrow">Propuesta generada por agentes IA</div>
-  <h1 id="hero-title">Respuesta Final del Solution Builder</h1>
-  <p class="hero-desc" id="hero-desc">Resumen consolidado de las propuestas generadas por los agentes especializados.</p>
-  <div class="pills">
-    <span class="pill"><span class="pill-dot"></span>Arquitectura</span>
-    <span class="pill"><span class="pill-dot"></span>Gobernanza</span>
-    <span class="pill"><span class="pill-dot"></span>Estrategia de Datos &amp; IA</span>
-    <span class="pill"><span class="pill-dot"></span>Visualización BI</span>
-  </div>
+<div class="hero-eyebrow">Propuesta generada por agentes IA</div>
+<h1 id="hero-title">Respuesta Final del Solution Builder</h1>
+<p class="hero-desc" id="hero-desc">Resumen consolidado de las propuestas generadas por los agentes especializados.</p>
+<div class="pills">
+<span class="pill"><span class="pill-dot"></span>Arquitectura</span>
+<span class="pill"><span class="pill-dot"></span>Gobernanza</span>
+<span class="pill"><span class="pill-dot"></span>Estrategia de Datos &amp; IA</span>
+<span class="pill"><span class="pill-dot"></span>Visualización BI</span>
 </div>
-
+</div>
 <nav class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('propuesta', this)">
-    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+<button class="tab-btn active" onclick="switchTab('propuesta', this)">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line></svg>
     Propuesta de solución
   </button>
-  <button class="tab-btn" onclick="switchTab('roadmap', this)">
-    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"/><rect height="7" rx="1" width="7" x="14" y="3"/><rect height="7" rx="1" width="7" x="3" y="14"/><rect height="7" rx="1" width="7" x="14" y="14"/></svg>
+<button class="tab-btn" onclick="switchTab('roadmap', this)">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect></svg>
     Roadmap
   </button>
 </nav>
-
 <main>
-
-  <!-- ══ TAB: PROPUESTA ══ -->
-  <div class="tab-panel active" id="tab-propuesta">
-    <div style="display:flex;justify-content:flex-end;padding:20px 0 4px">
-      <button id="toggle-all" onclick="toggleAll()" style="font-size:12px;padding:5px 14px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);cursor:pointer;">Colapsar todo</button>
-    </div>
-
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-icon icon-arch">
-          <svg fill="none" stroke="#0369a1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-            <rect height="10" rx="1" width="6" x="2" y="7"/><rect height="14" rx="1" width="6" x="9" y="3"/><rect height="7" rx="1" width="6" x="16" y="10"/><path d="M5 17v2M12 17v2M19 17v2"/>
-          </svg>
-        </div>
-        <div class="section-header-text"><h2>Propuesta de Arquitectura</h2><span>Diseño técnico y plataformas recomendadas</span></div>
-        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="section-body"><div class="prose" id="content-architecture"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
-    </div>
-
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-icon icon-gov">
-          <svg fill="none" stroke="#92400e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-            <path d="M12 2l9 4v6c0 5-3.8 9.7-9 11C3.8 21.7 3 17 3 12V6l9-4z"/><polyline points="9 12 11 14 15 10"/>
-          </svg>
-        </div>
-        <div class="section-header-text"><h2>Propuesta de Gobernanza de Dato e IA</h2><span>Marco de gobierno, calidad y ética del dato</span></div>
-        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="section-body"><div class="prose" id="content-governance"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
-    </div>
-
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-icon icon-ai">
-          <svg fill="none" stroke="#6d28d9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-            <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
-          </svg>
-        </div>
-        <div class="section-header-text"><h2>Propuesta de Estrategia de Datos e IA</h2><span>Funcionalidades clave, roadmap técnico y valor de negocio</span></div>
-        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="section-body"><div class="prose" id="content-data-ai"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
-    </div>
-
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-icon icon-bi">
-          <svg fill="none" stroke="#9d174d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-            <line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>
-          </svg>
-        </div>
-        <div class="section-header-text"><h2>Propuesta de Visualización de Datos</h2><span>KPIs, dashboards, UX y stack de BI</span></div>
-        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="section-body"><div class="prose" id="content-bi"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
-    </div>
-
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-icon" style="background:#d1fae5">
-          <svg fill="none" stroke="#15803d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-            <circle cx="12" cy="12" r="10"/><path d="M14.5 9.5a3.5 3.5 0 1 0 0 5"/><line x1="9" x2="15" y1="12" y2="12"/>
-          </svg>
-        </div>
-        <div class="section-header-text"><h2>Propuesta de Estimación de Costos</h2><span>Costos aproximados de implementación y operación</span></div>
-        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="section-body"><div class="prose" id="content-cost-estimation"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
-    </div>
-
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-icon" style="background:#fee2e2">
-          <svg fill="none" stroke="#b91c1c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-            <circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><circle cx="18" cy="7" r="2.5"/><path d="M21 21v-1.5a3.5 3.5 0 0 0-2.5-3.35"/>
-          </svg>
-        </div>
-        <div class="section-header-text"><h2>Propuesta de Perfiles de Equipo</h2><span>Roles y habilidades recomendadas para el equipo</span></div>
-        <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="section-body"><div class="prose" id="content-team-profiles"><div class="empty-state">Contenido pendiente de generación.</div></div></div>
-    </div>
-  </div><!-- /tab-propuesta -->
-
-
-  <!-- ══ TAB: ROADMAP ══ -->
-  <div class="tab-panel" id="tab-roadmap">
-
-    <!-- Pipeline navigation widget -->
-    <div class="rdm-nav-card" style="margin-top:20px">
-      <div class="rdm-nav-label">Flujo de arquitectura — clic en cada capa para navegar</div>
-      <div class="rdm-pipeline">
-
-        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-sources')">
-          <div class="rdm-pipe-icon icon-sources">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
-            </svg>
-          </div>
-          <span class="rdm-pipe-name">Fuentes</span>
-          <span class="rdm-pipe-tech">ERP · CRM · APIs</span>
-        </div>
-
-        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-
-        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-ingestion')">
-          <div class="rdm-pipe-icon icon-ingestion">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/>
-            </svg>
-          </div>
-          <span class="rdm-pipe-name">Ingesta</span>
-          <span class="rdm-pipe-tech">Azure Data Factory</span>
-        </div>
-
-        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-
-        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-storage')">
-          <div class="rdm-pipe-icon icon-storage">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
-            </svg>
-          </div>
-          <span class="rdm-pipe-name">Almacenamiento</span>
-          <span class="rdm-pipe-tech">ADLS Gen2</span>
-        </div>
-
-        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-
-        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-etl')">
-          <div class="rdm-pipe-icon icon-etl">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
-            </svg>
-          </div>
-          <span class="rdm-pipe-name">ETL</span>
-          <span class="rdm-pipe-tech">Databricks · Synapse</span>
-        </div>
-
-        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-
-        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-modeling')">
-          <div class="rdm-pipe-icon icon-modeling">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>
-            </svg>
-          </div>
-          <span class="rdm-pipe-name">Modelado</span>
-          <span class="rdm-pipe-tech">Analysis Services</span>
-        </div>
-
-        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-
-        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-ml')">
-          <div class="rdm-pipe-icon icon-ml">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04Z"/>
-            </svg>
-          </div>
-          <span class="rdm-pipe-name">ML &amp; MLOps</span>
-          <span class="rdm-pipe-tech">Azure ML</span>
-        </div>
-
-        <div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-
-        <div class="rdm-pipe-node" onclick="scrollToStage('roadmap-bi')">
-          <div class="rdm-pipe-icon icon-rdmbi">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
-            </svg>
-          </div>
-          <span class="rdm-pipe-name">Visualización</span>
-          <span class="rdm-pipe-tech">Power BI</span>
-        </div>
-
-      </div>
-    </div><!-- /rdm-nav-card -->
-
-    <!-- Controls -->
-    <div class="rdm-controls">
-      <button class="rdm-ctrl-btn" onclick="expandAllStages()">Expandir todo</button>
-      <button class="rdm-ctrl-btn" onclick="collapseAllStages()">Colapsar todo</button>
-    </div>
-
-    <!-- Stage cards -->
-    <div id="rdm-stages-container">
-
-      <div class="section-card collapsed" id="card-roadmap-sources">
-        <div class="section-header">
-          <div class="section-icon icon-sources">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/>
-            </svg>
-          </div>
-          <div class="section-header-text">
-            <h2><span class="rdm-step">01</span> Fuentes de Datos</h2>
-            <span>Identificación y clasificación de fuentes de origen</span>
-          </div>
-          <span class="rdm-tech-chip">ERP · CRM · APIs · Archivos</span>
-          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="section-body">
-          <div class="prose" id="roadmap-sources"><div class="empty-state">Análisis de fuentes pendiente de generación por el agente.</div></div>
-        </div>
-      </div>
-
-      <div class="section-card collapsed" id="card-roadmap-ingestion">
-        <div class="section-header">
-          <div class="section-icon icon-ingestion">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <polyline points="8 17 12 21 16 17"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/>
-            </svg>
-          </div>
-          <div class="section-header-text">
-            <h2><span class="rdm-step">02</span> Ingesta de Datos</h2>
-            <span>Estrategia y pipelines con Azure Data Factory</span>
-          </div>
-          <span class="rdm-tech-chip">Azure Data Factory</span>
-          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="section-body">
-          <div class="prose" id="roadmap-ingestion"><div class="empty-state">Diseño de ingesta pendiente de generación por el agente.</div></div>
-        </div>
-      </div>
-
-      <div class="section-card collapsed" id="card-roadmap-storage">
-        <div class="section-header">
-          <div class="section-icon icon-storage">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
-            </svg>
-          </div>
-          <div class="section-header-text">
-            <h2><span class="rdm-step">03</span> Almacenamiento</h2>
-            <span>Arquitectura de Data Lake con capas medallion</span>
-          </div>
-          <span class="rdm-tech-chip">ADLS Gen2 · Synapse</span>
-          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="section-body">
-          <div class="prose" id="roadmap-storage"><div class="empty-state">Arquitectura de almacenamiento pendiente de generación por el agente.</div></div>
-        </div>
-      </div>
-
-      <div class="section-card collapsed" id="card-roadmap-etl">
-        <div class="section-header">
-          <div class="section-icon icon-etl">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
-            </svg>
-          </div>
-          <div class="section-header-text">
-            <h2><span class="rdm-step">04</span> Procesamiento ETL</h2>
-            <span>Transformación, calidad de datos y orquestación</span>
-          </div>
-          <span class="rdm-tech-chip">Databricks · Synapse</span>
-          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="section-body">
-          <div class="prose" id="roadmap-etl"><div class="empty-state">Capa de procesamiento pendiente de generación por el agente.</div></div>
-        </div>
-      </div>
-
-      <div class="section-card collapsed" id="card-roadmap-modeling">
-        <div class="section-header">
-          <div class="section-icon icon-modeling">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>
-            </svg>
-          </div>
-          <div class="section-header-text">
-            <h2><span class="rdm-step">05</span> Modelado &amp; Serving</h2>
-            <span>Modelo analítico, métricas y exposición de datos</span>
-          </div>
-          <span class="rdm-tech-chip">Analysis Services · Gold</span>
-          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="section-body">
-          <div class="prose" id="roadmap-modeling"><div class="empty-state">Modelado analítico pendiente de generación por el agente.</div></div>
-        </div>
-      </div>
-
-      <div class="section-card collapsed" id="card-roadmap-ml">
-        <div class="section-header">
-          <div class="section-icon icon-ml">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04Z"/>
-            </svg>
-          </div>
-          <div class="section-header-text">
-            <h2><span class="rdm-step">06</span> Machine Learning &amp; MLOps</h2>
-            <span>Modelos de IA, ciclo de vida y monitorización</span>
-          </div>
-          <span class="rdm-tech-chip">Azure Machine Learning</span>
-          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="section-body">
-          <div class="prose" id="roadmap-ml"><div class="empty-state">Estrategia ML pendiente de generación por el agente.</div></div>
-        </div>
-      </div>
-
-      <div class="section-card collapsed" id="card-roadmap-bi">
-        <div class="section-header">
-          <div class="section-icon icon-rdmbi">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
-            </svg>
-          </div>
-          <div class="section-header-text">
-            <h2><span class="rdm-step">07</span> Visualización BI</h2>
-            <span>Arquitectura Power BI, dashboards y plan de adopción</span>
-          </div>
-          <span class="rdm-tech-chip">Power BI · Workspaces</span>
-          <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="section-body">
-          <div class="prose" id="roadmap-bi"><div class="empty-state">Estrategia de visualización pendiente de generación por el agente.</div></div>
-        </div>
-      </div>
-
-    </div><!-- /rdm-stages-container -->
-  </div><!-- /tab-roadmap -->
-
+<!-- ══ TAB: PROPUESTA ══ -->
+<div class="tab-panel active" id="tab-propuesta">
+<div style="display:flex;justify-content:flex-end;padding:20px 0 4px">
+<button id="toggle-all" onclick="toggleAll()" style="font-size:12px;padding:5px 14px;border-radius:8px;border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);cursor:pointer;">Colapsar todo</button>
+</div>
+<div class="section-card">
+<div class="section-header">
+<div class="section-icon icon-arch">
+<svg fill="none" stroke="#0369a1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<rect height="10" rx="1" width="6" x="2" y="7"></rect><rect height="14" rx="1" width="6" x="9" y="3"></rect><rect height="7" rx="1" width="6" x="16" y="10"></rect><path d="M5 17v2M12 17v2M19 17v2"></path>
+</svg>
+</div>
+<div class="section-header-text"><h2>Propuesta de Arquitectura</h2><span>Diseño técnico y plataformas recomendadas</span></div>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body"><div class="prose" id="content-architecture"><p><strong>Arquitectura Propuesta para FarmaNorte</strong></p>
+<p>La arquitectura propuesta para FarmaNorte tiene como objetivo unificar la información de ventas, stock y logística para incorporar un modelo de previsión de demanda, reducir las roturas de stock y el capital inmovilizado en almacén. A continuación, se describe la arquitectura propuesta:</p>
+<p><strong>Introducción</strong></p>
+<p>La empresa FarmaNorte, dedicada a la distribución farmacéutica, cuenta con aproximadamente 350 empleados y busca mejorar su gestión de datos y procesos. La arquitectura propuesta se basa en un enfoque Lakehouse con capas medallion, que permite una integración eficiente y escalable de los datos. El objetivo es proporcionar una solución escalable y eficiente en la nube, preferentemente en Azure.</p>
+<p><strong>Componentes de la Arquitectura</strong></p>
+<ul>
+<li><strong>Cloud Provider:</strong> Azure, como proveedor de nube preferido por el cliente, ofrece una amplia gama de servicios y herramientas para desarrollar y desplegar la solución.</li>
+<li><strong>Plataforma de Datos:</strong> Azure Synapse Analytics (antes Azure SQL Data Warehouse) será la plataforma de datos unificada para almacenar y analizar los datos de ventas, stock y logística. Su escalabilidad y eficiencia en el análisis de datos la hacen ideal para este proyecto.</li>
+<li><strong>Herramienta de Visualización:</strong> Power BI será la herramienta de visualización para crear informes y dashboards interactivos. Su facilidad de uso y capacidad para conectarse a Azure Synapse Analytics la hacen una opción adecuada.</li>
+<li><strong>Modelo de Machine Learning:</strong> Azure Machine Learning se utilizará para desarrollar y desplegar el modelo de previsión de demanda. Su capacidad para desarrollar y desplegar modelos de machine learning escalables y eficientes la hace ideal para este proyecto.</li>
+<li><strong>Integración de Datos:</strong> Azure Data Factory se encargará de integrar los datos de los diferentes orígenes (ERP, sistema de almacén y CRM de ventas) y almacenarlos en Azure Blob Storage. Su facilidad de uso y escalabilidad en la integración de datos la hacen una opción adecuada.</li>
+</ul>
+<p><strong>Capas de la Arquitectura</strong></p>
+<p>La arquitectura se compone de las siguientes capas:</p>
+<ul>
+<li><strong>Capa de Ingesta:</strong> Azure Data Factory se encargará de ingerir los datos de los diferentes orígenes (ERP, sistema de almacén y CRM de ventas) y almacenarlos en Azure Blob Storage.</li>
+<li><strong>Capa de Procesamiento:</strong> Azure Synapse Analytics procesará los datos ingeridos y los transformará en un formato adecuado para el análisis y el modelado.</li>
+<li><strong>Capa de Análisis:</strong> Power BI se conectará a Azure Synapse Analytics para crear informes y dashboards interactivos.</li>
+<li><strong>Capa de Machine Learning:</strong> Azure Machine Learning se utilizará para desarrollar y desplegar el modelo de previsión de demanda, que se integrará con Azure Synapse Analytics.</li>
+</ul>
+<p><strong>Justificación de la Arquitectura</strong></p>
+<p>La arquitectura propuesta se justifica por la siguiente:</p>
+<ul>
+<li><strong>Escalabilidad:</strong> Azure Synapse Analytics y Azure Blob Storage ofrecen escalabilidad y eficiencia en el almacenamiento y análisis de datos.</li>
+<li><strong>Eficiencia:</strong> La integración de datos mediante Azure Data Factory y la visualización mediante Power BI ofrecen eficiencia en la gestión de datos.</li>
+<li><strong>Facilidad de uso:</strong> Power BI y Azure Machine Learning ofrecen facilidad de uso para la creación de informes y modelos de machine learning.</li>
+</ul>
+<p><strong>Suposiciones y Restricciones</strong></p>
+<ul>
+<li>Se asume que el cliente tiene una cuenta en Azure y que se puede utilizar la infraestructura existente.</li>
+<li>Se considera que el plazo objetivo de 3-4 meses es factible con la arquitectura propuesta.</li>
+<li>Se tiene en cuenta la restricción presupuestaria de 150.000 a 200.000 euros para la selección de servicios y plataformas.</li>
+</ul>
+<p><strong>Conclusión</strong></p>
+<p>La arquitectura propuesta para FarmaNorte permite una integración eficiente y escalable de los datos, así como la creación de un modelo de previsión de demanda utilizando machine learning. La selección de servicios y plataformas en Azure se justifica por la escalabilidad, eficiencia y facilidad de uso que ofrecen. Se considera que la arquitectura propuesta cumple con los objetivos y requisitos del proyecto, y se espera que permita al cliente alcanzar los KPIs de éxito definidos.</p></div></div>
+</div>
+<div class="section-card">
+<div class="section-header">
+<div class="section-icon icon-gov">
+<svg fill="none" stroke="#92400e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 2l9 4v6c0 5-3.8 9.7-9 11C3.8 21.7 3 17 3 12V6l9-4z"></path><polyline points="9 12 11 14 15 10"></polyline>
+</svg>
+</div>
+<div class="section-header-text"><h2>Propuesta de Gobernanza de Dato e IA</h2><span>Marco de gobierno, calidad y ética del dato</span></div>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body"><div class="prose" id="content-governance"><p><strong>Propuesta de Gobernanza del Dato y AI para FarmaNorte</strong></p>
+<p><strong>Introducción</strong></p>
+<p>La empresa FarmaNorte, dedicada a la distribución farmacéutica, busca mejorar su gestión de datos y procesos mediante la implementación de una plataforma de datos con componente predictivo. La propuesta de gobernanza del dato y AI tiene como objetivo asegurar la calidad, seguridad y cumplimiento normativo de los datos a lo largo de su ciclo de vida.</p>
+<p><strong>Roles y Responsabilidades</strong></p>
+<ul>
+<li><strong>Data Owner:</strong> El propietario de los datos será el responsable de definir los requisitos de negocio y garantizar la calidad de los datos.</li>
+<li><strong>Data Steward:</strong> El administrador de datos será responsable de implementar y mantener la política de gobernanza de datos, así como de supervisar la calidad de los datos.</li>
+<li><strong>Data Scientist:</strong> El científico de datos será responsable de desarrollar y desplegar el modelo de previsión de demanda.</li>
+<li><strong>IT:</strong> El equipo de TI será responsable de implementar y mantener la infraestructura tecnológica.</li>
+</ul>
+<p><strong>Políticas de Gobernanza</strong></p>
+<ul>
+<li><strong>Política de Calidad de Datos:</strong> Se establecerán reglas y procedimientos para garantizar la calidad y precisión de los datos.</li>
+<li><strong>Política de Seguridad de Datos:</strong> Se implementarán medidas de seguridad para proteger los datos contra accesos no autorizados y pérdidas de datos.</li>
+<li><strong>Política de Cumplimiento Normativo:</strong> Se garantizará el cumplimiento de las normativas y regulaciones aplicables, como la GDPR y la normativa sanitaria.</li>
+</ul>
+<p><strong>Procesos de Gobernanza</strong></p>
+<ul>
+<li><strong>Proceso de Ingesta de Datos:</strong> Se establecerán procedimientos para la ingesta de datos de los diferentes orígenes (ERP, sistema de almacén y CRM de ventas).</li>
+<li><strong>Proceso de Procesamiento de Datos:</strong> Se establecerán procedimientos para el procesamiento y transformación de los datos.</li>
+<li><strong>Proceso de Análisis de Datos:</strong> Se establecerán procedimientos para el análisis y visualización de los datos.</li>
+<li><strong>Proceso de Desarrollo y Despliegue de Modelos:</strong> Se establecerán procedimientos para el desarrollo y despliegue del modelo de previsión de demanda.</li>
+</ul>
+<p><strong>Mecanismos de Control</strong></p>
+<ul>
+<li><strong>Auditorías de Calidad de Datos:</strong> Se realizarán auditorías periódicas para garantizar la calidad de los datos.</li>
+<li><strong>Monitoreo de Seguridad:</strong> Se implementarán herramientas de monitoreo para detectar posibles amenazas de seguridad.</li>
+<li><strong>Evaluación de Cumplimiento Normativo:</strong> Se realizarán evaluaciones periódicas para garantizar el cumplimiento de las normativas y regulaciones aplicables.</li>
+</ul>
+<p><strong>Infraestructura Tecnológica</strong></p>
+<ul>
+<li><strong>Cloud Provider:</strong> Azure será el proveedor de nube preferido para la implementación de la plataforma de datos y el modelo de previsión de demanda.</li>
+<li><strong>Plataforma de Datos:</strong> Azure Synapse Analytics será la plataforma de datos unificada para almacenar y analizar los datos.</li>
+<li><strong>Herramienta de Visualización:</strong> Power BI será la herramienta de visualización para crear informes y dashboards interactivos.</li>
+<li><strong>Modelo de Machine Learning:</strong> Azure Machine Learning será utilizado para desarrollar y desplegar el modelo de previsión de demanda.</li>
+</ul>
+<p><strong>Riesgos y Desafíos</strong></p>
+<ul>
+<li><strong>Riesgo de Calidad de Datos:</strong> La calidad de los datos puede ser un desafío debido a la integración de datos de diferentes orígenes.</li>
+<li><strong>Riesgo de Seguridad:</strong> La seguridad de los datos puede ser un desafío debido a la implementación de la plataforma de datos en la nube.</li>
+<li><strong>Riesgo de Cumplimiento Normativo:</strong> El cumplimiento de las normativas y regulaciones aplicables puede ser un desafío debido a la complejidad de la normativa sanitaria y la GDPR.</li>
+</ul>
+<p><strong>Conclusión</strong></p>
+<p>La propuesta de gobernanza del dato y AI para FarmaNorte tiene como objetivo asegurar la calidad, seguridad y cumplimiento normativo de los datos a lo largo de su ciclo de vida. La implementación de roles y responsabilidades, políticas de gobernanza, procesos de gobernanza y mecanismos de control garantizarán la eficacia y eficiencia de la plataforma de datos y el modelo de previsión de demanda. La infraestructura tecnológica propuesta se ajusta a las necesidades del proyecto y se espera que permita al cliente alcanzar los KPIs de éxito definidos.</p></div></div>
+</div>
+<div class="section-card">
+<div class="section-header">
+<div class="section-icon icon-ai">
+<svg fill="none" stroke="#6d28d9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"></path>
+</svg>
+</div>
+<div class="section-header-text"><h2>Propuesta de Estrategia de Datos e IA</h2><span>Funcionalidades clave, roadmap técnico y valor de negocio</span></div>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body"><div class="prose" id="content-data-ai"><p><strong>Análisis Crítico del Problema de Negocio y Madurez de Datos Actual</strong></p>
+<p>FarmaNorte, una empresa de distribución farmacéutica con aproximadamente 350 empleados, enfrenta desafíos en la gestión de sus datos y procesos. Actualmente, la empresa utiliza Excel para consolidar informes de ventas de forma manual semanal, sin contar con un data warehouse ni una plataforma de Business Intelligence (BI) en producción. Esto indica una madurez analítica limitada y una dependencia de procesos manuales, lo que puede llevar a ineficiencias y errores.</p>
+<p>La empresa busca unificar su información de ventas, stock y logística para incorporar un modelo de previsión de demanda. Esto tiene como objetivo reducir las roturas de stock y el capital inmovilizado en almacén. La falta de integración de datos y la ausencia de análisis avanzados limitan la capacidad de la empresa para tomar decisiones informadas y optimizar sus operaciones.</p>
+<p><strong>Propuesta de Funcionalidades Clave de IA/Data</strong></p>
+<p>Para abordar los desafíos de FarmaNorte, se proponen las siguientes funcionalidades clave de IA/Data:</p>
+<ol>
+<li><strong>Modelo de Previsión de Demanda</strong>: Desarrollar un modelo de machine learning que prediga la demanda futura de productos farmacéuticos basándose en datos históricos de ventas, estacionales y tendencias del mercado. Esto permitirá a la empresa optimizar su inventario y reducir las roturas de stock.</li>
+<li><strong>Análisis de Roturas de Stock y Optimización de Inventario</strong>: Implementar un análisis que identifique patrones y causas de roturas de stock. Esto permitirá a la empresa tomar medidas proactivas para evitarlas y optimizar su inventario.</li>
+<li><strong>Integración de Datos y Visualización</strong>: Integrar datos de ventas, stock y logística en una plataforma de datos unificada y proporcionar visualizaciones interactivas para que los usuarios puedan explorar y analizar los datos de manera efectiva.</li>
+</ol>
+<p><strong>Roadmap Técnico</strong></p>
+<p>A continuación, se detalla el roadmap técnico para cada funcionalidad:</p>
+<ol>
+<li><strong>Modelo de Previsión de Demanda</strong>:</li>
+</ol>
+<ul>
+<li>Fuentes de datos: Datos históricos de ventas, información de productos, estacionales y tendencias del mercado.</li>
+<li>Tipo de análisis: Machine learning (regresión, series temporales).</li>
+<li>Integración en el flujo de trabajo: El modelo se integrará con la plataforma de datos unificada y se utilizará para generar previsiones de demanda que se visualizarán en dashboards interactivos.</li>
+</ul>
+<ol>
+<li><strong>Análisis de Roturas de Stock y Optimización de Inventario</strong>:</li>
+</ol>
+<ul>
+<li>Fuentes de datos: Datos de stock, pedidos y entregas.</li>
+<li>Tipo de análisis: Análisis de datos exploratorio, identificación de patrones y causas.</li>
+<li>Integración en el flujo de trabajo: El análisis se integrará con la plataforma de datos unificada y se utilizará para identificar oportunidades de mejora en la gestión de inventario.</li>
+</ul>
+<ol>
+<li><strong>Integración de Datos y Visualización</strong>:</li>
+</ol>
+<ul>
+<li>Fuentes de datos: Datos de ventas, stock y logística.</li>
+<li>Tipo de análisis: Integración de datos, visualización de datos.</li>
+<li>Integración en el flujo de trabajo: La plataforma de datos unificada se utilizará para integrar los datos y proporcionar visualizaciones interactivas para los usuarios.</li>
+</ul>
+<p><strong>Valor de Negocio</strong></p>
+<p>La implementación de estas funcionalidades tendrá un impacto significativo en las métricas de éxito de FarmaNorte:</p>
+<ul>
+<li><strong>Reducción de Roturas de Stock</strong>: El modelo de previsión de demanda y el análisis de roturas de stock permitirán a la empresa reducir las roturas de stock en al menos un 30%.</li>
+<li><strong>Disminución del Inventario Inmovilizado</strong>: La optimización de inventario permitirá a la empresa liberar capital inmovilizado en almacén, mejorando su eficiencia financiera.</li>
+<li><strong>Exactitud del Modelo de Previsión de Demanda</strong>: La implementación de un modelo de previsión de demanda preciso permitirá a la empresa tomar decisiones informadas y optimizar sus operaciones, con una exactitud por encima del 85%.</li>
+</ul>
+<p>En resumen, la propuesta de funcionalidades clave de IA/Data para FarmaNorte tiene como objetivo abordar los desafíos de la empresa en la gestión de datos y procesos. La implementación de estas funcionalidades tendrá un impacto significativo en las métricas de éxito de la empresa, mejorando su eficiencia operativa y financiera.</p></div></div>
+</div>
+<div class="section-card">
+<div class="section-header">
+<div class="section-icon icon-bi">
+<svg fill="none" stroke="#9d174d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line>
+</svg>
+</div>
+<div class="section-header-text"><h2>Propuesta de Visualización de Datos</h2><span>KPIs, dashboards, UX y stack de BI</span></div>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body"><div class="prose" id="content-bi"><p><strong>Estrategia de Visualización de Datos para FarmaNorte</strong></p>
+<p><strong>Introducción</strong></p>
+<p>La estrategia de visualización de datos para FarmaNorte tiene como objetivo proporcionar una visión clara y concisa de los datos de ventas, stock y logística, permitiendo a los usuarios tomar decisiones informadas y optimizar las operaciones de la empresa. La estrategia se basa en la arquitectura propuesta anteriormente, que incluye la integración de datos en una plataforma de datos unificada y la implementación de un modelo de previsión de demanda.</p>
+<p><strong>Definición de KPIs de Visualización</strong></p>
+<p>Para medir el éxito de la estrategia de visualización de datos, se han definido los siguientes KPIs:</p>
+<ul>
+<li><strong>Roturas de Stock</strong>: Número de roturas de stock por mes.</li>
+<li><strong>Inventario Inmovilizado</strong>: Valor del inventario inmovilizado en almacén.</li>
+<li><strong>Exactitud del Modelo de Previsión de Demanda</strong>: Exactitud del modelo de previsión de demanda por encima del 85%.</li>
+</ul>
+<p><strong>Diseño de Dashboards</strong></p>
+<p>Se han diseñado dos dashboards para satisfacer las necesidades de los usuarios:</p>
+<ul>
+<li><strong>Dashboard Ejecutivo</strong>: Proporciona una visión general de los datos de ventas, stock y logística, incluyendo los KPIs definidos anteriormente. El dashboard incluye gráficos de barras, líneas y mapas de calor para visualizar los datos.</li>
+<li><strong>Dashboard de Operaciones Detallado</strong>: Proporciona una visión detallada de los datos de operaciones, incluyendo información sobre pedidos, entregas y stock. El dashboard incluye gráficos de barras, líneas y tablas para visualizar los datos.</li>
+</ul>
+<p><strong>User Experience (UX)</strong></p>
+<p>Los usuarios de la plataforma de visualización de datos son:</p>
+<ul>
+<li><strong>Gerentes de Ventas</strong>: Necesitan visualizar los datos de ventas y stock para tomar decisiones informadas sobre la gestión de inventario.</li>
+<li><strong>Gerentes de Operaciones</strong>: Necesitan visualizar los datos de operaciones para optimizar las operaciones de la empresa.</li>
+</ul>
+<p>Para satisfacer las necesidades de los usuarios, se han implementado las siguientes características:</p>
+<ul>
+<li><strong>Filtros</strong>: Los usuarios pueden filtrar los datos por fecha, producto, región y otros criterios.</li>
+<li><strong>Drill-downs</strong>: Los usuarios pueden profundizar en los datos para obtener información más detallada.</li>
+<li><strong>Alertas</strong>: Los usuarios pueden configurar alertas para recibir notificaciones cuando se produzcan cambios significativos en los datos.</li>
+</ul>
+<p><strong>Stack de BI</strong></p>
+<p>Se ha seleccionado Power BI como herramienta de visualización de datos debido a su facilidad de uso, capacidad para conectarse a la plataforma de datos unificada y su escalabilidad. Power BI ofrece una amplia gama de características y herramientas para visualizar los datos, incluyendo gráficos, tablas y mapas.</p>
+<p><strong>Conclusión</strong></p>
+<p>La estrategia de visualización de datos para FarmaNorte tiene como objetivo proporcionar una visión clara y concisa de los datos de ventas, stock y logística, permitiendo a los usuarios tomar decisiones informadas y optimizar las operaciones de la empresa. La implementación de la plataforma de visualización de datos y la definición de KPIs permitirán a la empresa medir el éxito de la estrategia y tomar decisiones informadas para mejorar su eficiencia operativa y financiera.</p></div></div>
+</div>
+<div class="section-card">
+<div class="section-header">
+<div class="section-icon" style="background:#d1fae5">
+<svg fill="none" stroke="#15803d" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle><path d="M14.5 9.5a3.5 3.5 0 1 0 0 5"></path><line x1="9" x2="15" y1="12" y2="12"></line>
+</svg>
+</div>
+<div class="section-header-text"><h2>Propuesta de Estimación de Costos</h2><span>Costos aproximados de implementación y operación</span></div>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body"><div class="prose" id="content-cost-estimation"><h3>Resumen Ejecutivo</h3>
+<ul>
+<li><strong>Coste total estimado:</strong> 150000 – 200000</li>
+<li><strong>Horizonte temporal:</strong> 3-4 meses</li>
+<li><strong>Nivel de confianza:</strong> Medio — Se basa en la experiencia previa en proyectos similares y en la valoración de los servicios y herramientas necesarios.</li>
+</ul>
+<h3>Supuestos</h3>
+<ul>
+<li>Se asume que el cliente tiene una cuenta en Azure y que se puede utilizar la infraestructura existente.</li>
+<li>Se considera que el plazo objetivo de 3-4 meses es factible con la arquitectura propuesta.</li>
+<li>Se tiene en cuenta la restricción presupuestaria de 150.000 a 200.000 euros para la selección de servicios y plataformas.</li>
+</ul>
+<h3>Desglose por Categoría</h3>
+<p><strong>Licencias y herramientas:</strong> 40000<br/><strong>Formación y onboarding:</strong> 10000<br/><strong>Mantenimiento y soporte:</strong> 30000<br/><strong>Desarrollo e implantación:</strong> 80000</p>
+<h3>Precio por Componentes de Infraestructura</h3>
+<ul>
+<li><strong>Azure Synapse Analytics</strong> (Dedicated): 10000 × 1 = 10000</li>
+<li><strong>Azure Machine Learning</strong> (Basic): 5000 × 1 = 5000</li>
+<li><strong>Power BI</strong> (Pro): 2000 × 10 = 20000</li>
+<li><strong>Azure Data Factory</strong> (Basic): 3000 × 1 = 3000</li>
+</ul></div></div>
+</div>
+<div class="section-card">
+<div class="section-header">
+<div class="section-icon" style="background:#fee2e2">
+<svg fill="none" stroke="#b91c1c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="9" cy="7" r="3"></circle><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path><circle cx="18" cy="7" r="2.5"></circle><path d="M21 21v-1.5a3.5 3.5 0 0 0-2.5-3.35"></path>
+</svg>
+</div>
+<div class="section-header-text"><h2>Propuesta de Perfiles de Equipo</h2><span>Roles y habilidades recomendadas para el equipo</span></div>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body"><div class="prose" id="content-team-profiles"><p><strong>Informe Detallado: Perfiles Profesionales Necesarios para la Implementación de la Solución Propuesta</strong></p>
+<p><strong>Introducción</strong></p>
+<p>La implementación de la solución propuesta para FarmaNorte requiere un equipo de profesionales con habilidades y experiencia en diversas áreas, incluyendo la arquitectura de datos, ingeniería de datos, ciencia de datos, análisis de negocios y visualización de datos. En este informe, se identifican los perfiles profesionales necesarios para llevar a cabo la implementación de la solución propuesta.</p>
+<p><strong>Perfiles Profesionales Identificados</strong></p>
+<ol>
+<li><strong>Arquitecto de Datos</strong></li>
+</ol>
+<ul>
+<li>Responsabilidades clave: Diseñar y implementar la arquitectura de datos para la solución propuesta, incluyendo la integración de datos en Azure Synapse Analytics y la implementación de un modelo de previsión de demanda en Azure Machine Learning.</li>
+<li>Habilidades requeridas: Experiencia en arquitectura de datos, conocimientos de Azure Synapse Analytics, Azure Machine Learning y Power BI, habilidades de diseño y implementación de soluciones de datos.</li>
+</ul>
+<ol>
+<li><strong>Ingeniero de Datos</strong></li>
+</ol>
+<ul>
+<li>Responsabilidades clave: Desarrollar y implementar la integración de datos en Azure Data Factory, incluyendo la ingesta de datos de diferentes orígenes y la transformación de datos para su análisis.</li>
+<li>Habilidades requeridas: Experiencia en ingeniería de datos, conocimientos de Azure Data Factory, Azure Synapse Analytics y Power BI, habilidades de programación en lenguajes como Python o SQL.</li>
+</ul>
+<ol>
+<li><strong>Científico de Datos</strong></li>
+</ol>
+<ul>
+<li>Responsabilidades clave: Desarrollar y implementar el modelo de previsión de demanda en Azure Machine Learning, incluyendo la selección de algoritmos y la evaluación de su rendimiento.</li>
+<li>Habilidades requeridas: Experiencia en ciencia de datos, conocimientos de Azure Machine Learning, habilidades de programación en lenguajes como Python o R, conocimientos de algoritmos de machine learning.</li>
+</ul>
+<ol>
+<li><strong>Analista de Negocios</strong></li>
+</ol>
+<ul>
+<li>Responsabilidades clave: Trabajar con los stakeholders para identificar los requisitos de negocio y garantizar que la solución propuesta cumpla con sus necesidades, incluyendo la definición de KPIs y la evaluación de la eficacia de la solución.</li>
+<li>Habilidades requeridas: Experiencia en análisis de negocios, conocimientos de la industria farmacéutica, habilidades de comunicación y trabajo en equipo.</li>
+</ul>
+<ol>
+<li><strong>Analista de BI</strong></li>
+</ol>
+<ul>
+<li>Responsabilidades clave: Desarrollar y implementar los dashboards y informes en Power BI, incluyendo la creación de visualizaciones de datos y la configuración de alertas.</li>
+<li>Habilidades requeridas: Experiencia en análisis de BI, conocimientos de Power BI, habilidades de programación en lenguajes como DAX o M.</li>
+</ul>
+<ol>
+<li><strong>Especialista en Gobernanza de Datos</strong></li>
+</ol>
+<ul>
+<li>Responsabilidades clave: Implementar y mantener la política de gobernanza de datos, incluyendo la definición de roles y responsabilidades, la implementación de medidas de seguridad y la evaluación de la calidad de los datos.</li>
+<li>Habilidades requeridas: Experiencia en gobernanza de datos, conocimientos de la normativa de protección de datos, habilidades de comunicación y trabajo en equipo.</li>
+</ul>
+<p><strong>Conclusión</strong></p>
+<p>La implementación de la solución propuesta para FarmaNorte requiere un equipo de profesionales con habilidades y experiencia en diversas áreas. Los perfiles profesionales identificados en este informe son fundamentales para garantizar el éxito de la implementación y la eficacia de la solución. Es importante destacar que la colaboración y el trabajo en equipo serán clave para el éxito del proyecto.</p>
+<hr/>
+<h3>Estimación de Coste del Equipo</h3>
+<p><strong>Tabla de Estimación de Costes del Equipo</strong></p>
+<p>| Perfil | Nivel Recomendado | Horas/Mes | Coste Mensual (€) |<br/>| --- | --- | --- | --- |<br/>| Arquitecto de Datos | Senior | 160 | 12.000 (160h * 75€/h) |<br/>| Ingeniero de Datos | Middle | 120 | 3.600 (120h * 30€/h) |<br/>| Científico de Datos | Senior | 160 | 8.800 (160h * 55€/h) |<br/>| Analista de Negocios | Middle | 80 | 2.240 (80h * 28€/h) |<br/>| Analista de BI | Junior | 80 | 1.600 (80h * 20€/h) |<br/>| Especialista en Gobernanza de Datos | Middle | 80 | 2.800 (80h * 35€/h) |</p>
+<p><strong>Coste Total Mensual del Equipo:</strong> 30.040 €</p>
+<p>Nota: Los cálculos se han realizado utilizando las tarifas de referencia proporcionadas y asumiendo una dedicación mensual de 160 horas para los perfiles Senior, 120 horas para los perfiles Middle y 80 horas para los perfiles Junior.</p></div></div>
+</div>
+</div><!-- /tab-propuesta -->
+<!-- ══ TAB: ROADMAP ══ -->
+<div class="tab-panel" id="tab-roadmap">
+<!-- Pipeline navigation widget -->
+<div class="rdm-nav-card" style="margin-top:20px">
+<div class="rdm-nav-label">Flujo de arquitectura — clic en cada capa para navegar</div>
+<div class="rdm-pipeline">
+<div class="rdm-pipe-node" onclick="scrollToStage('roadmap-sources')">
+<div class="rdm-pipe-icon icon-sources">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"></path><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"></path><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"></path>
+</svg>
+</div>
+<span class="rdm-pipe-name">Fuentes</span>
+<span class="rdm-pipe-tech">ERP · CRM · APIs</span>
+</div>
+<div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+<div class="rdm-pipe-node" onclick="scrollToStage('roadmap-ingestion')">
+<div class="rdm-pipe-icon icon-ingestion">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<polyline points="8 17 12 21 16 17"></polyline><line x1="12" x2="12" y1="12" y2="21"></line><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path>
+</svg>
+</div>
+<span class="rdm-pipe-name">Ingesta</span>
+<span class="rdm-pipe-tech">Azure Data Factory</span>
+</div>
+<div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+<div class="rdm-pipe-node" onclick="scrollToStage('roadmap-storage')">
+<div class="rdm-pipe-icon icon-storage">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>
+</svg>
+</div>
+<span class="rdm-pipe-name">Almacenamiento</span>
+<span class="rdm-pipe-tech">ADLS Gen2</span>
+</div>
+<div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+<div class="rdm-pipe-node" onclick="scrollToStage('roadmap-etl')">
+<div class="rdm-pipe-icon icon-etl">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"></path>
+</svg>
+</div>
+<span class="rdm-pipe-name">ETL</span>
+<span class="rdm-pipe-tech">Databricks · Synapse</span>
+</div>
+<div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+<div class="rdm-pipe-node" onclick="scrollToStage('roadmap-modeling')">
+<div class="rdm-pipe-icon icon-modeling">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<rect height="18" rx="2" width="18" x="3" y="3"></rect><line x1="3" x2="21" y1="9" y2="9"></line><line x1="3" x2="21" y1="15" y2="15"></line><line x1="9" x2="9" y1="3" y2="21"></line><line x1="15" x2="15" y1="3" y2="21"></line>
+</svg>
+</div>
+<span class="rdm-pipe-name">Modelado</span>
+<span class="rdm-pipe-tech">Analysis Services</span>
+</div>
+<div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+<div class="rdm-pipe-node" onclick="scrollToStage('roadmap-ml')">
+<div class="rdm-pipe-icon icon-ml">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04Z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04Z"></path>
+</svg>
+</div>
+<span class="rdm-pipe-name">ML &amp; MLOps</span>
+<span class="rdm-pipe-tech">Azure ML</span>
+</div>
+<div class="rdm-pipe-arrow"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></div>
+<div class="rdm-pipe-node" onclick="scrollToStage('roadmap-bi')">
+<div class="rdm-pipe-icon icon-rdmbi">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line><line x1="2" x2="22" y1="20" y2="20"></line>
+</svg>
+</div>
+<span class="rdm-pipe-name">Visualización</span>
+<span class="rdm-pipe-tech">Power BI</span>
+</div>
+</div>
+</div><!-- /rdm-nav-card -->
+<!-- Controls -->
+<div class="rdm-controls">
+<button class="rdm-ctrl-btn" onclick="expandAllStages()">Expandir todo</button>
+<button class="rdm-ctrl-btn" onclick="collapseAllStages()">Colapsar todo</button>
+</div>
+<!-- Stage cards -->
+<div id="rdm-stages-container">
+<div class="section-card collapsed" id="card-roadmap-sources">
+<div class="section-header">
+<div class="section-icon icon-sources">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"></path><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"></path><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"></path>
+</svg>
+</div>
+<div class="section-header-text">
+<h2><span class="rdm-step">01</span> Fuentes de Datos</h2>
+<span>Identificación y clasificación de fuentes de origen</span>
+</div>
+<span class="rdm-tech-chip">ERP · CRM · APIs · Archivos</span>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body">
+<div class="prose" id="roadmap-sources"><p><strong>Análisis de Fuentes de Datos para FarmaNorte</strong></p>
+<h4>1. Inventario de Fuentes Identificadas</h4>
+<p>Basándome en la propuesta de solución presentada, he identificado las siguientes fuentes de datos relevantes para el proyecto:</p>
+<ol>
+<li><strong>Sistema de Gestión de Ventas</strong>:</li>
+</ol>
+<ul>
+<li>Tipo de datos: Ventas, cantidad vendida, fechas de venta, precios.</li>
+<li>Relevancia: Fundamental para el modelo de previsión de demanda y análisis de roturas de stock.</li>
+<li>Formato: Estructurado (probablemente en formato de base de datos relacional).</li>
+<li>Frecuencia de actualización: Diaria (o en tiempo real, dependiendo de la configuración del sistema).</li>
+<li>Riesgos/Dependencias: Calidad de los datos de ventas, integridad de los registros.</li>
+</ul>
+<ol>
+<li><strong>Sistema de Gestión de Inventarios</strong>:</li>
+</ol>
+<ul>
+<li>Tipo de datos: Niveles de stock, ubicaciones de almacenamiento, movimientos de inventario.</li>
+<li>Relevancia: Crucial para el análisis de roturas de stock y gestión de inventarios.</li>
+<li>Formato: Estructurado (posiblemente en un sistema de gestión de inventarios específico).</li>
+<li>Frecuencia de actualización: En tiempo real o diaria, según la implementación.</li>
+<li>Riesgos/Dependencias: Precisión de los datos de inventario, actualizaciones oportunas.</li>
+</ul>
+<ol>
+<li><strong>Sistema de Logística y Distribución</strong>:</li>
+</ol>
+<ul>
+<li>Tipo de datos: Pedidos, entregas, tiempos de entrega, costos de transporte.</li>
+<li>Relevancia: Importante para la comprensión de la cadena de suministro y su impacto en las ventas y el stock.</li>
+<li>Formato: Estructurado o semiestructurado (en formato CSV, JSON, o similar).</li>
+<li>Frecuencia de actualización: Variable, dependiendo de la frecuencia de los pedidos y entregas.</li>
+<li>Riesgos/Dependencias: Calidad de los datos de logística, integración con sistemas de terceros.</li>
+</ul>
+<ol>
+<li><strong>Datos de Mercado y Competencia</strong>:</li>
+</ol>
+<ul>
+<li>Tipo de datos: Tendencias de mercado, comportamiento de la competencia, análisis de la oferta y la demanda.</li>
+<li>Relevancia: Útil para ajustar el modelo de previsión de demanda y estrategias de marketing.</li>
+<li>Formato: No estructurado o semiestructurado (informes de investigación, noticias, redes sociales).</li>
+<li>Frecuencia de actualización: Ad-hoc o periódica, dependiendo de la disponibilidad de datos.</li>
+<li>Riesgos/Dependencias: Calidad y relevancia de los datos, posibles sesgos en la interpretación.</li>
+</ul>
+<ol>
+<li><strong>Dados de Clientes y Preferencias</strong>:</li>
+</ol>
+<ul>
+<li>Tipo de datos: Perfiles de clientes, historial de compras, preferencias.</li>
+<li>Relevancia: Valioso para personalizar la experiencia del cliente y ajustar estrategias de marketing.</li>
+<li>Formato: Estructurado (bases de datos de clientes) y no estructurado (comentarios, redes sociales).</li>
+<li>Frecuencia de actualización: Continua, a medida que los clientes interactúan con la empresa.</li>
+<li>Riesgos/Dependencias: Privacidad y seguridad de los datos de clientes, consentimiento para el uso de datos.</li>
+</ul>
+<h4>2. Evaluación de Calidad y Riesgos por Fuente</h4>
+<ul>
+<li><strong>Sistema de Gestión de Ventas</strong>: Alto riesgo de datos inconsistentes o no actualizados.</li>
+<li><strong>Sistema de Gestión de Inventarios</strong>: Riesgo moderado de desactualización o error en los registros.</li>
+<li><strong>Sistema de Logística y Distribución</strong>: Riesgo bajo a moderado, dependiendo de la integración con terceros.</li>
+<li><strong>Datos de Mercado y Competencia</strong>: Alto riesgo de sesgo y dificultad en la calidad y relevancia de los datos.</li>
+<li><strong>Datos de Clientes y Preferencias</strong>: Alto riesgo relacionado con la privacidad y seguridad de los datos.</li>
+</ul>
+<h4>3. Dependencias y Supuestos Asumidos</h4>
+<ul>
+<li>Se asume que los sistemas de gestión de ventas, inventarios y logística están bien implementados y ofrecen datos confiables.</li>
+<li>Se supone que hay acuerdos en lugar para el uso de datos de terceros (como datos de mercado y competencia).</li>
+<li>Se depende de la cooperación de los departamentos de ventas, logística y marketing para la recopilación y calidad de los datos.</li>
+<li>Se asume que la empresa tiene las herramientas y recursos necesarios para manejar y analizar grandes cantidades de datos.</li>
+</ul>
+<h4>4. Recomendaciones Prioritarias para la Fase de Ingesta</h4>
+<ol>
+<li><strong>Validación de Calidad de Datos</strong>: Antes de la ingesta, validar la calidad y consistencia de los datos en cada fuente para asegurar su precisión y utilidad.</li>
+<li><strong>Establecimiento de Acuerdos con Terceros</strong>: Para datos de mercado y competencia, asegurar que se tienen los acuerdos necesarios para el uso de estos datos.</li>
+<li><strong>Implementación de Medidas de Seguridad</strong>: Para proteger la privacidad y seguridad de los datos de clientes, implementar medidas de seguridad robustas.</li>
+<li><strong>Desarrollo de un Plan de Integración</strong>: Desarrollar un plan detallado para la integración de los diferentes sistemas y fuentes de datos, considerando las frecuencias de actualización y los formatos de los datos.</li>
+<li><strong>Capacitación del Personal</strong>: Capacitar al personal involucrado en el manejo y análisis de datos sobre las mejores prácticas de manipulación y seguridad de datos.</li>
+</ol>
+<p>Este análisis sentará las bases para la fase de ingesta, asegurando que se consideren los riesgos y dependencias clave y se tomen las medidas necesarias para garantizar la calidad y utilidad de los datos para el proyecto de FarmaNorte.</p></div>
+</div>
+</div>
+<div class="section-card collapsed" id="card-roadmap-ingestion">
+<div class="section-header">
+<div class="section-icon icon-ingestion">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<polyline points="8 17 12 21 16 17"></polyline><line x1="12" x2="12" y1="12" y2="21"></line><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path>
+</svg>
+</div>
+<div class="section-header-text">
+<h2><span class="rdm-step">02</span> Ingesta de Datos</h2>
+<span>Estrategia y pipelines con Azure Data Factory</span>
+</div>
+<span class="rdm-tech-chip">Azure Data Factory</span>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body">
+<div class="prose" id="roadmap-ingestion"><p><strong>Estrategia de Ingesta de Datos para FarmaNorte con Azure Data Factory</strong></p>
+<p><strong>1. Patrón de Ingesta por Fuente o Grupo de Fuentes</strong></p>
+<p>Basándome en el análisis de fuentes de datos realizado, se recomienda el siguiente patrón de ingesta para cada fuente o grupo de fuentes:</p>
+<ul>
+<li><strong>Sistema de Gestión de Ventas</strong>: Ingesta por lotes (batch) diaria, debido a la naturaleza de los datos y la frecuencia de aktualización.</li>
+<li><strong>Sistema de Gestión de Inventarios</strong>: Ingesta en tiempo real o cerca de tiempo real ( Near Real-Time, NRT) para reflejar los cambios en el inventario de manera oportuna.</li>
+<li><strong>Sistema de Logística y Distribución</strong>: Ingesta por lotes (batch) con una frecuencia ajustada según la frecuencia de los pedidos y entregas, que podría ser diaria o semanal dependiendo de la actividad.</li>
+<li><strong>Datos de Mercado y Competencia</strong>: Ingesta ad-hoc o periódica, dependiendo de la disponibilidad de los datos y su relevancia para el modelo de previsión de demanda.</li>
+<li><strong>Datos de Clientes y Preferencias</strong>: Ingesta en tiempo real o cerca de tiempo real para capturar las interacciones de los clientes y actualizar sus perfiles y preferencias de manera continua.</li>
+</ul>
+<p><strong>2. Estructura de Pipelines Recomendada en ADF</strong></p>
+<p>Se sugiere una estructura de pipelines modulares en Azure Data Factory (ADF), donde cada pipeline se centre en una fuente de datos específica o en un conjunto de fuentes relacionadas. Esto facilitará el manejo, la depuración y el mantenimiento de los pipelines. La estructura recomendada incluye:</p>
+<ul>
+<li>Un pipeline por cada fuente de datos principal (ventas, inventarios, logística, etc.).</li>
+<li>Pipelines adicionales para la integración de datos de mercado y competencia, y para la ingesta de datos de clientes y preferencias.</li>
+<li>Un pipeline de "orquestación" que coordine la ejecución de los pipelines individuales y maneje las dependencias entre ellos.</li>
+</ul>
+<p><strong>3. Conectores y Configuraciones Clave</strong></p>
+<p>Para cada fuente de datos, se deben utilizar los conectores de ADF más adecuados. Algunos de los conectores y consideraciones clave incluyen:</p>
+<ul>
+<li><strong>Sistema de Gestión de Ventas</strong>: Utilizar el conector de base de datos relevante (por ejemplo, SQL Server, Oracle) para conectar con el sistema de gestión de ventas.</li>
+<li><strong>Sistema de Gestión de Inventarios</strong>: Similar al sistema de ventas, utilizar el conector adecuado para el sistema de gestión de inventarios.</li>
+<li><strong>Sistema de Logística y Distribución</strong>: Dependiendo del formato de los datos (CSV, JSON, etc.), utilizar conectores como Azure Blob Storage o Azure Data Lake Storage para la ingesta de datos.</li>
+<li><strong>Datos de Mercado y Competencia</strong>: Utilizar conectores a fuentes de datos externas como APIs de terceros o servicios de datos en la nube.</li>
+<li><strong>Datos de Clientes y Preferencias</strong>: Utilizar conectores a sistemas de gestión de relaciones con el cliente (CRM) o a bases de datos que almacenan perfiles de clientes y sus interacciones.</li>
+</ul>
+<p><strong>4. Cadencias y Dependencias entre Pipelines</strong></p>
+<p>La cadencia de ejecución de cada pipeline dependerá de la frecuencia de actualización de los datos y de las necesidades del negocio. Por ejemplo:</p>
+<ul>
+<li>Los pipelines para sistemas de gestión de ventas e inventarios podrían ejecutarse diariamente durante la noche para reflejar las transacciones del día.</li>
+<li>El pipeline para el sistema de logística y distribución podría ejecutarse semanalmente, dependiendo de la frecuencia de los pedidos y entregas.</li>
+<li>Los pipelines para datos de mercado y competencia, y para datos de clientes y preferencias, podrían ejecutarse según sea necesario o en una base regular (mensual, trimestral) dependiendo de la disponibilidad de los datos y su impacto en el modelo de previsión de demanda.</li>
+</ul>
+<p>Las dependencias entre pipelines deben gestionarse cuidadosamente. Por ejemplo, el pipeline de orquestación podría asegurarse de que los pipelines de ingesta de datos se completen antes de proceder con cualquier proceso de transformación o análisis.</p>
+<p><strong>5. Riesgos Identificados y Recomendaciones de Mitigación</strong></p>
+<p>Se han identificado varios riesgos en las fuentes de datos, incluyendo la calidad de los datos, la seguridad y la privacidad, especialmente para los datos de clientes y preferencias. Para mitigar estos riesgos:</p>
+<ul>
+<li><strong>Validación de Calidad de Datos</strong>: Implementar un proceso de validación y limpieza de datos antes de la ingesta para asegurar la calidad y consistencia de los datos.</li>
+<li><strong>Medidas de Seguridad</strong>: Implementar medidas robustas de seguridad y privacidad para proteger los datos de clientes y preferencias, como cifrado, acceso controlado y cumplimiento de regulaciones como el GDPR.</li>
+<li><strong>Acuerdos con Terceros</strong>: Asegurarse de tener acuerdos claros y actualizados con terceros para el uso de sus datos, especialmente para datos de mercado y competencia.</li>
+<li><strong>Capacitación del Personal</strong>: Capacitar al personal sobre las mejores prácticas de manejo y seguridad de datos para minimizar el riesgo de errores humanos.</li>
+</ul>
+<p>Al adoptar esta estrategia de ingesta de datos, FarmaNorte podrá asegurar una ingesta eficiente, segura y de alta calidad de sus fuentes de datos, lo que será fundamental para el éxito de su proyecto de lakehouse y modelo de previsión de demanda.</p></div>
+</div>
+</div>
+<div class="section-card collapsed" id="card-roadmap-storage">
+<div class="section-header">
+<div class="section-icon icon-storage">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline>
+</svg>
+</div>
+<div class="section-header-text">
+<h2><span class="rdm-step">03</span> Almacenamiento</h2>
+<span>Arquitectura de Data Lake con capas medallion</span>
+</div>
+<span class="rdm-tech-chip">ADLS Gen2 · Synapse</span>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body">
+<div class="prose" id="roadmap-storage"><h3>Propuesta de Arquitectura de Almacenamiento para FarmaNorte</h3>
+<h4>1. Decisión y Justificación sobre la Estructura de Capas</h4>
+<p>Basándome en el análisis de las fuentes de datos y la estrategia de ingesta definida, recomiendo una arquitectura de almacenamiento que utilice una estructura de capas medallion simplificada, específicamente Bronze y Silver, en lugar de la arquitectura completa Bronze/Silver/Gold. Esta decisión se justifica por el volumen moderado de datos y la madurez del equipo del cliente.</p>
+<p>La capa Bronze se utilizará para almacenar los datos raw, tal como se ingieren de las fuentes, sin transformaciones significativas. La capa Silver será utilizada para almacenar los datos transformados y preparados para el análisis. Esta estructura permitirá una buena calidad de datos y una mayor eficiencia en el procesamiento, sin la necesidad de una capa Gold que implica una mayor complejidad y madurez en el uso de los datos.</p>
+<h4>2. Servicios de Azure Recomendados y Justificación</h4>
+<ul>
+<li><strong>Azure Data Lake Storage Gen2 (ADLS Gen2)</strong>: Será utilizado como almacenamiento principal para los datos, tanto en la capa Bronze como en la Silver. ADLS Gen2 ofrece una gran escalabilidad, seguridad y compatibilidad con diversos servicios de Azure.</li>
+<li><strong>Azure Data Factory (ADF)</strong>: Se utilizará para la ingesta de datos y para orquestar las transformaciones entre las capas Bronze y Silver. ADF es ideal para la integración de datos y ofrece una amplia gama de conectores.</li>
+<li><strong>Azure Synapse Analytics</strong>: Será utilizado para el análisis de datos. Synapse Analytics ofrece capacidades de procesamiento de datos en batch y en tiempo real, así como integración con Power BI para la visualización.</li>
+</ul>
+<h4>3. Estructura de Carpetas y Estrategia de Particionado</h4>
+<p>La estructura de carpetas en ADLS Gen2 se organizará de la siguiente manera:</p>
+<ul>
+<li><code>/bronze/</code>: Almacenará los datos raw de cada fuente.</li>
+<li><code>/bronze/ventas/</code>: Datos de ventas.</li>
+<li><code>/bronze/inventarios/</code>: Datos de inventarios.</li>
+<li><code>/bronze/logistica/</code>: Datos de logística y distribución.</li>
+<li><code>/silver/</code>: Almacenará los datos transformados y preparados para el análisis.</li>
+<li><code>/silver/ventas/</code>: Datos de ventas transformados.</li>
+<li><code>/silver/inventarios/</code>: Datos de inventarios transformados.</li>
+<li><code>/silver/logistica/</code>: Datos de logística y distribución transformados.</li>
+</ul>
+<p>La estrategia de particionado se basará en la fecha de ingesta y en la naturaleza de los datos. Por ejemplo, los datos de ventas podrían particionarse por fecha de venta y tipo de producto.</p>
+<h4>4. Políticas de Retención y Tier de Acceso</h4>
+<ul>
+<li><strong>Políticas de Retención</strong>: Se establecerán políticas de retención basadas en la relevancia de los datos para el negocio y los requisitos legales. Por ejemplo, los datos de ventas y inventarios podrían retenerse durante 5 años, mientras que los datos de logística podrían retenerse durante 2 años.</li>
+<li><strong>Tier de Acceso</strong>: Se utilizarán diferentes tiers de acceso en ADLS Gen2 para gestionar el costo y el acceso a los datos. Los datos más recientes y frecuentemente accedidos se almacenarán en un tier de acceso rápido, mientras que los datos menos recientes se moverán a un tier de acceso más lento y económico.</li>
+</ul>
+<h4>5. Consideraciones de Seguridad y Gobierno de Acceso</h4>
+<ul>
+<li><strong>Autenticación y Autorización</strong>: Se implementarán medidas de autenticación y autorización utilizando Azure Active Directory (AAD) para controlar quién puede acceder y modificar los datos.</li>
+<li><strong>Cifrado</strong>: Todos los datos en tránsito y en reposo estarán cifrados utilizando tecnologías como SSL/TLS y Azure Storage Service Encryption.</li>
+<li><strong>Gobierno de Datos</strong>: Se establecerán políticas de gobierno de datos claras, definiendo roles y responsabilidades para la gestión de la calidad, seguridad y privacidad de los datos.</li>
+</ul>
+<h4>6. Riesgos y Recomendaciones Operativas</h4>
+<ul>
+<li><strong>Monitoreo Continuo</strong>: Es crucial monitorear continuamente la arquitectura para identificar posibles problemas de rendimiento, seguridad o calidad de datos.</li>
+<li><strong>Capacitación del Personal</strong>: Se recomienda capacitar al personal en las mejores prácticas de manejo de datos, seguridad y uso de los servicios de Azure.</li>
+<li><strong>Escalabilidad</strong>: La arquitectura debe ser escalable para adaptarse al crecimiento futuro de los datos y las necesidades del negocio.</li>
+</ul>
+<p>Esta propuesta de arquitectura de almacenamiento está diseñada para satisfacer las necesidades de FarmaNorte, ofreciendo una solución escalable, segura y eficiente para la gestión de sus datos.</p></div>
+</div>
+</div>
+<div class="section-card collapsed" id="card-roadmap-etl">
+<div class="section-header">
+<div class="section-icon icon-etl">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"></path>
+</svg>
+</div>
+<div class="section-header-text">
+<h2><span class="rdm-step">04</span> Procesamiento ETL</h2>
+<span>Transformación, calidad de datos y orquestación</span>
+</div>
+<span class="rdm-tech-chip">Databricks · Synapse</span>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body">
+<div class="prose" id="roadmap-etl"><p><strong>Capa de Procesamiento y ETL para FarmaNorte</strong></p>
+<p>Basándonos en el análisis previo de fuentes, ingesta y almacenamiento, y considerando el perfil del cliente, volumen de datos y complejidad de las transformaciones, se decidirá entre Databricks y Azure Synapse Analytics para diseñar la capa de procesamiento.</p>
+<h4>1. Decisión y justificación entre Databricks y Synapse</h4>
+<p>Después de evaluar las necesidades específicas de FarmaNorte, se concluye que Azure Synapse Analytics es suficiente para manejar el volumen de datos y la complejidad de las transformaciones requeridas. Synapse ofrece una plataforma escalable y eficiente para el procesamiento de datos, y su integración con otros servicios de Azure, como Azure Data Factory y Power BI, facilita la orquestación y la visualización de los datos. Además, el equipo de FarmaNorte puede operar Synapse sin necesidad de ingenieros de datos senior, lo que reduce la complejidad operativa y los costos.</p>
+<p>No se justifica el uso de Databricks en este caso, ya que el volumen de datos y la complejidad de las transformaciones no requieren la potencia adicional que ofrece Spark en Databricks. Además, el equipo de FarmaNorte no tiene la necesidad de procesar grandes conjuntos de datos en un entorno de Big Data, lo que reduce la necesidad de una solución como Databricks.</p>
+<h4>2. Transformaciones principales por capa</h4>
+<p>La capa de procesamiento se dividirá en tres capas: Bronze, Silver y Gold.</p>
+<ul>
+<li><strong>Capa Bronze</strong>: En esta capa, se realizarán las transformaciones básicas de datos, como la limpieza y el formato de los datos. Se utilizarán Azure Data Factory y Azure Synapse Analytics para realizar estas transformaciones.</li>
+<li><strong>Capa Silver</strong>: En esta capa, se realizarán transformaciones más complejas, como la agregación y el análisis de los datos. Se utilizarán Azure Synapse Analytics y Azure Machine Learning para realizar estas transformaciones.</li>
+<li><strong>Capa Gold</strong>: En esta capa, se almacenarán los datos transformados y listos para su análisis y visualización. Se utilizará Azure Synapse Analytics y Power BI para realizar la visualización y el análisis de los datos.</li>
+</ul>
+<p>Las transformaciones principales que deben ocurrir en esta capa incluyen:</p>
+<ul>
+<li>La limpieza y el formato de los datos de ventas, stock y logística.</li>
+<li>La agregación de los datos de ventas y stock por región y producto.</li>
+<li>La creación de un modelo de previsión de demanda utilizando Azure Machine Learning.</li>
+<li>La integración de los datos de logística y stock para reducir roturas de stock y capital inmovilizado en almacén.</li>
+</ul>
+<h4>3. Estrategia de calidad de datos y validaciones</h4>
+<p>La estrategia de calidad de datos y validaciones incluirá las siguientes etapas:</p>
+<ul>
+<li><strong>Validación de datos</strong>: Se validarán los datos de entrada para asegurarse de que sean correctos y completos.</li>
+<li><strong>Detección de anomalías</strong>: Se detectarán las anomalías en los datos y se alertará al equipo de FarmaNorte para su revisión y corrección.</li>
+<li><strong>Reconciliación de datos</strong>: Se reconciliarán los datos de diferentes fuentes para asegurarse de que sean consistentes y precisos.</li>
+<li><strong>Monitoreo de la calidad de los datos</strong>: Se monitoreará la calidad de los datos en tiempo real para detectar cualquier problema o anomalía.</li>
+</ul>
+<h4>4. Orquestación y scheduling de jobs</h4>
+<p>La orquestación y el scheduling de jobs se realizarán utilizando Azure Data Factory y Azure Synapse Analytics. Los jobs se programarán para ejecutarse automáticamente en intervalos regulares, como diariamente o semanalmente, dependiendo de las necesidades de FarmaNorte.</p>
+<h4>5. Riesgos operativos y recomendaciones de mantenimiento</h4>
+<p>Los riesgos operativos incluyen:</p>
+<ul>
+<li><strong>Fallas en la ingesta de datos</strong>: Se pueden producir fallos en la ingesta de datos debido a problemas con las fuentes de datos o con la infraestructura de Azure.</li>
+<li><strong>Problemas de rendimiento</strong>: Se pueden producir problemas de rendimiento debido a la gran cantidad de datos o a la complejidad de las transformaciones.</li>
+<li><strong>Fallas en la seguridad</strong>: Se pueden producir fallos en la seguridad debido a la falta de cumplimiento con las políticas de seguridad de Azure.</li>
+</ul>
+<p>Para mitigar estos riesgos, se recomienda:</p>
+<ul>
+<li><strong>Monitorear la ingesta de datos y la infraestructura de Azure</strong>: Se debe monitorear la ingesta de datos y la infraestructura de Azure para detectar cualquier problema o anomalía.</li>
+<li><strong>Realizar pruebas y validaciones</strong>: Se deben realizar pruebas y validaciones regulares para asegurarse de que los jobs se ejecutan correctamente y que los datos son precisos.</li>
+<li><strong>Cumplir con las políticas de seguridad de Azure</strong>: Se debe cumplir con las políticas de seguridad de Azure para asegurarse de que los datos estén seguros y protegidos.</li>
+</ul>
+<p>En resumen, la capa de procesamiento y ETL para FarmaNorte se diseñará utilizando Azure Synapse Analytics y Azure Data Factory. Se realizarán transformaciones básicas y complejas en las capas Bronze, Silver y Gold, y se utilizará Azure Machine Learning para crear un modelo de previsión de demanda. La estrategia de calidad de datos y validaciones incluirá la validación de datos, la detección de anomalías, la reconciliación de datos y el monitoreo de la calidad de los datos. La orquestación y el scheduling de jobs se realizarán utilizando Azure Data Factory y Azure Synapse Analytics, y se mitigarán los riesgos operativos mediante la monitorización, las pruebas y validaciones, y el cumplimiento con las políticas de seguridad de Azure.</p></div>
+</div>
+</div>
+<div class="section-card collapsed" id="card-roadmap-modeling">
+<div class="section-header">
+<div class="section-icon icon-modeling">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<rect height="18" rx="2" width="18" x="3" y="3"></rect><line x1="3" x2="21" y1="9" y2="9"></line><line x1="3" x2="21" y1="15" y2="15"></line><line x1="9" x2="9" y1="3" y2="21"></line><line x1="15" x2="15" y1="3" y2="21"></line>
+</svg>
+</div>
+<div class="section-header-text">
+<h2><span class="rdm-step">05</span> Modelado &amp; Serving</h2>
+<span>Modelo analítico, métricas y exposición de datos</span>
+</div>
+<span class="rdm-tech-chip">Analysis Services · Gold</span>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body">
+<div class="prose" id="roadmap-modeling"><h3>1️⃣ Decisión sobre el tipo de modelo analítico y justificación  </h3>
+<p>| Opción | Ventajas | Desventajas | Por qué la elegimos |<br/>|--------|----------|-------------|---------------------|<br/>| <strong>Esquema en estrella clásico</strong> (Fact + Dimensiones) | - Muy fácil de entender para usuarios de negocio.&lt;br&gt;- Buen rendimiento en consultas agregadas.&lt;br&gt;- Compatibilidad nativa con Power BI y Azure Analysis Services.&lt;br&gt;- Permite precalcular métricas y aplicar <em>aggregations</em> sin perder claridad. | - Menor flexibilidad ante cambios de atributos.&lt;br&gt;- Puede generar redundancia ligera en dimensiones “slowly changing”. | El objetivo prioritario es <strong>usabilidad</strong>. Los analistas de FarmaNorte están acostumbrados a modelos tabulares y a “tablas de hechos” en Power BI. Un esquema en estrella satisface esa expectativa y, al estar respaldado por Synapse SQL Pool, escala sin problemas. |<br/>| <strong>Modelo dimensional “snowflake”</strong> | - Reduce redundancia de atributos muy compartidos.&lt;br&gt;- Mejor normalización. | - Más joins → mayor complejidad de modelo y menor performance en BI. | No necesario porque la complejidad de atributos es moderada y la claridad supera la ganancia de espacio. |<br/>| <strong>Capa semántica directa en Power BI / Azure Analysis Services</strong> | - No se necesita modelado físico adicional; la capa semántica puede mapear directamente a tablas de Gold.&lt;br&gt;- Rápida puesta en marcha. | - Menor control de historización y de pre‑agregaciones.&lt;br&gt;- Dependencia total del motor de Power BI para performance. | Se usará <strong>Analysis Services (AS) en modo Tabular</strong> como capa semántica intermedia: permite definir medidas DAX, roles de seguridad y <em>perspectives</em> sin sacrificar la robustez del modelo dimensional en Synapse. Además, facilita la reutilización de ese mismo modelo por Power BI, Azure ML y APIs. |</p>
+<p>&gt; <strong>Decisión final:</strong> Diseñar un <strong>modelo dimensional en estrella</strong> almacenado en <strong>Synapse Dedicated SQL Pool</strong> y exponerlo a través de <strong>Azure Analysis Services (Tabular)</strong>. Power BI consumirá la capa AS y, opcionalmente, los usuarios avanzados podrán conectarse directamente al pool vía ODBC/JDBC o a la capa AS mediante REST/JSON para APIs y procesos de ML.</p>
+<hr/>
+<h3>2️⃣ Entidades principales del modelo (hechos, dimensiones o equivalentes)</h3>
+<h4>2.1 Tabla de Hechos  </h4>
+<p>| Nombre | Descripción | Granularidad | Columnas clave (ejemplo) |<br/>|--------|-------------|--------------|--------------------------|<br/>| <strong>FactVentas</strong> | Cada línea de venta (pedido) confirmada. | Por línea de pedido (producto × fecha × tienda). | <code>VentaID</code>, <code>FechaID</code>, <code>ProductoID</code>, <code>ClienteID</code>, <code>TiendaID</code>, <code>CanalID</code>, <code>Cantidad</code>, <code>PrecioUnitario</code>, <code>Descuento</code>, <code>Costo</code>, <code>Ingresos</code>, <code>MargenBruto</code>. |<br/>| <strong>FactInventario</strong> | Estado de stock al cierre de cada día por ubicación. | Por día × producto × ubicación. | <code>InventarioID</code>, <code>FechaID</code>, <code>ProductoID</code>, <code>AlmacenID</code>, <code>CantidadDisponible</code>, <code>CantidadReservada</code>, <code>ValorInventario</code>. |<br/>| <strong>FactLogistica</strong> | Movimientos de mercancía (recepciones, transferencias, entregas). | Por movimiento. | <code>LogisticaID</code>, <code>FechaID</code>, <code>ProductoID</code>, <code>AlmacenOrigenID</code>, <code>AlmacenDestinoID</code>, <code>TipoMovimiento</code>, <code>Cantidad</code>, <code>CostoTransporte</code>. |<br/>| <strong>FactPronostico</strong> | Resultado del modelo de demanda (diario por producto y zona). | Por día × producto × zona. | <code>PronosticoID</code>, <code>FechaID</code>, <code>ProductoID</code>, <code>ZonaID</code>, <code>DemandaPrevista</code>, <code>CI<em>Lower</em></code>, <code>CIUpper</code>. |</p>
+<p>&gt; <strong>Nota:</strong> Cada tabla de hechos contiene <strong>columnas de tipo “degenerate”</strong> (p. ej. <code>VentaID</code>) para permitir trazabilidad a los sistemas origen sin crear dimensiones adicionales.</p>
+<h4>2.2 Dimensiones  </h4>
+<p>| Dimensión | Propósito | Clave principal | Atributos clave (ejemplo) |<br/>|-----------|-----------|-----------------|---------------------------|<br/>| <strong>DimFecha</strong> | Calendaría completa, soporta periodos contables y de pronóstico. | <code>FechaID</code> | <code>Fecha</code>, <code>Año</code>, <code>Mes</code>, <code>Trimestre</code>, <code>SemanaFiscal</code>, <code>DiaSemana</code>, <code>EsFinDeSemana</code>, <code>EsFestivo</code>. |<br/>| <strong>DimProducto</strong> | Catálogo de fármacos y materiales. | <code>ProductoID</code> | <code>CodigoSKU</code>, <code>Descripcion</code>, <code>Categoria</code>, <code>Subcategoria</code>, <code>Marca</code>, <code>TipoProducto</code> (medicamento, insumo), <code>FechaLanzamiento</code>, <code>FechaDescontinuacion</code>, <code>PrecioBase</code>, <code>UmbralRotura</code>. |<br/>| <strong>DimCliente</strong> | Clientes (farmacias, hospitales, distribuidores). | <code>ClienteID</code> | <code>Nombre</code>, <code>TipoCliente</code>, <code>Segmento</code>, <code>RegionID</code>, <code>Ciudad</code>, <code>ClasificacionRiesgo</code>, <code>VolumenAnual</code>. |<br/>| <strong>DimTienda</strong> | Puntos de venta (farmacias) y sucursales. | <code>TiendaID</code> | <code>CodigoTienda</code>, <code>NombreTienda</code>, <code>RegionID</code>, <code>Ciudad</code>, <code>TipoTienda</code> (propia, franquicia). |<br/>| <strong>DimAlmacen</strong> | Depósitos y centros de distribución. | <code>AlmacenID</code> | <code>CodigoAlmacen</code>, <code>Nombre</code>, <code>TipoAlmacen</code> (central, regional), <code>RegionID</code>, <code>CapacidadM3</code>. |<br/>| <strong>DimCanal</strong> | Canal de venta (prescripción, venta libre, e‑commerce). | <code>CanalID</code> | <code>NombreCanal</code>, <code>Descripcion</code>. |<br/>| <strong>DimRegion</strong> | Agrupación geográfica para análisis de demanda y rotura. | <code>RegionID</code> | <code>NombreRegion</code>, <code>Pais</code>, <code>NivelJerarquico</code> (Nacional &gt; Regional &gt; Local). |<br/>| <strong>DimTipoMovimiento</strong> | Tipo de transacción logística. | <code>TipoMovimientoID</code> | <code>Descripcion</code>, <code>EsEntrada</code>, <code>EsSalida</code>. |<br/>| <strong>DimUsuario</strong> (opcional) | Seguridad y auditoría. | <code>UsuarioID</code> | <code>Login</code>, <code>Nombre</code>, <code>Rol</code>, <code>Dominio</code>. |</p>
+<p>Todas las dimensiones se modelan con <strong>carga lenta (SCD Type 2)</strong> para preservar historización de atributos críticos (p. ej. cambio de categoría de producto o reasignación de cliente a otra región).  </p>
+<hr/>
+<h3>3️⃣ Métricas de negocio clave y cálculos precalculados  </h3>
+<p>| Métrica | Fórmula (DAX/SQL) | Tipo | Comentario de precálculo |<br/>|---------|-------------------|------|--------------------------|<br/>| <strong>Ingresos Totales</strong> | <code>SUM(FactVentas.Ingresos)</code> | Medida | Se almacena en la tabla de hechos (<code>Ingresos = Cantidad <em> PrecioUnitario </em> (1‑Descuento)</code>). |<br/>| <strong>Margen Bruto</strong> | <code>SUM(FactVentas.MargenBruto)</code> | Medida | <code>MargenBruto = Ingresos – Costo</code>. |<br/>| <strong>Rotura de Stock (Days Out of Stock)</strong> | <code>COUNTROWS(FILTER(FactInventario, CantidadDisponible = 0))</code> por producto/fecha | Medida | Se calcula sobre la tabla de inventario; se crea una tabla agregada <em>FactRotura</em> con el número de días sin stock por mes para acelerar los dashboards ejecutivos. |<br/>| <strong>Inventario Inmovilizado (€)</strong> | <code>SUM(FactInventario.ValorInventario)</code> | Medida | Precálculo diario en <code>FactInventario</code>. |<br/>| <strong>Cobertura de Demanda</strong> | <code>DIVIDE(SUM(FactVentas.Cantidad), SUM(FactPronostico.DemandaPrevista), 0)</code> | Medida | Permite comparar ventas reales vs. pronóstico. |<br/>| <strong>Error Absoluto del Pronóstico (MAE)</strong> | <code>AVG(ABS(FactVentas.Cantidad - FactPronostico.DemandaPrevista))</code> | Medida | Se materializa en tabla <em>FactPronosticoError</em> a nivel semanal. |<br/>| <strong>Tasa de Cumplimiento de Pedidos</strong> | <code>DIVIDE(SUM(CASE WHEN FactVentas.CantidadEntregada &gt;= FactVentas.Cantidad THEN 1 ELSE 0 END), COUNT(FactVentas.VentaID))</code> | Medida | Se guarda en tabla de hechos <em>FactCumplimiento</em>. |<br/>| <strong>Ciclo de Reposición (días)</strong> | <code>DATEDIFF(MIN(FactLogistica.FechaEntrada), MAX(FactLogistica.FechaSalida), DAY)</code> por producto/almacén | Medida | Se precalcula en tabla <em>FactCicloReposicion</em> (una fila por mes). |<br/>| <strong>Valor de Stock por Región</strong> | <code>SUMX(RELATEDTABLE(FactInventario), FactInventario.ValorInventario)</code> | Medida | Disponible en el modelo a nivel de dimensión <em>DimRegion</em>. |<br/>| <strong>KPIs de Ventas por Canal</strong> | <code>SUM(FactVentas.Ingresos)</code>, <code>SUM(FactVentas.Cantidad)</code> filtrados por <code>DimCanal</code> | Medida | Se exponen como <em>perspectives</em> en AS. |</p>
+<p><strong>Estrategia de pre‑agregación</strong> </p>
+<ul>
+<li><strong>Tablas de agregados</strong> (<code>FactVentas<em>Mes</em></code>, <code>FactInventarioMes</code>, <code>FactRotura_Mes</code>) se generan nightly con <strong>CTAS</strong> en Synapse.  </li>
+<li>Estas tablas alimentan directamente los <em>visuales</em> de nivel de alta granularidad (dashboards ejecutivos) y reducen el tiempo de respuesta a &lt; 2 s.  </li>
+<li>En la capa AS, se definen <strong>measure groups</strong> que apuntan a la tabla de detalle y a las tablas de agregados, con la opción <strong>“Aggregation Awareness”</strong>.</li>
+</ul>
+<hr/>
+<h3>4️⃣ Estrategia de actualización y latencia de datos  </h3>
+<p>| Tipo de datos | Frecuencia | Origen | Proceso de carga | Ventana de disponibilidad |<br/>|----------------|------------|--------|------------------|----------------------------|<br/>| <strong>Ventas diarias</strong> | <strong>Near‑real‑time (5‑15 min)</strong> | Sistema ERP / POS (API) | <strong>ADF → Synapse Streaming / COPY</strong> → tabla <em>StgVentas</em> → MERGE incremental a <em>FactVentas</em> (SCD 0). | &lt; 30 min después del cierre del ticket. |<br/>| <strong>Inventario (stock)</strong> | <strong>Diario (cierre del día)</strong> | Sistema WMS | ADF batch nightly → <em>StgInventario</em> → MERGE a <em>FactInventario</em> (SCD 1). | Disponible a las 08:00 h del día siguiente. |<br/>| <strong>Logística (movimientos)</strong> | <strong>Diario</strong> | Sistema TMS | ADF → <em>StgLogistica</em> → INSERT a <em>FactLogistica</em>. | Disponible a las 09:00 h. |<br/>| <strong>Pronóstico de demanda</strong> | <strong>Semanal (lunes 02:00 h)</strong> | Azure ML pipeline | Modelo escribe resultados en <em>StgPronostico</em> → REPLACE en <em>FactPronostico</em>. | Visible en Power BI a las 04:00 h. |<br/>| <strong>Dimensiones (cambios de atributos)</strong> | <strong>Cada 6 h</strong> | Sistemas maestros | CDC (Change Data Capture) → <em>StgDim</em> → SCD 2 MERGE en dimensiones. | Latencia ≤ 6 h. |<br/>| <strong>Tablas de agregados</strong> | <strong>Nightly (02:30 h)</strong> | Fact tables | <strong>CTAS</strong> + <strong>INSERT OVERWRITE</strong> en Synapse. | Refrescadas antes de la jornada laboral. |</p>
+<ul>
+<li><strong>Persistencia</strong>: Todas las tablas están en <strong>Synapse Dedicated SQL Pool</strong> con distribución hash en las columnas de mayor cardinalidad (<code>ProductoID</code>, <code>FechaID</code>) y distribución round‑robin en tablas de dimensiones.  </li>
+<li><strong>Control de calidad</strong>: Cada carga ejecuta <strong>procedimientos almacenados de validación</strong> (checksums, recuentos) y escribe resultados en tabla de auditoría <code>FactCargaLog</code>. Si falla, se envía alerta a Teams/Power Automate.  </li>
+<li><strong>Reprocesamiento</strong>: En caso de corrección de datos fuente, se permite <strong>re‑ejecución puntual</strong> de los pipelines ADF con parámetros de rango de fechas, sin impactar el resto de la carga.</li>
+</ul>
+<hr/>
+<h3>5️⃣ Exposición de datos para BI, ML y APIs  </h3>
+<p>| Consumidor | Punto de acceso | Tecnologías | Detalles de implementación |<br/>|------------|----------------|-------------|-----------------------------|<br/>| <strong>Power BI (usuarios de negocio)</strong> | <strong>Azure Analysis Services (Tabular)</strong> | Conexión <em>Live</em> a AS (DirectQuery). | - Modelos <em>perspectives</em> para Ejecutivos, Operaciones y Forecast.&lt;br&gt;- Roles de seguridad basados en <code>DimUsuario</code> y <code>DimRegion</code> (RLS).&lt;br&gt;- Parámetros de fecha y zona para que el usuario pueda “drill‑through”. |<br/>| <strong>Power BI (modelos de datos avanzados / Dataflows)</strong> | <strong>Dataset de Power BI</strong> (importado) | Power BI Dataflows → <strong>Synapse</strong> como origen. | Se importan sólo tablas de agregados mensuales para permitir análisis de tendencias offline. |<br/>| <strong>APIs externas (portales de socios, apps móviles)</strong> | <strong>Azure Synapse Serverless SQL endpoint</strong> o <strong>Azure SQL Managed Instance</strong> (exposición de vistas). | REST API (Azure Function) → consulta T‑SQL a vistas. | - Vistas seguras (<code>vw<em>ventas</em>region</code>, <code>vw<em>stock</em>disponible</code>).&lt;br&gt;- Token de Azure AD + políticas de firewall. |<br/>| <strong>Modelos de Machine Learning (Azure ML, notebooks)</strong> | <strong>Synapse Dedicated SQL Pool</strong> (ODBC/JDBC) + **Azure Data Lake (Parquet</p></div>
+</div>
+</div>
+<div class="section-card collapsed" id="card-roadmap-ml">
+<div class="section-header">
+<div class="section-icon icon-ml">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-1.04Z"></path><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-1.04Z"></path>
+</svg>
+</div>
+<div class="section-header-text">
+<h2><span class="rdm-step">06</span> Machine Learning &amp; MLOps</h2>
+<span>Modelos de IA, ciclo de vida y monitorización</span>
+</div>
+<span class="rdm-tech-chip">Azure Machine Learning</span>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body">
+<div class="prose" id="roadmap-ml"><p><strong>Estrategia de Machine Learning y MLOps para FarmaNorte</strong></p>
+<hr/>
+<h4>1. Casos de uso de ML priorizados y tipo de modelo recomendado por caso  </h4>
+<p><strong>1.1 Pronóstico de demanda diaria por producto y zona</strong> </p>
+<ul>
+<li><strong>Tipo de modelo</strong>: Prophet (o ARIMA con ajuste de calendarios y festividades).  </li>
+<li><em>Justificación</em>: Los volúmenes de ventas son moderados y la serie temporal es estable. Prophet permite incluir calendarios de fin de semana y días festivos, se adapta bien a datos con estacionalidad diaria y es de bajo coste computacional, lo que facilita el reentrenamiento frecuente sin sobrecargar la infraestructura.  </li>
+<li><strong>Objetivo de negocio</strong>: Reducir roturas de stock en un 15 % y optimizar la rotación de inventario, logrando una cobertura de demanda ≥ 95 % en los puntos de venta.</li>
+</ul>
+<p><strong>1.2 Identificación de patrones de ruptura de stock (anomalías)</strong> </p>
+<ul>
+<li><strong>Tipo de modelo</strong>: Auto‑encoder de series temporales (modelo de aprendizaje profundo ligero, por ejemplo, LSTM auto‑encoder) o algoritmo de detección de anomalías basado en aislamiento de bosque (Isolation Forest) aplicado a métricas de stock.  </li>
+<li><em>Justificación</em>: Se necesita un modelo que pueda trabajar con datos de inventario diarios y detectar desviaciones anómalas sin requerir grandes volúmenes de datos de entrenamiento. Isolation Forest es simple, rápido y no necesita ajustes de hiperparámetros complicados.  </li>
+<li><strong>Objetivo de negocio</strong>: Alertar a los equipos de logística al menos 24 h antes de una ruptura, reduciendo los costos asociados a la pérdida de ventas y a la gestión de pedidos urgentes.</li>
+</ul>
+<p><strong>1.3 Optimización de la cadena de suministro (reorden automático)</strong> </p>
+<ul>
+<li><strong>Tipo de modelo</strong>: Regresión lineal con variables de control (promociones, fecha de vencimiento, capacidad de almacén) o modelo de aprendizaje por refuerzo simple (policy gradient) para decidir órdenes de reabastecimiento.  </li>
+<li><em>Justificación</em>: El objetivo es obtener una regla de reorden que minimice el costo de inventario y el de faltas. Una regresión lineal es interpretable y fácil de mantener, mientras que la RL puede mejorar la toma de decisiones en escenarios dinámicos, pero requiere mayor madurez de datos (promociones, precios dinámicos).  </li>
+<li><strong>Objetivo de negocio</strong>: Reducir el capital inmovilizado en inventario en un 10 % manteniendo la cobertura de demanda.</li>
+</ul>
+<hr/>
+<h4>2. Datos de entrenamiento necesarios y disponibilidad real  </h4>
+<p>| Caso de uso | Variables de entrada | Origen y disponibilidad | Observaciones |<br/>|-------------|----------------------|--------------------------|---------------|<br/>| <strong>Pronóstico de demanda</strong> | Cantidad vendida, fecha, producto, zona, calendario de festividades, promociones (si existen), precios de venta y coste de inventario. | Ventas diarias en la capa Silver (FactVentas), DimProducto, DimRegion, calendario en DimFecha. | Datos históricos de al menos 12 meses disponibles. Promociones y precios están parcialmente consolidados; se requiere completar el registro de promociones para un mejor ajuste. |<br/>| <strong>Anomalías de ruptura</strong> | Cantidad disponible, cantidad reservada, fecha, producto, almacén, movimiento de stock. | FactInventario y FactLogistica. | Disponibilidad diaria de inventario; la calidad de los datos de “cantidad reservada” debe ser validada, ya que se utiliza para la detección de ruptura. |<br/>| <strong>Optimización de reorden</strong> | Cantidad vendida, stock disponible, tiempo de reposición, precio de compra, precio de venta, capacidad de almacén, datos de promociones y fechas de vencimiento. | FactVentas, FactInventario, DimProducto, DimAlmacen, DimCanal. | Necesidad de consolidar los datos de promociones y vencimientos de producto; se estima un periodo de 3 meses para obtener registros consistentes. |</p>
+<p><strong>Disponibilidad actual</strong> </p>
+<ul>
+<li>Datos históricos de ventas y stock están completamente consolidados en la capa Gold (Synapse Dedicated SQL Pool).  </li>
+<li>Información de promociones y precios dinámicos está parcialmente disponible; se requiere una fase de “data wrangling” para completar la tabla DimProducto con la columna <em>PromociónActiva</em> y <em>PrecioPromoción</em>.  </li>
+<li>Los datos de tiempo de reposición y capacidad de almacén son estáticos en DimAlmacen; se necesita un mecanismo de actualización para reflejar cambios de infraestructura.</li>
+</ul>
+<hr/>
+<h4>3. Infraestructura Azure ML requerida  </h4>
+<p>| Elemento | Descripción | Recomendaciones |<br/>|----------|-------------|-----------------|<br/>| <strong>Compute</strong> | Clúster de Azure ML con VMs de tipo <strong>Standard<em>D4s</em>v3</strong> (4 CPU, 16 GB RAM) para entrenamiento de Prophet y Isolation Forest; para modelos de LSTM, usar <strong>Standard_NC6</strong> (GPU) en un clúster temporal (ejecutar 1‑2 h/semana). | Escalado automático de clúster en función de la demanda de entrenamiento (mínimo 1 nodo, máximo 4). |<br/>| <strong>Environment</strong> | Docker con <code>azureml/standard</code> + <code>pandas</code>, <code>numpy</code>, <code>prophet</code>, <code>scikit‑learn</code>, <code>tensorflow</code> (para LSTM). | Versionado de entorno mediante conda y registro en el Workspace. |<br/>| <strong>Dataset</strong> | Registro de datasets en el Workspace: <code>ds-ventas</code>, <code>ds-inventario</code>, <code>ds-promociones</code>. | Utilizar <code>DataReference</code> para acceder a tablas de Synapse con <code>spark</code> o <code>sql</code>. |<br/>| <strong>Experiments</strong> | <code>exp-pronostico-demanda</code>, <code>exp-anomalias-ruptura</code>, <code>exp-optim-reorden</code>. | Tracking con MLflow (pipeline, métricas, artefactos). |<br/>| <strong>Endpoints</strong> |  </p>
+<ul>
+<li><strong>Real‑time</strong> (para pronóstico y reorden): Managed endpoint con autoscaling, 2 A/B variants (Prophet vs. XGBoost).  </li>
+<li><strong>Batch</strong> (para análisis de rupturas): Azure ML batch endpoint, ejecutado nightly. | Utilizar <code>score.py</code> con <code>init()</code> y <code>run()</code> siguiendo la convención de Azure. |</li>
+</ul>
+<p>| <strong>Orchestration</strong> | Azure Data Factory y Synapse Pipelines para disparar entrenamiento semanal y actualizaciones de modelos. | Integrar <code>MLflow</code> con ADF mediante <code>Custom Activity</code> o <code>Databricks Notebook</code> para ejecutar scripts de entrenamiento. |<br/>| <strong>Monitoring</strong> | Azure Monitor + Application Insights + Azure ML model monitoring (score, drift). | Configurar alertas para métricas de precisión (MAE) y drift de características (p. ej. distribución de ventas diarias). |</p>
+<hr/>
+<h4>4. Ciclo de vida del modelo: entrenamiento, despliegue y monitorización  </h4>
+<ol>
+<li><strong>Entrenamiento</strong> </li>
+</ol>
+<ul>
+<li><strong>Pronóstico</strong>: Cada lunes a las 02:00 h, ADF dispara un pipeline que ejecuta el script de Prophet sobre los últimos 12 meses de ventas. El modelo y los artefactos (pickle, parámetros) se registran en MLflow.  </li>
+<li><strong>Anomalías</strong>: Cada día a las 04:00 h, el pipeline extrae la última semana de inventario, entrena Isolation Forest con 100 estimadores y registra el modelo.  </li>
+<li><strong>Optimización de reorden</strong>: Cada fin de mes, se ejecuta una regresión con datos de los últimos 3 meses. El modelo se guarda en MLflow y se genera un reporte de parámetros.  </li>
+</ul>
+<ol>
+<li><strong>Validación</strong> </li>
+</ol>
+<ul>
+<li>Se compara la predicción con las ventas reales en el período posterior (back‑testing). Se calculan MAE, RMSE y Coverage de demanda.  </li>
+<li>Para anomalías, se mide la precisión de detección (TP, FP, FN) contra un conjunto etiquetado manualmente por el equipo de operaciones.  </li>
+</ul>
+<ol>
+<li><strong>Despliegue</strong> </li>
+</ol>
+<ul>
+<li>Los modelos se despliegan a endpoints managed (Real‑time y Batch) mediante <code>az ml model deploy</code>.  </li>
+<li>Se configura <strong>autoscaling</strong> basado en el tráfico de API (para pronóstico) y en la carga de batch (para análisis de rupturas).  </li>
+</ul>
+<ol>
+<li><strong>Monitorización</strong> </li>
+</ol>
+<ul>
+<li><strong>Score Drift</strong>: Se registra cada predicción en un dataset <code>ds-forecast-scoring</code> con</li>
+</ul></div>
+</div>
+</div>
+<div class="section-card collapsed" id="card-roadmap-bi">
+<div class="section-header">
+<div class="section-icon icon-rdmbi">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<line x1="18" x2="18" y1="20" y2="10"></line><line x1="12" x2="12" y1="20" y2="4"></line><line x1="6" x2="6" y1="20" y2="14"></line><line x1="2" x2="22" y1="20" y2="20"></line>
+</svg>
+</div>
+<div class="section-header-text">
+<h2><span class="rdm-step">07</span> Visualización BI</h2>
+<span>Arquitectura Power BI, dashboards y plan de adopción</span>
+</div>
+<span class="rdm-tech-chip">Power BI · Workspaces</span>
+<svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+</div>
+<div class="section-body">
+<div class="prose" id="roadmap-bi"><h3>1. Arquitectura de Power BI: modo de conexión y justificación</h3>
+<p>La arquitectura de Power BI se diseñará para conectar con la capa de datos subyacente en Azure Synapse Analytics. Debido al volumen de datos y la frecuencia de actualización, se recomienda utilizar el modo <strong>DirectQuery</strong>. Esto permitirá a los usuarios interactuar con los datos en tiempo real y obtener información actualizada sin necesidad de cargar los datos en Power BI.</p>
+<p>La justificación para esta decisión es que el volumen de datos es moderado y la frecuencia de actualización es diaria, lo que no requiere un gran esfuerzo de procesamiento para actualizar los datos en Power BI. Además, el uso de DirectQuery permite una mayor flexibilidad y escalabilidad en la conexión con la capa de datos subyacente.</p>
+<h3>2. Estructura de workspaces y modelo de gobernanza</h3>
+<p>La estructura de workspaces de Power BI se diseñará para reflejar la organización y los roles de los usuarios dentro de FarmaNorte. Se crearán workspaces separados para cada departamento o equipo, como:</p>
+<ul>
+<li><strong>Dirección</strong>: Workspace para la dirección y los equipos de liderazgo.</li>
+<li><strong>Operaciones</strong>: Workspace para los equipos de operaciones y logística.</li>
+<li><strong>Análisis</strong>: Workspace para los equipos de análisis y reporting.</li>
+</ul>
+<p>Cada workspace tendrá un propietario y un conjunto de miembros con permisos definidos para garantizar la seguridad y el control de acceso a los datos.</p>
+<p>El modelo de gobernanza se basará en roles y responsabilidades claras, con un propietario de datos y un equipo de stewards de datos que serán responsables de la calidad, la seguridad y el cumplimiento normativo de los datos.</p>
+<h3>3. Catálogo de informes y dashboards por perfil de usuario</h3>
+<p>Se diseñarán informes y dashboards personalizados para cada perfil de usuario:</p>
+<ul>
+<li><strong>Dirección</strong>:</li>
+<li>Dashboard de KPI's generales (rotura de stock, inventario inmovilizado, exactitud del modelo de previsión de demanda).</li>
+<li>Informe de ventas y stock por región y producto.</li>
+<li><strong>Operaciones</strong>:</li>
+<li>Dashboard de operaciones detallado (inventario diario, movimientos de stock, logística).</li>
+<li>Informe de roturas de stock y análisis de causas.</li>
+<li><strong>Análisis</strong>:</li>
+<li>Dashboard de análisis de datos (tendencias de ventas, análisis de stock, modelo de previsión de demanda).</li>
+<li>Informe de error absoluto del pronóstico y cobertura de demanda.</li>
+</ul>
+<h3>4. Plan de adopción: formación, rollout y métricas de éxito</h3>
+<p>El plan de adopción incluirá:</p>
+<ul>
+<li><strong>Formación</strong>: Sesiones de formación para los usuarios finales sobre el uso de Power BI y la interpretación de los informes y dashboards.</li>
+<li><strong>Rollout</strong>: Implementación gradual de la solución de Power BI en cada departamento o equipo.</li>
+<li><strong>Métricas de éxito</strong>: Seguimiento de métricas como la adopción del usuario, la frecuencia de uso y la satisfacción del usuario.</li>
+</ul>
+<h3>5. Riesgos de adopción y recomendaciones</h3>
+<p>Los riesgos de adopción incluyen:</p>
+<ul>
+<li><strong>Resistencia al cambio</strong>: Los usuarios pueden resistirse al cambio de herramientas y procesos.</li>
+<li><strong>Falta de comprensión</strong>: Los usuarios pueden no comprender cómo utilizar la herramienta o interpretar los informes y dashboards.</li>
+</ul>
+<p>Para mitigar estos riesgos, se recomienda:</p>
+<ul>
+<li><strong>Comunicación clara</strong>: Comunicar claramente los beneficios y el propósito de la solución de Power BI.</li>
+<li><strong>Formación y soporte</strong>: Proporcionar formación y soporte adecuados a los usuarios finales.</li>
+<li><strong>Monitoreo y ajuste</strong>: Monitorear la adopción y ajustar la estrategia según sea necesario.</li>
+</ul></div>
+</div>
+</div>
+</div><!-- /rdm-stages-container -->
+</div><!-- /tab-roadmap -->
 </main>
-
 <footer>
   Generado por AIDM Solution Builder — <span id="footer-date"></span>
 </footer>
-
 <script>
   // ── Date ──
   const now = new Date();

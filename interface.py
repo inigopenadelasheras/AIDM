@@ -47,6 +47,7 @@ if not prompt:
 st.session_state.messages.append({"role": "user", "content": prompt})
 with st.chat_message("user"):
     st.markdown(prompt)
+    print(f"\n\n1. -----User prompt: {prompt}-----\n\n")
 
 # ── Agent execution ────────────────────────────────────────────────────────────
 # El spinner cubre toda la ejecución del grafo. Si este turno completa el

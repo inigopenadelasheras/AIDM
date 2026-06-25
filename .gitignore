@@ -2,3 +2,8 @@
 .agents*
 .claude*
 skills*
+aidmenv*
+__pycache__*
+*.exe
+*.tar.gz
+*.tmp.*

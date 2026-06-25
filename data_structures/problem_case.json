@@ -1,15 +1,27 @@
 {
   "nombre_del_cliente": {
     "description": "Nombre del cliente o empresa",
-    "value": "MediSupply Iberia"
+    "value": "FarmaNorte"
+  },
+  "tamaño_empresa": {
+    "description": "Tamaño de la empresa (startup, pyme, enterprise) o número aproximado de empleados",
+    "value": "pyme de unos 350 empleados"
+  },
+  "sector": {
+    "description": "Sector de actividad de la empresa (retail, pharma, logística, finanzas...)",
+    "value": "distribución farmacéutica"
+  },
+  "tiene_equipo_datos": {
+    "description": "Si la empresa tiene equipo de datos interno o depende de externos para el desarrollo y mantenimiento",
+    "value": "no mencionado"
   },
   "tipo_de_servicio": {
     "description": "Texto legible de negocio/técnico - Tipo de servicio solicitado por el cliente",
-    "value": "Optimización de gestión de inventario y previsión de demanda"
+    "value": "implantación de plataforma de datos con componente predictivo"
   },
   "objetivo_del_proyecto": {
     "description": "Objetivos principales del proyecto o caso de uso identificado",
-    "value": "Mejorar la previsión de demanda y optimizar la gestión de stock para reducir costes y mejorar el servicio a clientes"
+    "value": "unificar información de ventas, stock y logística para incorporar un modelo de previsión de demanda"
   },
   "modelo_de_despliegue": {
     "description": "Modelo de despliegue preferido por el cliente (donde vivira la solución) (on-premises, cloud, híbrido...)",
@@ -21,7 +33,7 @@
   },
   "tipo_de_arquitectura": {
     "description": "Una simplificación de la forma de solución. Estilo de arquitectura preferido por el cliente",
-    "value": "solución escalable y práctica para la gestión de inventario y previsión de demanda"
+    "value": "enfoque lakehouse con capas medallion"
   },
   "herramienta_de_visualizacion": {
     "description": "Herramienta de visualización preferida por el cliente si se ha detectado alguna (Power BI, Tableau, Looker...)",
@@ -29,18 +41,49 @@
   },
   "enfoque_ai": {
     "description": "Qué papel juega la IA. Enfoque de inteligencia artificial preferido por el cliente para su proyecto",
-    "value": "predicción de demanda y recomendaciones para mejorar la planificación"
+    "value": "previsión de demanda mediante machine learning"
   },
   "integration_scope": {
     "description": "Ámbito de integración de datos, qué nivel de integración parece requerir",
-    "value": "integración con ERP y datos de ventas, pedidos y stock"
+    "value": "integración de datos de tres orígenes: ERP, sistema de almacén y CRM de ventas"
+  },
+  "volumen_de_datos": {
+    "description": "Volumen aproximado de datos a gestionar (GB, TB, PB), frecuencia de generación y principales fuentes de datos",
+    "value": "2 TB de histórico acumulado, con generación diaria de unos pocos GB"
+  },
+  "madurez_analitica_actual": {
+    "description": "Nivel actual de madurez analítica del cliente: ¿tienen DWH, BI, solo Excel o ninguna herramienta? ¿Qué usan hoy?",
+    "value": "Actualmente utilizan Excel para consolidar informes de ventas de forma manual semanal, sin data warehouse ni plataforma de BI en producción"
+  },
+  "tamano_equipo_tecnico": {
+    "description": "Tamaño del equipo técnico del cliente que operará y mantendrá la solución una vez entregada",
+    "value": "22 personas (15 seniors y 7 juniors)"
+  },
+  "stack_tecnologico_actual": {
+    "description": "Tecnologías, plataformas y herramientas que el cliente ya tiene en uso (ERP, CRM, cloud, bases de datos...)",
+    "value": "SAP Business One como ERP, sistema propio de gestión de almacén sobre SQL Server, Salesforce como CRM, Excel para analítica"
+  },
+  "restriccion_presupuestaria": {
+    "description": "Rango o restricción presupuestaria orientativa para el proyecto",
+    "value": "150.000 a 200.000 euros"
+  },
+  "plazo_objetivo": {
+    "description": "Plazo objetivo para tener la solución operativa o un primer MVP entregado",
+    "value": "3 o 4 meses"
+  },
+  "regulacion_y_compliance": {
+    "description": "Normativas, regulaciones o requisitos de compliance que aplican al proyecto (GDPR, HIPAA, ISO 27001...)",
+    "value": "trazabilidad del medicamento, normativa sanitaria, GDPR, objetivo de certificación en ISO 27001 a medio plazo"
+  },
+  "kpis_de_exito": {
+    "description": "Métricas o KPIs concretos con los que el cliente medirá el éxito del proyecto",
+    "value": "reducción de las roturas de stock en al menos un 30%, disminución del inventario inmovilizado (capital liberado del almacén) y una exactitud del modelo de previsión de demanda por encima del 85%"
   },
   "evidencias": {
     "description": "Evidencias detectadas durante la conversación que respaldan la información extraída y el análisis realizado, incluyendo información adicional útil",
     "value": [
-      "roturas de stock en productos críticos",
-      "exceso de inventario en otros productos",
-      "planificación manual dependiente de la experiencia del equipo"
+      "El cliente busca resolver roturas de stock y exceso de capital parado en almacén",
+      "El cliente busca resultados tempranos y un MVP funcional con alcance acotado"
     ]
   },
   "status": "completed"
