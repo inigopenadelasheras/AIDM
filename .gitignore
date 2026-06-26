@@ -3,7 +3,10 @@
 .claude*
 skills*
 aidmenv*
-__pycache__*
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
 *.exe
 *.tar.gz
 *.tmp.*
