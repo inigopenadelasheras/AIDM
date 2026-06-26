@@ -334,40 +334,46 @@
 <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
 </div>
 <div class="section-body"><div class="prose" id="content-architecture"><p><strong>Arquitectura Propuesta para FarmaNorte</strong></p>
-<p>La arquitectura propuesta para FarmaNorte tiene como objetivo unificar la información de ventas, stock y logística para incorporar un modelo de previsión de demanda, reducir las roturas de stock y el capital inmovilizado en almacén. A continuación, se describe la arquitectura propuesta:</p>
-<p><strong>Introducción</strong></p>
-<p>La empresa FarmaNorte, dedicada a la distribución farmacéutica, cuenta con aproximadamente 350 empleados y busca mejorar su gestión de datos y procesos. La arquitectura propuesta se basa en un enfoque Lakehouse con capas medallion, que permite una integración eficiente y escalable de los datos. El objetivo es proporcionar una solución escalable y eficiente en la nube, preferentemente en Azure.</p>
-<p><strong>Componentes de la Arquitectura</strong></p>
+<p>La arquitectura propuesta para FarmaNorte tiene como objetivo cumplir con los requisitos del proyecto, que incluyen la unificación de información de ventas, stock y logística, y la incorporación de un modelo de previsión de demanda. A continuación, se describe la arquitectura propuesta:</p>
+<p><strong>Capa de Ingesta y Almacenamiento</strong></p>
+<p>La capa de ingesta y almacenamiento se compone de varios componentes que permiten la ingesta de datos de diferentes orígenes y su almacenamiento en un formato adecuado para su procesamiento y análisis.</p>
 <ul>
-<li><strong>Cloud Provider:</strong> Azure, como proveedor de nube preferido por el cliente, ofrece una amplia gama de servicios y herramientas para desarrollar y desplegar la solución.</li>
-<li><strong>Plataforma de Datos:</strong> Azure Synapse Analytics (antes Azure SQL Data Warehouse) será la plataforma de datos unificada para almacenar y analizar los datos de ventas, stock y logística. Su escalabilidad y eficiencia en el análisis de datos la hacen ideal para este proyecto.</li>
-<li><strong>Herramienta de Visualización:</strong> Power BI será la herramienta de visualización para crear informes y dashboards interactivos. Su facilidad de uso y capacidad para conectarse a Azure Synapse Analytics la hacen una opción adecuada.</li>
-<li><strong>Modelo de Machine Learning:</strong> Azure Machine Learning se utilizará para desarrollar y desplegar el modelo de previsión de demanda. Su capacidad para desarrollar y desplegar modelos de machine learning escalables y eficientes la hace ideal para este proyecto.</li>
-<li><strong>Integración de Datos:</strong> Azure Data Factory se encargará de integrar los datos de los diferentes orígenes (ERP, sistema de almacén y CRM de ventas) y almacenarlos en Azure Blob Storage. Su facilidad de uso y escalabilidad en la integración de datos la hacen una opción adecuada.</li>
+<li><strong>Origen de Datos:</strong> Los orígenes de datos identificados son el ERP (SAP Business One), el sistema de almacén (SQL Server) y el CRM de ventas (Salesforce).</li>
+<li><strong>Ingesta de Datos:</strong> Se utilizará Azure Data Factory (ADF) para ingerir datos de los orígenes mencionados. ADF es una herramienta de ingesta de datos que permite la ingesta de datos de diferentes orígenes y su almacenamiento en Azure.</li>
+<li><strong>Almacenamiento de Datos:</strong> Los datos ingeridos se almacenarán en Azure Data Lake Storage (ADLS) Gen2. ADLS Gen2 es un almacenamiento de datos escalable y seguro que permite el almacenamiento de grandes cantidades de datos en formato bruto.</li>
 </ul>
-<p><strong>Capas de la Arquitectura</strong></p>
-<p>La arquitectura se compone de las siguientes capas:</p>
+<p><strong>Capa de Procesamiento y Análisis</strong></p>
+<p>La capa de procesamiento y análisis se compone de varios componentes que permiten el procesamiento y análisis de los datos almacenados.</p>
 <ul>
-<li><strong>Capa de Ingesta:</strong> Azure Data Factory se encargará de ingerir los datos de los diferentes orígenes (ERP, sistema de almacén y CRM de ventas) y almacenarlos en Azure Blob Storage.</li>
-<li><strong>Capa de Procesamiento:</strong> Azure Synapse Analytics procesará los datos ingeridos y los transformará en un formato adecuado para el análisis y el modelado.</li>
-<li><strong>Capa de Análisis:</strong> Power BI se conectará a Azure Synapse Analytics para crear informes y dashboards interactivos.</li>
-<li><strong>Capa de Machine Learning:</strong> Azure Machine Learning se utilizará para desarrollar y desplegar el modelo de previsión de demanda, que se integrará con Azure Synapse Analytics.</li>
+<li><strong>Plataforma de Datos:</strong> Se utilizará Azure Synapse Analytics como plataforma de datos centralizada. Azure Synapse Analytics es una plataforma de datos que ofrece capacidades de almacenamiento y procesamiento de grandes cantidades de datos.</li>
+<li><strong>Transformación de Datos:</strong> Los datos almacenados en ADLS Gen2 se transformarán y procesarán utilizando Azure Synapse Analytics. Esto permitirá la creación de un conjunto de datos procesados y listos para ser utilizados por el modelo de previsión de demanda.</li>
 </ul>
-<p><strong>Justificación de la Arquitectura</strong></p>
-<p>La arquitectura propuesta se justifica por la siguiente:</p>
+<p><strong>Capa de Inteligencia Artificial y Machine Learning</strong></p>
+<p>La capa de inteligencia artificial y machine learning se compone de varios componentes que permiten el desarrollo y despliegue del modelo de previsión de demanda.</p>
 <ul>
-<li><strong>Escalabilidad:</strong> Azure Synapse Analytics y Azure Blob Storage ofrecen escalabilidad y eficiencia en el almacenamiento y análisis de datos.</li>
-<li><strong>Eficiencia:</strong> La integración de datos mediante Azure Data Factory y la visualización mediante Power BI ofrecen eficiencia en la gestión de datos.</li>
-<li><strong>Facilidad de uso:</strong> Power BI y Azure Machine Learning ofrecen facilidad de uso para la creación de informes y modelos de machine learning.</li>
+<li><strong>Desarrollo de Modelos:</strong> Se utilizará Azure Machine Learning (AML) para desarrollar el modelo de previsión de demanda. AML es una plataforma de machine learning que permite el desarrollo y despliegue de modelos de machine learning.</li>
+<li><strong>Entrenamiento y Despliegue:</strong> El modelo de previsión de demanda se entrenará y desplegará utilizando AML. Esto permitirá la integración del modelo con la plataforma de datos y la generación de predicciones de demanda.</li>
 </ul>
-<p><strong>Suposiciones y Restricciones</strong></p>
+<p><strong>Capa de Visualización</strong></p>
+<p>La capa de visualización se compone de varios componentes que permiten la visualización de los resultados del modelo de previsión de demanda.</p>
 <ul>
-<li>Se asume que el cliente tiene una cuenta en Azure y que se puede utilizar la infraestructura existente.</li>
-<li>Se considera que el plazo objetivo de 3-4 meses es factible con la arquitectura propuesta.</li>
-<li>Se tiene en cuenta la restricción presupuestaria de 150.000 a 200.000 euros para la selección de servicios y plataformas.</li>
+<li><strong>Herramienta de Visualización:</strong> Se utilizará Power BI como herramienta de visualización. Power BI es una herramienta de visualización que permite la creación de dashboards y informes interactivos.</li>
 </ul>
-<p><strong>Conclusión</strong></p>
-<p>La arquitectura propuesta para FarmaNorte permite una integración eficiente y escalable de los datos, así como la creación de un modelo de previsión de demanda utilizando machine learning. La selección de servicios y plataformas en Azure se justifica por la escalabilidad, eficiencia y facilidad de uso que ofrecen. Se considera que la arquitectura propuesta cumple con los objetivos y requisitos del proyecto, y se espera que permita al cliente alcanzar los KPIs de éxito definidos.</p></div></div>
+<p><strong>Consideraciones de Seguridad y Cumplimiento</strong></p>
+<p>La seguridad y el cumplimiento normativo son fundamentales en la arquitectura propuesta.</p>
+<ul>
+<li><strong>Autenticación y Autorización:</strong> Se implementarán mecanismos de autenticación y autorización adecuados en todas las capas de la arquitectura. Esto garantizará que solo los usuarios autorizados puedan acceder a los datos y a los componentes de la arquitectura.</li>
+<li><strong>Cifrado de Datos:</strong> Los datos se cifrarán en tránsito y en reposo. Esto garantizará la confidencialidad y la integridad de los datos.</li>
+<li><strong>Cumplimiento Normativo:</strong> La arquitectura propuesta cumple con las normativas relevantes, como GDPR, normativa sanitaria y trazabilidad del medicamento.</li>
+</ul>
+<p><strong>Justificación y Supuestos</strong></p>
+<p>La arquitectura propuesta se ha diseñado teniendo en cuenta los requisitos del proyecto y las necesidades del cliente.</p>
+<ul>
+<li>Se asume que el cliente tiene una conectividad estable y segura a Azure.</li>
+<li>Se supone que los orígenes de datos proporcionan datos de calidad y consistentes.</li>
+<li>La arquitectura propuesta está diseñada para escalar horizontalmente según sea necesario.</li>
+</ul>
+<p>En resumen, la arquitectura propuesta para FarmaNorte es una arquitectura escalable y segura que cumple con los requisitos del proyecto. La arquitectura se compone de varias capas, incluyendo la ingesta y almacenamiento de datos, el procesamiento y análisis de datos, la inteligencia artificial y machine learning, y la visualización. La seguridad y el cumplimiento normativo son fundamentales en la arquitectura propuesta.</p></div></div>
 </div>
 <div class="section-card">
 <div class="section-header">
@@ -381,48 +387,33 @@
 </div>
 <div class="section-body"><div class="prose" id="content-governance"><p><strong>Propuesta de Gobernanza del Dato y AI para FarmaNorte</strong></p>
 <p><strong>Introducción</strong></p>
-<p>La empresa FarmaNorte, dedicada a la distribución farmacéutica, busca mejorar su gestión de datos y procesos mediante la implementación de una plataforma de datos con componente predictivo. La propuesta de gobernanza del dato y AI tiene como objetivo asegurar la calidad, seguridad y cumplimiento normativo de los datos a lo largo de su ciclo de vida.</p>
+<p>La propuesta de gobernanza del dato y AI para FarmaNorte tiene como objetivo garantizar la calidad, seguridad y cumplimiento normativo de los datos y modelos de inteligencia artificial utilizados en la plataforma de datos con componente predictivo. La gobernanza del dato y AI es fundamental para asegurar que los datos sean precisos, completos y consistentes, y que los modelos de AI sean transparentes, explicables y éticos.</p>
 <p><strong>Roles y Responsabilidades</strong></p>
 <ul>
-<li><strong>Data Owner:</strong> El propietario de los datos será el responsable de definir los requisitos de negocio y garantizar la calidad de los datos.</li>
-<li><strong>Data Steward:</strong> El administrador de datos será responsable de implementar y mantener la política de gobernanza de datos, así como de supervisar la calidad de los datos.</li>
-<li><strong>Data Scientist:</strong> El científico de datos será responsable de desarrollar y desplegar el modelo de previsión de demanda.</li>
-<li><strong>IT:</strong> El equipo de TI será responsable de implementar y mantener la infraestructura tecnológica.</li>
+<li><strong>Data Owner</strong>: El dueño de los datos es responsable de la calidad y la integridad de los datos. En este caso, el data owner será el departamento de datos de FarmaNorte.</li>
+<li><strong>Data Steward</strong>: El administrador de datos es responsable de la gestión y el mantenimiento de los datos. El data steward será responsable de asegurar que los datos sean precisos, completos y consistentes.</li>
+<li><strong>AI Ethicist</strong>: El especialista en ética de AI es responsable de asegurar que los modelos de AI sean transparentes, explicables y éticos.</li>
 </ul>
-<p><strong>Políticas de Gobernanza</strong></p>
+<p><strong>Políticas de Gobernanza del Dato</strong></p>
 <ul>
-<li><strong>Política de Calidad de Datos:</strong> Se establecerán reglas y procedimientos para garantizar la calidad y precisión de los datos.</li>
-<li><strong>Política de Seguridad de Datos:</strong> Se implementarán medidas de seguridad para proteger los datos contra accesos no autorizados y pérdidas de datos.</li>
-<li><strong>Política de Cumplimiento Normativo:</strong> Se garantizará el cumplimiento de las normativas y regulaciones aplicables, como la GDPR y la normativa sanitaria.</li>
+<li><strong>Política de Calidad de Datos</strong>: La política de calidad de datos establece que los datos deben ser precisos, completos y consistentes. Se implementarán procesos para verificar la calidad de los datos y para corregir errores.</li>
+<li><strong>Política de Seguridad de Datos</strong>: La política de seguridad de datos establece que los datos deben ser protegidos contra accesos no autorizados y contra pérdidas o daños. Se implementarán medidas de seguridad como el cifrado de datos y la autenticación de usuarios.</li>
+<li><strong>Política de Cumplimiento Normativo</strong>: La política de cumplimiento normativo establece que la plataforma de datos y los modelos de AI deben cumplir con las normativas relevantes, como GDPR, normativa sanitaria y trazabilidad del medicamento.</li>
 </ul>
-<p><strong>Procesos de Gobernanza</strong></p>
+<p><strong>Procesos de Gobernanza del Dato</strong></p>
 <ul>
-<li><strong>Proceso de Ingesta de Datos:</strong> Se establecerán procedimientos para la ingesta de datos de los diferentes orígenes (ERP, sistema de almacén y CRM de ventas).</li>
-<li><strong>Proceso de Procesamiento de Datos:</strong> Se establecerán procedimientos para el procesamiento y transformación de los datos.</li>
-<li><strong>Proceso de Análisis de Datos:</strong> Se establecerán procedimientos para el análisis y visualización de los datos.</li>
-<li><strong>Proceso de Desarrollo y Despliegue de Modelos:</strong> Se establecerán procedimientos para el desarrollo y despliegue del modelo de previsión de demanda.</li>
+<li><strong>Proceso de Ingesta de Datos</strong>: El proceso de ingesta de datos establece cómo se ingerirán los datos de diferentes orígenes y cómo se almacenarán en la plataforma de datos.</li>
+<li><strong>Proceso de Procesamiento de Datos</strong>: El proceso de procesamiento de datos establece cómo se procesarán y transformarán los datos para su uso en la plataforma de datos.</li>
+<li><strong>Proceso de Desarrollo de Modelos de AI</strong>: El proceso de desarrollo de modelos de AI establece cómo se desarrollarán y desplegarán los modelos de AI en la plataforma de datos.</li>
 </ul>
 <p><strong>Mecanismos de Control</strong></p>
 <ul>
-<li><strong>Auditorías de Calidad de Datos:</strong> Se realizarán auditorías periódicas para garantizar la calidad de los datos.</li>
-<li><strong>Monitoreo de Seguridad:</strong> Se implementarán herramientas de monitoreo para detectar posibles amenazas de seguridad.</li>
-<li><strong>Evaluación de Cumplimiento Normativo:</strong> Se realizarán evaluaciones periódicas para garantizar el cumplimiento de las normativas y regulaciones aplicables.</li>
+<li><strong>Auditorías de Calidad de Datos</strong>: Se realizarán auditorías periódicas para verificar la calidad de los datos y para identificar áreas de mejora.</li>
+<li><strong>Monitoreo de Seguridad</strong>: Se implementará un sistema de monitoreo de seguridad para detectar posibles amenazas y vulnerabilidades en la plataforma de datos.</li>
+<li><strong>Evaluación de Modelos de AI</strong>: Se evaluarán periódicamente los modelos de AI para asegurar que sean transparentes, explicables y éticos.</li>
 </ul>
-<p><strong>Infraestructura Tecnológica</strong></p>
-<ul>
-<li><strong>Cloud Provider:</strong> Azure será el proveedor de nube preferido para la implementación de la plataforma de datos y el modelo de previsión de demanda.</li>
-<li><strong>Plataforma de Datos:</strong> Azure Synapse Analytics será la plataforma de datos unificada para almacenar y analizar los datos.</li>
-<li><strong>Herramienta de Visualización:</strong> Power BI será la herramienta de visualización para crear informes y dashboards interactivos.</li>
-<li><strong>Modelo de Machine Learning:</strong> Azure Machine Learning será utilizado para desarrollar y desplegar el modelo de previsión de demanda.</li>
-</ul>
-<p><strong>Riesgos y Desafíos</strong></p>
-<ul>
-<li><strong>Riesgo de Calidad de Datos:</strong> La calidad de los datos puede ser un desafío debido a la integración de datos de diferentes orígenes.</li>
-<li><strong>Riesgo de Seguridad:</strong> La seguridad de los datos puede ser un desafío debido a la implementación de la plataforma de datos en la nube.</li>
-<li><strong>Riesgo de Cumplimiento Normativo:</strong> El cumplimiento de las normativas y regulaciones aplicables puede ser un desafío debido a la complejidad de la normativa sanitaria y la GDPR.</li>
-</ul>
-<p><strong>Conclusión</strong></p>
-<p>La propuesta de gobernanza del dato y AI para FarmaNorte tiene como objetivo asegurar la calidad, seguridad y cumplimiento normativo de los datos a lo largo de su ciclo de vida. La implementación de roles y responsabilidades, políticas de gobernanza, procesos de gobernanza y mecanismos de control garantizarán la eficacia y eficiencia de la plataforma de datos y el modelo de previsión de demanda. La infraestructura tecnológica propuesta se ajusta a las necesidades del proyecto y se espera que permita al cliente alcanzar los KPIs de éxito definidos.</p></div></div>
+<p><strong>Justificación y Supuestos</strong></p>
+<p>La propuesta de gobernanza del dato y AI para FarmaNorte se ha diseñado teniendo en cuenta los requisitos del proyecto y las necesidades del cliente. Se asume que el cliente tiene una conectividad estable y segura a Azure y que los orígenes de datos proporcionan datos de calidad y consistentes. La gobernanza del dato y AI es fundamental para asegurar que la plataforma de datos y los modelos de AI sean precisos, completos y consistentes, y que cumplan con las normativas relevantes.</p></div></div>
 </div>
 <div class="section-card">
 <div class="section-header">
@@ -435,49 +426,49 @@
 <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
 </div>
 <div class="section-body"><div class="prose" id="content-data-ai"><p><strong>Análisis Crítico del Problema de Negocio y Madurez de Datos Actual</strong></p>
-<p>FarmaNorte, una empresa de distribución farmacéutica con aproximadamente 350 empleados, enfrenta desafíos en la gestión de sus datos y procesos. Actualmente, la empresa utiliza Excel para consolidar informes de ventas de forma manual semanal, sin contar con un data warehouse ni una plataforma de Business Intelligence (BI) en producción. Esto indica una madurez analítica limitada y una dependencia de procesos manuales, lo que puede llevar a ineficiencias y errores.</p>
-<p>La empresa busca unificar su información de ventas, stock y logística para incorporar un modelo de previsión de demanda. Esto tiene como objetivo reducir las roturas de stock y el capital inmovilizado en almacén. La falta de integración de datos y la ausencia de análisis avanzados limitan la capacidad de la empresa para tomar decisiones informadas y optimizar sus operaciones.</p>
+<p>FarmaNorte, una empresa de distribución farmacéutica con aproximadamente 350 empleados, busca implementar una plataforma de datos con un componente predictivo para unificar información de ventas, stock y logística, e incorporar un modelo de previsión de demanda. El objetivo es reducir roturas de stock, disminuir el inventario inmovilizado y lograr una exactitud del modelo de previsión de demanda por encima del 85%. Actualmente, la empresa utiliza Excel para consolidar informes de ventas de forma manual semanal, sin un data warehouse ni plataforma de BI en producción.</p>
+<p>La madurez de datos actual de FarmaNorte es baja, ya que no cuenta con un data warehouse ni plataforma de BI centralizada, lo que dificulta la toma de decisiones informadas. La empresa depende de procesos manuales y no tiene una visión integral de sus datos. Esto limita su capacidad para analizar tendencias, identificar oportunidades de mejora y optimizar sus operaciones.</p>
 <p><strong>Propuesta de Funcionalidades Clave de IA/Data</strong></p>
-<p>Para abordar los desafíos de FarmaNorte, se proponen las siguientes funcionalidades clave de IA/Data:</p>
+<p>Para abordar el problema de negocio y mejorar la madurez de datos de FarmaNorte, se proponen las siguientes funcionalidades clave de IA/Data:</p>
 <ol>
-<li><strong>Modelo de Previsión de Demanda</strong>: Desarrollar un modelo de machine learning que prediga la demanda futura de productos farmacéuticos basándose en datos históricos de ventas, estacionales y tendencias del mercado. Esto permitirá a la empresa optimizar su inventario y reducir las roturas de stock.</li>
-<li><strong>Análisis de Roturas de Stock y Optimización de Inventario</strong>: Implementar un análisis que identifique patrones y causas de roturas de stock. Esto permitirá a la empresa tomar medidas proactivas para evitarlas y optimizar su inventario.</li>
-<li><strong>Integración de Datos y Visualización</strong>: Integrar datos de ventas, stock y logística en una plataforma de datos unificada y proporcionar visualizaciones interactivas para que los usuarios puedan explorar y analizar los datos de manera efectiva.</li>
+<li><strong>Modelo Predictivo de Previsión de Demanda</strong>: Desarrollar un modelo de machine learning que prediga la demanda futura de productos farmacéuticos, teniendo en cuenta factores como la estacionalidad, tendencias de ventas y eventos externos.</li>
+<li><strong>Integración de Datos de Ventas, Stock y Logística</strong>: Implementar una plataforma de datos que integre información de ventas, stock y logística, proporcionando una visión integral de las operaciones de FarmaNorte.</li>
+<li><strong>Análisis de Roturas de Stock y Optimización de Inventario</strong>: Desarrollar un análisis que identifique las causas de roturas de stock y proporcione recomendaciones para optimizar el inventario y reducir pérdidas.</li>
 </ol>
 <p><strong>Roadmap Técnico</strong></p>
 <p>A continuación, se detalla el roadmap técnico para cada funcionalidad:</p>
 <ol>
-<li><strong>Modelo de Previsión de Demanda</strong>:</li>
+<li><strong>Modelo Predictivo de Previsión de Demanda</strong>:</li>
 </ol>
 <ul>
-<li>Fuentes de datos: Datos históricos de ventas, información de productos, estacionales y tendencias del mercado.</li>
+<li>Fuentes de datos: Datos de ventas históricas, información de productos, estacionalidad y eventos externos.</li>
 <li>Tipo de análisis: Machine learning (regresión, series temporales).</li>
-<li>Integración en el flujo de trabajo: El modelo se integrará con la plataforma de datos unificada y se utilizará para generar previsiones de demanda que se visualizarán en dashboards interactivos.</li>
+<li>Integración en el flujo de trabajo: El modelo se integrará en la plataforma de datos y se utilizará para generar predicciones de demanda que se utilizarán para optimizar el inventario y reducir roturas de stock.</li>
+</ul>
+<ol>
+<li><strong>Integración de Datos de Ventas, Stock y Logística</strong>:</li>
+</ol>
+<ul>
+<li>Fuentes de datos: Datos de ventas, stock y logística de diferentes orígenes (ERP, sistema de almacén, CRM de ventas).</li>
+<li>Tipo de análisis: Integración de datos, ETL (Extract, Transform, Load).</li>
+<li>Integración en el flujo de trabajo: La plataforma de datos se utilizará para integrar los datos de diferentes orígenes y proporcionar una visión integral de las operaciones de FarmaNorte.</li>
 </ul>
 <ol>
 <li><strong>Análisis de Roturas de Stock y Optimización de Inventario</strong>:</li>
 </ol>
 <ul>
-<li>Fuentes de datos: Datos de stock, pedidos y entregas.</li>
-<li>Tipo de análisis: Análisis de datos exploratorio, identificación de patrones y causas.</li>
-<li>Integración en el flujo de trabajo: El análisis se integrará con la plataforma de datos unificada y se utilizará para identificar oportunidades de mejora en la gestión de inventario.</li>
-</ul>
-<ol>
-<li><strong>Integración de Datos y Visualización</strong>:</li>
-</ol>
-<ul>
 <li>Fuentes de datos: Datos de ventas, stock y logística.</li>
-<li>Tipo de análisis: Integración de datos, visualización de datos.</li>
-<li>Integración en el flujo de trabajo: La plataforma de datos unificada se utilizará para integrar los datos y proporcionar visualizaciones interactivas para los usuarios.</li>
+<li>Tipo de análisis: Análisis de datos, optimización de inventario.</li>
+<li>Integración en el flujo de trabajo: El análisis se integrará en la plataforma de datos y se utilizará para identificar oportunidades de mejora y optimizar el inventario.</li>
 </ul>
 <p><strong>Valor de Negocio</strong></p>
-<p>La implementación de estas funcionalidades tendrá un impacto significativo en las métricas de éxito de FarmaNorte:</p>
+<p>La implementación de estas funcionalidades de IA/Data tendrá un impacto significativo en las métricas de éxito de FarmaNorte:</p>
 <ul>
-<li><strong>Reducción de Roturas de Stock</strong>: El modelo de previsión de demanda y el análisis de roturas de stock permitirán a la empresa reducir las roturas de stock en al menos un 30%.</li>
-<li><strong>Disminución del Inventario Inmovilizado</strong>: La optimización de inventario permitirá a la empresa liberar capital inmovilizado en almacén, mejorando su eficiencia financiera.</li>
-<li><strong>Exactitud del Modelo de Previsión de Demanda</strong>: La implementación de un modelo de previsión de demanda preciso permitirá a la empresa tomar decisiones informadas y optimizar sus operaciones, con una exactitud por encima del 85%.</li>
+<li><strong>Reducción de roturas de stock</strong>: El modelo predictivo de previsión de demanda y el análisis de roturas de stock y optimización de inventario ayudarán a reducir las roturas de stock en al menos un 30%.</li>
+<li><strong>Disminución del inventario inmovilizado</strong>: La optimización de inventario y la reducción de roturas de stock ayudarán a disminuir el inventario inmovilizado y liberar capital.</li>
+<li><strong>Exactitud del modelo de previsión de demanda</strong>: El modelo predictivo de previsión de demanda tendrá una exactitud por encima del 85%, lo que permitirá a FarmaNorte tomar decisiones informadas y optimizar sus operaciones.</li>
 </ul>
-<p>En resumen, la propuesta de funcionalidades clave de IA/Data para FarmaNorte tiene como objetivo abordar los desafíos de la empresa en la gestión de datos y procesos. La implementación de estas funcionalidades tendrá un impacto significativo en las métricas de éxito de la empresa, mejorando su eficiencia operativa y financiera.</p></div></div>
+<p>En resumen, la propuesta de funcionalidades clave de IA/Data y el roadmap técnico asociado ayudarán a FarmaNorte a mejorar su madurez de datos, reducir roturas de stock, disminuir el inventario inmovilizado y lograr una exactitud del modelo de previsión de demanda por encima del 85%.</p></div></div>
 </div>
 <div class="section-card">
 <div class="section-header">
@@ -491,36 +482,46 @@
 </div>
 <div class="section-body"><div class="prose" id="content-bi"><p><strong>Estrategia de Visualización de Datos para FarmaNorte</strong></p>
 <p><strong>Introducción</strong></p>
-<p>La estrategia de visualización de datos para FarmaNorte tiene como objetivo proporcionar una visión clara y concisa de los datos de ventas, stock y logística, permitiendo a los usuarios tomar decisiones informadas y optimizar las operaciones de la empresa. La estrategia se basa en la arquitectura propuesta anteriormente, que incluye la integración de datos en una plataforma de datos unificada y la implementación de un modelo de previsión de demanda.</p>
+<p>La estrategia de visualización de datos para FarmaNorte tiene como objetivo proporcionar una visión integral de las operaciones de la empresa, permitiendo a los usuarios tomar decisiones informadas y optimizar sus procesos. La visualización de datos es fundamental para comunicar los insights y tendencias identificados en los datos, y para apoyar la toma de decisiones estratégicas.</p>
 <p><strong>Definición de KPIs de Visualización</strong></p>
-<p>Para medir el éxito de la estrategia de visualización de datos, se han definido los siguientes KPIs:</p>
+<p>A continuación, se definen los KPIs de visualización que se utilizarán para medir el éxito de la plataforma de datos:</p>
 <ul>
 <li><strong>Roturas de Stock</strong>: Número de roturas de stock por mes.</li>
-<li><strong>Inventario Inmovilizado</strong>: Valor del inventario inmovilizado en almacén.</li>
-<li><strong>Exactitud del Modelo de Previsión de Demanda</strong>: Exactitud del modelo de previsión de demanda por encima del 85%.</li>
+<li><strong>Inventario Inmovilizado</strong>: Valor del inventario inmovilizado por mes.</li>
+<li><strong>Exactitud del Modelo de Previsión de Demanda</strong>: Exactitud del modelo de previsión de demanda por mes.</li>
+<li><strong>Ventas</strong>: Ventas totales por mes.</li>
+<li><strong>Stock Disponible</strong>: Stock disponible por mes.</li>
 </ul>
 <p><strong>Diseño de Dashboards</strong></p>
-<p>Se han diseñado dos dashboards para satisfacer las necesidades de los usuarios:</p>
+<p>Se proponen dos dashboards para FarmaNorte:</p>
 <ul>
-<li><strong>Dashboard Ejecutivo</strong>: Proporciona una visión general de los datos de ventas, stock y logística, incluyendo los KPIs definidos anteriormente. El dashboard incluye gráficos de barras, líneas y mapas de calor para visualizar los datos.</li>
-<li><strong>Dashboard de Operaciones Detallado</strong>: Proporciona una visión detallada de los datos de operaciones, incluyendo información sobre pedidos, entregas y stock. El dashboard incluye gráficos de barras, líneas y tablas para visualizar los datos.</li>
+<li><strong>Dashboard Ejecutivo</strong>: Este dashboard proporcionará una visión general de las operaciones de la empresa, incluyendo los KPIs de visualización definidos anteriormente. El dashboard estará diseñado para ser utilizado por los directivos y gerentes de la empresa.</li>
+<li><strong>Dashboard de Operaciones Detallado</strong>: Este dashboard proporcionará una visión detallada de las operaciones de la empresa, incluyendo información sobre las roturas de stock, inventario inmovilizado y ventas. El dashboard estará diseñado para ser utilizado por los empleados de la empresa que se encargan de la gestión de inventario y ventas.</li>
 </ul>
 <p><strong>User Experience (UX)</strong></p>
-<p>Los usuarios de la plataforma de visualización de datos son:</p>
+<p>La experiencia del usuario es fundamental para la adopción y uso efectivo de la plataforma de datos. A continuación, se describen las características de UX que se implementarán:</p>
 <ul>
-<li><strong>Gerentes de Ventas</strong>: Necesitan visualizar los datos de ventas y stock para tomar decisiones informadas sobre la gestión de inventario.</li>
-<li><strong>Gerentes de Operaciones</strong>: Necesitan visualizar los datos de operaciones para optimizar las operaciones de la empresa.</li>
-</ul>
-<p>Para satisfacer las necesidades de los usuarios, se han implementado las siguientes características:</p>
-<ul>
-<li><strong>Filtros</strong>: Los usuarios pueden filtrar los datos por fecha, producto, región y otros criterios.</li>
-<li><strong>Drill-downs</strong>: Los usuarios pueden profundizar en los datos para obtener información más detallada.</li>
-<li><strong>Alertas</strong>: Los usuarios pueden configurar alertas para recibir notificaciones cuando se produzcan cambios significativos en los datos.</li>
+<li><strong>Filtros</strong>: Los usuarios podrán filtrar los datos por fecha, producto, ubicación y otros criterios relevantes.</li>
+<li><strong>Drill-downs</strong>: Los usuarios podrán profundizar en los datos para obtener información más detallada.</li>
+<li><strong>Alertas</strong>: Los usuarios podrán recibir alertas cuando se produzcan cambios significativos en los KPIs de visualización.</li>
 </ul>
 <p><strong>Stack de BI</strong></p>
-<p>Se ha seleccionado Power BI como herramienta de visualización de datos debido a su facilidad de uso, capacidad para conectarse a la plataforma de datos unificada y su escalabilidad. Power BI ofrece una amplia gama de características y herramientas para visualizar los datos, incluyendo gráficos, tablas y mapas.</p>
+<p>Se recomienda utilizar Power BI como herramienta de visualización, debido a su capacidad para conectarse a diversas fuentes de datos, su facilidad de uso y su capacidad para crear dashboards y informes interactivos.</p>
+<p><strong>Data Consumers</strong></p>
+<p>Los data consumers de la plataforma de datos serán:</p>
+<ul>
+<li><strong>Directivos y Gerentes</strong>: Utilizarán la plataforma de datos para tomar decisiones estratégicas y obtener una visión general de las operaciones de la empresa.</li>
+<li><strong>Empleados de Gestión de Inventario y Ventas</strong>: Utilizarán la plataforma de datos para gestionar el inventario y las ventas, y para obtener información detallada sobre las operaciones de la empresa.</li>
+</ul>
+<p><strong>Implementación</strong></p>
+<p>La implementación de la estrategia de visualización de datos se realizará en las siguientes fases:</p>
+<ul>
+<li><strong>Fase 1</strong>: Diseño y desarrollo de los dashboards y la plataforma de datos.</li>
+<li><strong>Fase 2</strong>: Pruebas y validación de la plataforma de datos.</li>
+<li><strong>Fase 3</strong>: Implementación y capacitación de los usuarios.</li>
+</ul>
 <p><strong>Conclusión</strong></p>
-<p>La estrategia de visualización de datos para FarmaNorte tiene como objetivo proporcionar una visión clara y concisa de los datos de ventas, stock y logística, permitiendo a los usuarios tomar decisiones informadas y optimizar las operaciones de la empresa. La implementación de la plataforma de visualización de datos y la definición de KPIs permitirán a la empresa medir el éxito de la estrategia y tomar decisiones informadas para mejorar su eficiencia operativa y financiera.</p></div></div>
+<p>La estrategia de visualización de datos para FarmaNorte tiene como objetivo proporcionar una visión integral de las operaciones de la empresa, permitiendo a los usuarios tomar decisiones informadas y optimizar sus procesos. La implementación de la plataforma de datos y los dashboards permitirá a la empresa mejorar su madurez de datos y alcanzar sus objetivos de negocio.</p></div></div>
 </div>
 <div class="section-card">
 <div class="section-header">
@@ -532,27 +533,21 @@
 <div class="section-header-text"><h2>Propuesta de Estimación de Costos</h2><span>Costos aproximados de implementación y operación</span></div>
 <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
 </div>
-<div class="section-body"><div class="prose" id="content-cost-estimation"><h3>Resumen Ejecutivo</h3>
-<ul>
-<li><strong>Coste total estimado:</strong> 150000 – 200000</li>
-<li><strong>Horizonte temporal:</strong> 3-4 meses</li>
-<li><strong>Nivel de confianza:</strong> Medio — Se basa en la experiencia previa en proyectos similares y en la valoración de los servicios y herramientas necesarios.</li>
-</ul>
-<h3>Supuestos</h3>
-<ul>
-<li>Se asume que el cliente tiene una cuenta en Azure y que se puede utilizar la infraestructura existente.</li>
-<li>Se considera que el plazo objetivo de 3-4 meses es factible con la arquitectura propuesta.</li>
-<li>Se tiene en cuenta la restricción presupuestaria de 150.000 a 200.000 euros para la selección de servicios y plataformas.</li>
-</ul>
-<h3>Desglose por Categoría</h3>
-<p><strong>Licencias y herramientas:</strong> 40000<br/><strong>Formación y onboarding:</strong> 10000<br/><strong>Mantenimiento y soporte:</strong> 30000<br/><strong>Desarrollo e implantación:</strong> 80000</p>
-<h3>Precio por Componentes de Infraestructura</h3>
-<ul>
-<li><strong>Azure Synapse Analytics</strong> (Dedicated): 10000 × 1 = 10000</li>
-<li><strong>Azure Machine Learning</strong> (Basic): 5000 × 1 = 5000</li>
-<li><strong>Power BI</strong> (Pro): 2000 × 10 = 20000</li>
-<li><strong>Azure Data Factory</strong> (Basic): 3000 × 1 = 3000</li>
-</ul></div></div>
+<div class="section-body"><div class="prose" id="content-cost-estimation"><div style="color:var(--text);"><div style="background:var(--surface-alt);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.25rem;"><div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin:0 0 0.875rem;padding-left:10px;border-left:3px solid var(--accent);">Resumen Ejecutivo</div><div style="display:flex;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap;"><div style="flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:1.1rem;text-align:center;box-shadow:var(--shadow);"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Coste estimado</div><div style="font-size:1.5rem;font-weight:700;color:var(--text);">150000 – 200000</div></div><div style="flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:1.1rem;text-align:center;box-shadow:var(--shadow);"><div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Horizonte temporal</div><div style="font-size:1.5rem;font-weight:700;color:var(--text);">12 meses</div></div></div><div style="margin-bottom:0.875rem;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.82rem;color:var(--muted);">Nivel de confianza</span><span style="font-size:0.82rem;font-weight:600;color:#b45309;">Medio</span></div><div style="background:var(--border);border-radius:999px;height:9px;overflow:hidden;"><div style="background:#b45309;width:60%;height:100%;border-radius:999px;"></div></div></div><p style="color:var(--muted);font-size:0.875rem;margin:0;font-style:italic;">Se basa en la experiencia previa en proyectos similares y en la información proporcionada por el cliente.</p></div><div style="margin-bottom:1.25rem;"><div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin:0 0 0.875rem;padding-left:10px;border-left:3px solid var(--accent);">Supuestos</div><div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.5rem 0.875rem;background:var(--tag-bg);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;margin-bottom:0.5rem;"><span style="color:var(--accent);font-weight:700;flex-shrink:0;">ℹ</span><span style="font-size:0.85rem;color:var(--text);">Se asume que el cliente tiene una conectividad estable y segura a Azure.</span></div><div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.5rem 0.875rem;background:var(--tag-bg);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;margin-bottom:0.5rem;"><span style="color:var(--accent);font-weight:700;flex-shrink:0;">ℹ</span><span style="font-size:0.85rem;color:var(--text);">Se supone que los orígenes de datos proporcionan datos de calidad y consistentes.</span></div><div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.5rem 0.875rem;background:var(--tag-bg);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;margin-bottom:0.5rem;"><span style="color:var(--accent);font-weight:700;flex-shrink:0;">ℹ</span><span style="font-size:0.85rem;color:var(--text);">Por determinar, requiere información sobre la cantidad de usuarios que accederán a la plataforma.</span></div></div><div style="display:flex;gap:1.25rem;margin-bottom:1.25rem;flex-wrap:wrap;align-items:flex-start;"><div style="flex:1;min-width:220px;background:var(--surface-alt);border:1px solid var(--border);border-radius:12px;padding:1.25rem;"><div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin:0 0 0.875rem;padding-left:10px;border-left:3px solid var(--accent);">Desglose por Categoría</div><div style="margin-bottom:0.875rem;"><span style="font-size:0.78rem;color:var(--muted);">Licencias y herramientas</span><div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden;margin:4px 0 2px;" title="40000"><div style="background:#1d4ed8;width:20%;height:100%;border-radius:4px;"></div></div><div style="font-size:0.72rem;color:var(--muted);opacity:0.8;">40000</div></div><div style="margin-bottom:0.875rem;"><span style="font-size:0.78rem;color:var(--muted);">Formación y onboarding</span><div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden;margin:4px 0 2px;" title="10000"><div style="background:#b45309;width:20%;height:100%;border-radius:4px;"></div></div><div style="font-size:0.72rem;color:var(--muted);opacity:0.8;">10000</div></div><div style="margin-bottom:0.875rem;"><span style="font-size:0.78rem;color:var(--muted);">Mantenimiento y soporte</span><div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden;margin:4px 0 2px;" title="30000"><div style="background:#6d28d9;width:20%;height:100%;border-radius:4px;"></div></div><div style="font-size:0.72rem;color:var(--muted);opacity:0.8;">30000</div></div><div style="margin-bottom:0.875rem;"><span style="font-size:0.78rem;color:var(--muted);">Desarrollo e implantación</span><div style="background:var(--border);border-radius:4px;height:8px;overflow:hidden;margin:4px 0 2px;" title="80000"><div style="background:#0f766e;width:20%;height:100%;border-radius:4px;"></div></div><div style="font-size:0.72rem;color:var(--muted);opacity:0.8;">80000</div></div></div><div style="flex:2;min-width:260px;"><div style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin:0 0 0.875rem;padding-left:10px;border-left:3px solid var(--accent);">Componentes de Infraestructura</div><div style="display:flex;flex-wrap:wrap;gap:0.75rem;"><div style="background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:0.75rem;min-width:150px;flex:1;box-shadow:var(--shadow);"><div style="font-size:0.75rem;color:var(--muted);margin-bottom:3px;">Azure Data Factory</div><div style="font-size:1rem;font-weight:700;color:var(--text);">1000</div><div style="font-size:0.7rem;color:var(--muted);margin-top:3px;opacity:0.75;">1000 × 1</div><div style="font-size:0.7rem;color:var(--muted);opacity:0.5;">ADF</div></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:0.75rem;min-width:150px;flex:1;box-shadow:var(--shadow);"><div style="font-size:0.75rem;color:var(--muted);margin-bottom:3px;">Azure Synapse Analytics</div><div style="font-size:1rem;font-weight:700;color:var(--text);">2000</div><div style="font-size:0.7rem;color:var(--muted);margin-top:3px;opacity:0.75;">2000 × 1</div><div style="font-size:0.7rem;color:var(--muted);opacity:0.5;">ASAP</div></div><div style="background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:0.75rem;min-width:150px;flex:1;box-shadow:var(--shadow);"><div style="font-size:0.75rem;color:var(--muted);margin-bottom:3px;">Power BI</div><div style="font-size:1rem;font-weight:700;color:var(--text);">500</div><div style="font-size:0.7rem;color:var(--muted);margin-top:3px;opacity:0.75;">500 × 1</div><div style="font-size:0.7rem;color:var(--muted);opacity:0.5;">PBI</div></div></div></div></div><div style="margin-top:1.5rem;"><div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:0.5rem;padding-left:10px;border-left:3px solid var(--accent);">Referencia Infracost</div><div style="background:#0f172a;border:1px solid var(--border-strong);border-radius:9px;padding:1rem;overflow-x:auto;"><pre style="color:#94a3b8;margin:0;font-size:0.78rem;white-space:pre;font-family:'Cascadia Code','Fira Code','Courier New',monospace;line-height:1.5;">╭─────────────────────────────────────────╮
+│                                         │
+│   Scan Summary                          │
+│                                         │
+│   Resources:     7 (5 costed, 2 free)   │
+│   Monthly cost:  $1,838                 │
+│                                         │
+│   FinOps:        1                      │
+│   Tagging:       1 (⚠️ x1)              │
+│   Guardrails:    0                      │
+│   Budgets:       0                      │
+│                                         │
+│   ⚠️  = failing policy                  │
+│                                         │
+╰─────────────────────────────────────────╯</pre></div></div></div></div></div>
 </div>
 <div class="section-card">
 <div class="section-header">
@@ -566,58 +561,76 @@
 </div>
 <div class="section-body"><div class="prose" id="content-team-profiles"><p><strong>Informe Detallado: Perfiles Profesionales Necesarios para la Implementación de la Solución Propuesta</strong></p>
 <p><strong>Introducción</strong></p>
-<p>La implementación de la solución propuesta para FarmaNorte requiere un equipo de profesionales con habilidades y experiencia en diversas áreas, incluyendo la arquitectura de datos, ingeniería de datos, ciencia de datos, análisis de negocios y visualización de datos. En este informe, se identifican los perfiles profesionales necesarios para llevar a cabo la implementación de la solución propuesta.</p>
-<p><strong>Perfiles Profesionales Identificados</strong></p>
+<p>La implementación de la solución propuesta para FarmaNorte requiere un equipo de profesionales con habilidades y experiencia en diversas áreas, incluyendo la ingesta y almacenamiento de datos, el procesamiento y análisis de datos, la inteligencia artificial y machine learning, y la visualización de datos. En este informe, se identifican los perfiles profesionales necesarios para llevar a cabo la implementación de la solución propuesta.</p>
+<p><strong>Perfiles Profesionales Necesarios</strong></p>
 <ol>
 <li><strong>Arquitecto de Datos</strong></li>
 </ol>
 <ul>
-<li>Responsabilidades clave: Diseñar y implementar la arquitectura de datos para la solución propuesta, incluyendo la integración de datos en Azure Synapse Analytics y la implementación de un modelo de previsión de demanda en Azure Machine Learning.</li>
-<li>Habilidades requeridas: Experiencia en arquitectura de datos, conocimientos de Azure Synapse Analytics, Azure Machine Learning y Power BI, habilidades de diseño y implementación de soluciones de datos.</li>
+<li>Responsabilidades clave: Diseñar y implementar la arquitectura de datos para la solución propuesta, incluyendo la ingesta y almacenamiento de datos, el procesamiento y análisis de datos, y la visualización de datos.</li>
+<li>Habilidades requeridas: Experiencia en arquitectura de datos, conocimientos de tecnologías de datos como Azure Data Factory, Azure Synapse Analytics y Power BI, habilidades de diseño y implementación de soluciones de datos.</li>
 </ul>
 <ol>
 <li><strong>Ingeniero de Datos</strong></li>
 </ol>
 <ul>
-<li>Responsabilidades clave: Desarrollar y implementar la integración de datos en Azure Data Factory, incluyendo la ingesta de datos de diferentes orígenes y la transformación de datos para su análisis.</li>
-<li>Habilidades requeridas: Experiencia en ingeniería de datos, conocimientos de Azure Data Factory, Azure Synapse Analytics y Power BI, habilidades de programación en lenguajes como Python o SQL.</li>
+<li>Responsabilidades clave: Implementar la ingesta y almacenamiento de datos, el procesamiento y análisis de datos, y la visualización de datos, utilizando tecnologías como Azure Data Factory, Azure Synapse Analytics y Power BI.</li>
+<li>Habilidades requeridas: Experiencia en ingeniería de datos, conocimientos de tecnologías de datos como Azure Data Factory, Azure Synapse Analytics y Power BI, habilidades de implementación y configuración de soluciones de datos.</li>
 </ul>
 <ol>
 <li><strong>Científico de Datos</strong></li>
 </ol>
 <ul>
-<li>Responsabilidades clave: Desarrollar y implementar el modelo de previsión de demanda en Azure Machine Learning, incluyendo la selección de algoritmos y la evaluación de su rendimiento.</li>
-<li>Habilidades requeridas: Experiencia en ciencia de datos, conocimientos de Azure Machine Learning, habilidades de programación en lenguajes como Python o R, conocimientos de algoritmos de machine learning.</li>
-</ul>
-<ol>
-<li><strong>Analista de Negocios</strong></li>
-</ol>
-<ul>
-<li>Responsabilidades clave: Trabajar con los stakeholders para identificar los requisitos de negocio y garantizar que la solución propuesta cumpla con sus necesidades, incluyendo la definición de KPIs y la evaluación de la eficacia de la solución.</li>
-<li>Habilidades requeridas: Experiencia en análisis de negocios, conocimientos de la industria farmacéutica, habilidades de comunicación y trabajo en equipo.</li>
+<li>Responsabilidades clave: Desarrollar y desplegar modelos de machine learning para la previsión de demanda, utilizando tecnologías como Azure Machine Learning.</li>
+<li>Habilidades requeridas: Experiencia en ciencia de datos, conocimientos de machine learning y modelado predictivo, habilidades de desarrollo y despliegue de modelos de machine learning.</li>
 </ul>
 <ol>
 <li><strong>Analista de BI</strong></li>
 </ol>
 <ul>
-<li>Responsabilidades clave: Desarrollar y implementar los dashboards y informes en Power BI, incluyendo la creación de visualizaciones de datos y la configuración de alertas.</li>
-<li>Habilidades requeridas: Experiencia en análisis de BI, conocimientos de Power BI, habilidades de programación en lenguajes como DAX o M.</li>
+<li>Responsabilidades clave: Diseñar y implementar dashboards y informes para la visualización de datos, utilizando tecnologías como Power BI.</li>
+<li>Habilidades requeridas: Experiencia en análisis de datos y visualización de datos, conocimientos de tecnologías de BI como Power BI, habilidades de diseño y implementación de soluciones de visualización de datos.</li>
 </ul>
 <ol>
-<li><strong>Especialista en Gobernanza de Datos</strong></li>
+<li><strong>Especialista en Inteligencia Artificial y Machine Learning</strong></li>
 </ol>
 <ul>
-<li>Responsabilidades clave: Implementar y mantener la política de gobernanza de datos, incluyendo la definición de roles y responsabilidades, la implementación de medidas de seguridad y la evaluación de la calidad de los datos.</li>
-<li>Habilidades requeridas: Experiencia en gobernanza de datos, conocimientos de la normativa de protección de datos, habilidades de comunicación y trabajo en equipo.</li>
+<li>Responsabilidades clave: Desarrollar y desplegar modelos de machine learning para la previsión de demanda, utilizando tecnologías como Azure Machine Learning.</li>
+<li>Habilidades requeridas: Experiencia en inteligencia artificial y machine learning, conocimientos de tecnologías de machine learning como Azure Machine Learning, habilidades de desarrollo y despliegue de modelos de machine learning.</li>
+</ul>
+<ol>
+<li><strong>Administrador de Datos</strong></li>
+</ol>
+<ul>
+<li>Responsabilidades clave: Gestionar y mantener la calidad y integridad de los datos, asegurando que se cumplan las políticas de gobernanza de datos.</li>
+<li>Habilidades requeridas: Experiencia en administración de datos, conocimientos de políticas de gobernanza de datos, habilidades de gestión y mantenimiento de la calidad y integridad de los datos.</li>
+</ul>
+<p><strong>Roles y Responsabilidades</strong></p>
+<ul>
+<li><strong>Data Owner</strong>: El dueño de los datos es responsable de la calidad y la integridad de los datos.</li>
+<li><strong>Data Steward</strong>: El administrador de datos es responsable de la gestión y el mantenimiento de los datos.</li>
+<li><strong>AI Ethicist</strong>: El especialista en ética de AI es responsable de asegurar que los modelos de AI sean transparentes, explicables y éticos.</li>
+</ul>
+<p><strong>Habilidades y Tecnologías Requeridas</strong></p>
+<ul>
+<li><strong>Tecnologías de datos</strong>: Azure Data Factory, Azure Synapse Analytics, Power BI, Azure Machine Learning.</li>
+<li><strong>Habilidades de datos</strong>: Experiencia en arquitectura de datos, ingeniería de datos, ciencia de datos, análisis de datos y visualización de datos.</li>
+<li><strong>Habilidades de programación</strong>: Python, R, SQL, Java.</li>
 </ul>
 <p><strong>Conclusión</strong></p>
-<p>La implementación de la solución propuesta para FarmaNorte requiere un equipo de profesionales con habilidades y experiencia en diversas áreas. Los perfiles profesionales identificados en este informe son fundamentales para garantizar el éxito de la implementación y la eficacia de la solución. Es importante destacar que la colaboración y el trabajo en equipo serán clave para el éxito del proyecto.</p>
+<p>La implementación de la solución propuesta para FarmaNorte requiere un equipo de profesionales con habilidades y experiencia en diversas áreas, incluyendo la ingesta y almacenamiento de datos, el procesamiento y análisis de datos, la inteligencia artificial y machine learning, y la visualización de datos. Los perfiles profesionales necesarios incluyen arquitecto de datos, ingeniero de datos, científico de datos, analista de BI, especialista en inteligencia artificial y machine learning, y administrador de datos. Es importante asegurarse de que el equipo tenga las habilidades y tecnologías requeridas para implementar la solución propuesta de manera efectiva.</p>
 <hr/>
 <h3>Estimación de Coste del Equipo</h3>
 <p><strong>Tabla de Estimación de Costes del Equipo</strong></p>
-<p>| Perfil | Nivel Recomendado | Horas/Mes | Coste Mensual (€) |<br/>| --- | --- | --- | --- |<br/>| Arquitecto de Datos | Senior | 160 | 12.000 (160h * 75€/h) |<br/>| Ingeniero de Datos | Middle | 120 | 3.600 (120h * 30€/h) |<br/>| Científico de Datos | Senior | 160 | 8.800 (160h * 55€/h) |<br/>| Analista de Negocios | Middle | 80 | 2.240 (80h * 28€/h) |<br/>| Analista de BI | Junior | 80 | 1.600 (80h * 20€/h) |<br/>| Especialista en Gobernanza de Datos | Middle | 80 | 2.800 (80h * 35€/h) |</p>
-<p><strong>Coste Total Mensual del Equipo:</strong> 30.040 €</p>
-<p>Nota: Los cálculos se han realizado utilizando las tarifas de referencia proporcionadas y asumiendo una dedicación mensual de 160 horas para los perfiles Senior, 120 horas para los perfiles Middle y 80 horas para los perfiles Junior.</p></div></div>
+<p>| Perfil | Nivel Recomendado | Horas/Mes | Coste Mensual |<br/>| --- | --- | --- | --- |<br/>| Data Architect | Senior | 160 | 12.000€ |<br/>| Data Engineer | Middle | 160 | 4.800€ |<br/>| Data Scientist | Middle | 160 | 5.600€ |<br/>| Data Analyst/BI | Junior | 120 | 2.400€ |<br/>| AI Engineer | Middle | 160 | 6.080€ |<br/>| Data Governance Specialist | Middle | 120 | 4.200€ |<br/>| Data Quality Analyst | Junior | 120 | 2.640€ |</p>
+<p><strong>Coste Total Mensual del Equipo:</strong> </p>
+<p>12.000€ + 4.800€ + 5.600€ + 2.400€ + 6.080€ + 4.200€ + 2.640€ = <strong>37.720€</strong></p>
+<p>Nota: </p>
+<ul>
+<li>El nivel recomendado se basa en la experiencia y habilidades requeridas para cada perfil.</li>
+<li>Las horas estimadas al mes se basan en una dedicación completa a tiempo completo.</li>
+<li>El coste mensual se calcula multiplicando las horas estimadas al mes por la tarifa de referencia correspondiente.</li>
+</ul></div></div>
 </div>
 </div><!-- /tab-propuesta -->
 <!-- ══ TAB: ROADMAP ══ -->
@@ -721,81 +734,80 @@
 <div class="section-body">
 <div class="prose" id="roadmap-sources"><p><strong>Análisis de Fuentes de Datos para FarmaNorte</strong></p>
 <h4>1. Inventario de Fuentes Identificadas</h4>
-<p>Basándome en la propuesta de solución presentada, he identificado las siguientes fuentes de datos relevantes para el proyecto:</p>
+<p>A continuación, se detallan las fuentes de datos identificadas como relevantes para el proyecto de FarmaNorte:</p>
 <ol>
-<li><strong>Sistema de Gestión de Ventas</strong>:</li>
+<li><strong>Sistema de Gestión Empresarial (ERP) - SAP Business One</strong></li>
 </ol>
 <ul>
-<li>Tipo de datos: Ventas, cantidad vendida, fechas de venta, precios.</li>
-<li>Relevancia: Fundamental para el modelo de previsión de demanda y análisis de roturas de stock.</li>
-<li>Formato: Estructurado (probablemente en formato de base de datos relacional).</li>
-<li>Frecuencia de actualización: Diaria (o en tiempo real, dependiendo de la configuración del sistema).</li>
-<li>Riesgos/Dependencias: Calidad de los datos de ventas, integridad de los registros.</li>
+<li>Tipo de datos: Transacciones comerciales, producción, inventario, datos de empleados, etc.</li>
+<li>Relevancia para el caso de uso: Alta, dado que contiene información sobre ventas, inventario y logística.</li>
+<li>Formato probable: Estructurado</li>
+<li>Frecuencia de actualización estimada: En tiempo real o batch diario</li>
+<li>Riesgos o dependencias: Calidad de los datos, compatibilidad con Azure Data Factory para la ingesta.</li>
 </ul>
 <ol>
-<li><strong>Sistema de Gestión de Inventarios</strong>:</li>
+<li><strong>Sistema de Almacén - SQL Server</strong></li>
 </ol>
 <ul>
-<li>Tipo de datos: Niveles de stock, ubicaciones de almacenamiento, movimientos de inventario.</li>
-<li>Relevancia: Crucial para el análisis de roturas de stock y gestión de inventarios.</li>
-<li>Formato: Estructurado (posiblemente en un sistema de gestión de inventarios específico).</li>
-<li>Frecuencia de actualización: En tiempo real o diaria, según la implementación.</li>
-<li>Riesgos/Dependencias: Precisión de los datos de inventario, actualizaciones oportunas.</li>
+<li>Tipo de datos: Inventarios, movimientos de stock, ubicaciones de almacén, etc.</li>
+<li>Relevancia para el caso de uso: Alta, por la información detallada sobre el inventario y logística.</li>
+<li>Formato probable: Estructurado</li>
+<li>Frecuencia de actualización estimada: En tiempo real o batch diario</li>
+<li>Riesgos o dependencias: Integración con otros sistemas, posibles errores de sincronización.</li>
 </ul>
 <ol>
-<li><strong>Sistema de Logística y Distribución</strong>:</li>
+<li><strong>CRM de Ventas - Salesforce</strong></li>
 </ol>
 <ul>
-<li>Tipo de datos: Pedidos, entregas, tiempos de entrega, costos de transporte.</li>
-<li>Relevancia: Importante para la comprensión de la cadena de suministro y su impacto en las ventas y el stock.</li>
-<li>Formato: Estructurado o semiestructurado (en formato CSV, JSON, o similar).</li>
-<li>Frecuencia de actualización: Variable, dependiendo de la frecuencia de los pedidos y entregas.</li>
-<li>Riesgos/Dependencias: Calidad de los datos de logística, integración con sistemas de terceros.</li>
+<li>Tipo de datos: Interacciones con clientes, historial de ventas, oportunidades, leads, etc.</li>
+<li>Relevancia para el caso de uso: Alta, para el análisis de ventas y previsión de demanda.</li>
+<li>Formato probable: Estructurado</li>
+<li>Frecuencia de actualización estimada: En tiempo real</li>
+<li>Riesgos o dependencias: Calidad de los datos, necesidad de API o conector compatible con Azure Data Factory.</li>
 </ul>
 <ol>
-<li><strong>Datos de Mercado y Competencia</strong>:</li>
+<li><strong>Datos de Producción</strong></li>
 </ol>
 <ul>
-<li>Tipo de datos: Tendencias de mercado, comportamiento de la competencia, análisis de la oferta y la demanda.</li>
-<li>Relevancia: Útil para ajustar el modelo de previsión de demanda y estrategias de marketing.</li>
-<li>Formato: No estructurado o semiestructurado (informes de investigación, noticias, redes sociales).</li>
-<li>Frecuencia de actualización: Ad-hoc o periódica, dependiendo de la disponibilidad de datos.</li>
-<li>Riesgos/Dependencias: Calidad y relevancia de los datos, posibles sesgos en la interpretación.</li>
+<li>Tipo de datos: Información sobre la producción, incluyendo lotes, fechas de producción, cantidad producida, etc.</li>
+<li>Relevancia para el caso de uso: Media, puede ser útil para el análisis de inventario y logística.</li>
+<li>Formato probable: Estructurado</li>
+<li>Frecuencia de actualización estimada: Batch diario o semanal</li>
+<li>Riesgos o dependencias: Disponibilidad y calidad de los datos, posible necesidad de integración manual.</li>
 </ul>
 <ol>
-<li><strong>Dados de Clientes y Preferencias</strong>:</li>
+<li><strong>Datos de Logística y Distribución</strong></li>
 </ol>
 <ul>
-<li>Tipo de datos: Perfiles de clientes, historial de compras, preferencias.</li>
-<li>Relevancia: Valioso para personalizar la experiencia del cliente y ajustar estrategias de marketing.</li>
-<li>Formato: Estructurado (bases de datos de clientes) y no estructurado (comentarios, redes sociales).</li>
-<li>Frecuencia de actualización: Continua, a medida que los clientes interactúan con la empresa.</li>
-<li>Riesgos/Dependencias: Privacidad y seguridad de los datos de clientes, consentimiento para el uso de datos.</li>
+<li>Tipo de datos: Información sobre el transporte, entrega y distribución de productos.</li>
+<li>Relevancia para el caso de uso: Alta, para el análisis de logística y optimización de la cadena de suministro.</li>
+<li>Formato probable: Estructurado o semiestructurado (en caso de notas o comentarios)</li>
+<li>Frecuencia de actualización estimada: En tiempo real o batch diario</li>
+<li>Riesgos o dependencias: Integración con terceros (proveedores de logística), calidad y consistencia de los datos.</li>
 </ul>
 <h4>2. Evaluación de Calidad y Riesgos por Fuente</h4>
 <ul>
-<li><strong>Sistema de Gestión de Ventas</strong>: Alto riesgo de datos inconsistentes o no actualizados.</li>
-<li><strong>Sistema de Gestión de Inventarios</strong>: Riesgo moderado de desactualización o error en los registros.</li>
-<li><strong>Sistema de Logística y Distribución</strong>: Riesgo bajo a moderado, dependiendo de la integración con terceros.</li>
-<li><strong>Datos de Mercado y Competencia</strong>: Alto riesgo de sesgo y dificultad en la calidad y relevancia de los datos.</li>
-<li><strong>Datos de Clientes y Preferencias</strong>: Alto riesgo relacionado con la privacidad y seguridad de los datos.</li>
+<li><strong>Calidad de Datos</strong>: La calidad de los datos en cada una de las fuentes identificadas puede variar. Es crucial evaluar la precisión, completitud y consistencia de los datos para garantizar su utilidad en el análisis y la toma de decisiones.</li>
+<li><strong>Riesgos</strong>: Los riesgos más significativos incluyen la integración de sistemas, la disponibilidad y calidad de los datos, y la necesidad de acuerdos con terceros para el acceso a ciertos datos. Además, la compatibilidad de los formatos de datos y la capacidad de procesarlos en la plataforma propuesta también son consideraciones importantes.</li>
 </ul>
 <h4>3. Dependencias y Supuestos Asumidos</h4>
 <ul>
-<li>Se asume que los sistemas de gestión de ventas, inventarios y logística están bien implementados y ofrecen datos confiables.</li>
-<li>Se supone que hay acuerdos en lugar para el uso de datos de terceros (como datos de mercado y competencia).</li>
-<li>Se depende de la cooperación de los departamentos de ventas, logística y marketing para la recopilación y calidad de los datos.</li>
-<li>Se asume que la empresa tiene las herramientas y recursos necesarios para manejar y analizar grandes cantidades de datos.</li>
+<li><strong>Dependencias</strong>:</li>
+<li>Acceso a los sistemas existentes (ERP, CRM, sistema de almacén) para la ingesta de datos.</li>
+<li>Colaboración con los departamentos de IT y operaciones para asegurar la integración y calidad de los datos.</li>
+<li>Posible necesidad de desarrollar o adquirir conectores o APIs para sistemas que no tienen una integración estándar con Azure Data Factory.</li>
+<li><strong>Supuestos</strong>:</li>
+<li>Se asume que todos los sistemas identificados están actualmente en uso y generan datos relevantes para el proyecto.</li>
+<li>Se supone que los derechos de acceso y permisos necesarios para la ingesta de datos pueden ser obtenidos sin retrasos significativos.</li>
+<li>Se asume que la infraestructura de TI y los recursos de FarmaNorte pueden soportar las demandas del proyecto sin necesidad de inversiones adicionales significativas.</li>
 </ul>
 <h4>4. Recomendaciones Prioritarias para la Fase de Ingesta</h4>
 <ol>
-<li><strong>Validación de Calidad de Datos</strong>: Antes de la ingesta, validar la calidad y consistencia de los datos en cada fuente para asegurar su precisión y utilidad.</li>
-<li><strong>Establecimiento de Acuerdos con Terceros</strong>: Para datos de mercado y competencia, asegurar que se tienen los acuerdos necesarios para el uso de estos datos.</li>
-<li><strong>Implementación de Medidas de Seguridad</strong>: Para proteger la privacidad y seguridad de los datos de clientes, implementar medidas de seguridad robustas.</li>
-<li><strong>Desarrollo de un Plan de Integración</strong>: Desarrollar un plan detallado para la integración de los diferentes sistemas y fuentes de datos, considerando las frecuencias de actualización y los formatos de los datos.</li>
-<li><strong>Capacitación del Personal</strong>: Capacitar al personal involucrado en el manejo y análisis de datos sobre las mejores prácticas de manipulación y seguridad de datos.</li>
-</ol>
-<p>Este análisis sentará las bases para la fase de ingesta, asegurando que se consideren los riesgos y dependencias clave y se tomen las medidas necesarias para garantizar la calidad y utilidad de los datos para el proyecto de FarmaNorte.</p></div>
+<li><strong>Evaluación Detallada de la Calidad de los Datos</strong>: Realizar una evaluación exhaustiva de la calidad de los datos en cada fuente identificada para entender mejor los posibles desafíos y necesidades de limpieza o transformación de datos.</li>
+<li><strong>Desarrollo de Conectores o APIs</strong>: Identificar y desarrollar los conectores o APIs necesarios para garantizar la integración de todos los sistemas con Azure Data Factory, asegurando la compatibilidad y la eficiencia en la ingesta de datos.</li>
+<li><strong>Establecimiento de Acuerdos y Permisos</strong>: Trabajar con los departamentos relevantes para establecer los acuerdos y obtener los permisos necesarios para el acceso a los datos, minimizando así los riesgos de retrasos o denegaciones de acceso.</li>
+<li><strong>Planificación de la Infraestructura</strong>: Asegurarse de que la infraestructura de TI de FarmaNorte esté preparada para soportar el proyecto, evaluando si es necesaria alguna inversión adicional en hardware, software o recursos humanos para garantizar el éxito del proyecto.</li>
+</ol></div>
 </div>
 </div>
 <div class="section-card collapsed" id="card-roadmap-ingestion">
@@ -814,48 +826,42 @@
 </div>
 <div class="section-body">
 <div class="prose" id="roadmap-ingestion"><p><strong>Estrategia de Ingesta de Datos para FarmaNorte con Azure Data Factory</strong></p>
-<p><strong>1. Patrón de Ingesta por Fuente o Grupo de Fuentes</strong></p>
-<p>Basándome en el análisis de fuentes de datos realizado, se recomienda el siguiente patrón de ingesta para cada fuente o grupo de fuentes:</p>
+<h4>1. Patrón de Ingesta por Fuente o Grupo de Fuentes</h4>
+<p>Basándonos en el análisis de fuentes de datos realizado, se recomienda el siguiente patrón de ingesta para cada fuente o grupo de fuentes:</p>
 <ul>
-<li><strong>Sistema de Gestión de Ventas</strong>: Ingesta por lotes (batch) diaria, debido a la naturaleza de los datos y la frecuencia de aktualización.</li>
-<li><strong>Sistema de Gestión de Inventarios</strong>: Ingesta en tiempo real o cerca de tiempo real ( Near Real-Time, NRT) para reflejar los cambios en el inventario de manera oportuna.</li>
-<li><strong>Sistema de Logística y Distribución</strong>: Ingesta por lotes (batch) con una frecuencia ajustada según la frecuencia de los pedidos y entregas, que podría ser diaria o semanal dependiendo de la actividad.</li>
-<li><strong>Datos de Mercado y Competencia</strong>: Ingesta ad-hoc o periódica, dependiendo de la disponibilidad de los datos y su relevancia para el modelo de previsión de demanda.</li>
-<li><strong>Datos de Clientes y Preferencias</strong>: Ingesta en tiempo real o cerca de tiempo real para capturar las interacciones de los clientes y actualizar sus perfiles y preferencias de manera continua.</li>
+<li><strong>Sistema de Gestión Empresarial (ERP) - SAP Business One</strong>: Ingesta por batch diario, dado que los datos están estructurados y se actualizan con frecuencia. La ingesta debería enfocarse en capturar transacciones comerciales, producción, inventario y datos de empleados relevantes para el análisis.</li>
+<li><strong>Sistema de Almacén - SQL Server</strong>: Ingesta en tiempo real o batch diario, dependiendo de la frecuencia de actualización de los datos. La ingesta debería centrarse en inventarios, movimientos de stock y ubicaciones de almacén para garantizar una visión precisa de la logística.</li>
+<li><strong>CRM de Ventas - Salesforce</strong>: Ingesta en tiempo real, ya que los datos de interacciones con clientes, historial de ventas, oportunidades y leads son cruciales para el análisis de ventas y la previsión de demanda. Es importante asegurar la calidad de los datos y la compatibilidad con Azure Data Factory.</li>
+<li><strong>Datos de Producción</strong>: Ingesta batch diario o semanal, dependiendo de la frecuencia de producción y la disponibilidad de los datos. La ingesta debería enfocarse en información sobre lotes, fechas de producción, cantidad producida, etc.</li>
+<li><strong>Datos de Logística y Distribución</strong>: Ingesta en tiempo real o batch diario, centrada en información sobre transporte, entrega y distribución de productos. La calidad y consistencia de los datos son clave para el análisis de logística y la optimización de la cadena de suministro.</li>
 </ul>
-<p><strong>2. Estructura de Pipelines Recomendada en ADF</strong></p>
-<p>Se sugiere una estructura de pipelines modulares en Azure Data Factory (ADF), donde cada pipeline se centre en una fuente de datos específica o en un conjunto de fuentes relacionadas. Esto facilitará el manejo, la depuración y el mantenimiento de los pipelines. La estructura recomendada incluye:</p>
+<h4>2. Estructura de Pipelines Recomendada en ADF</h4>
+<p>Para cada fuente de datos, se debe diseñar un pipeline específico en Azure Data Factory (ADF) que refleje el patrón de ingesta recomendado. La estructura de los pipelines debe incluir:</p>
 <ul>
-<li>Un pipeline por cada fuente de datos principal (ventas, inventarios, logística, etc.).</li>
-<li>Pipelines adicionales para la integración de datos de mercado y competencia, y para la ingesta de datos de clientes y preferencias.</li>
-<li>Un pipeline de "orquestación" que coordine la ejecución de los pipelines individuales y maneje las dependencias entre ellos.</li>
+<li><strong>Origen de Datos</strong>: Conector específico para cada fuente de datos (SAP Business One, SQL Server, Salesforce, etc.).</li>
+<li><strong>Actividad de Copia</strong>: Configuración para copiar los datos desde el origen hasta el destino (Azure Data Lake Storage Gen2).</li>
+<li><strong>Transformación de Datos</strong>: Actividades de transformación para limpiar, formatear y enriquecer los datos según sea necesario antes de llegar al almacenamiento.</li>
+<li><strong>Destino de Datos</strong>: Configuración para almacenar los datos transformados en Azure Data Lake Storage Gen2.</li>
 </ul>
-<p><strong>3. Conectores y Configuraciones Clave</strong></p>
-<p>Para cada fuente de datos, se deben utilizar los conectores de ADF más adecuados. Algunos de los conectores y consideraciones clave incluyen:</p>
+<h4>3. Conectores y Configuraciones Clave</h4>
 <ul>
-<li><strong>Sistema de Gestión de Ventas</strong>: Utilizar el conector de base de datos relevante (por ejemplo, SQL Server, Oracle) para conectar con el sistema de gestión de ventas.</li>
-<li><strong>Sistema de Gestión de Inventarios</strong>: Similar al sistema de ventas, utilizar el conector adecuado para el sistema de gestión de inventarios.</li>
-<li><strong>Sistema de Logística y Distribución</strong>: Dependiendo del formato de los datos (CSV, JSON, etc.), utilizar conectores como Azure Blob Storage o Azure Data Lake Storage para la ingesta de datos.</li>
-<li><strong>Datos de Mercado y Competencia</strong>: Utilizar conectores a fuentes de datos externas como APIs de terceros o servicios de datos en la nube.</li>
-<li><strong>Datos de Clientes y Preferencias</strong>: Utilizar conectores a sistemas de gestión de relaciones con el cliente (CRM) o a bases de datos que almacenan perfiles de clientes y sus interacciones.</li>
+<li><strong>Conector SAP Business One</strong>: Utilizar el conector ADF para SAP para conectarse al ERP y copiar los datos relevantes. Es crucial configurar las consultas y los parámetros para capturar todos los datos necesarios.</li>
+<li><strong>Conector SQL Server</strong>: Utilizar el conector ADF para SQL Server para conectarse al sistema de almacén y copiar los datos de inventario y logística.</li>
+<li><strong>Conector Salesforce</strong>: Utilizar el conector ADF para Salesforce para conectarse al CRM y copiar los datos de ventas y clientes. Debe configurarse para manejar la autenticación y la autorización adecuadamente.</li>
+<li><strong>Conectores para Datos de Producción y Logística</strong>: Dependiendo del formato y la ubicación de estos datos, pueden utilizarse conectores genéricos como el conector de archivo (para CSV, JSON, etc.) o desarrollar conectores personalizados si es necesario.</li>
 </ul>
-<p><strong>4. Cadencias y Dependencias entre Pipelines</strong></p>
-<p>La cadencia de ejecución de cada pipeline dependerá de la frecuencia de actualización de los datos y de las necesidades del negocio. Por ejemplo:</p>
+<h4>4. Cadencias y Dependencias entre Pipelines</h4>
 <ul>
-<li>Los pipelines para sistemas de gestión de ventas e inventarios podrían ejecutarse diariamente durante la noche para reflejar las transacciones del día.</li>
-<li>El pipeline para el sistema de logística y distribución podría ejecutarse semanalmente, dependiendo de la frecuencia de los pedidos y entregas.</li>
-<li>Los pipelines para datos de mercado y competencia, y para datos de clientes y preferencias, podrían ejecutarse según sea necesario o en una base regular (mensual, trimestral) dependiendo de la disponibilidad de los datos y su impacto en el modelo de previsión de demanda.</li>
+<li><strong>Cadencia de Ejecución</strong>: Los pipelines deben programarse para ejecutarse con la frecuencia adecuada según el patrón de ingesta definido para cada fuente. Por ejemplo, los pipelines para el ERP y el sistema de almacén podrían ejecutarse diariamente, mientras que el pipeline para el CRM de ventas podría ejecutarse en tiempo real o con una frecuencia más alta.</li>
+<li><strong>Dependencias</strong>: Debe definirse una dependencia entre pipelines si la ejecución de uno depende del éxito de otro. Por ejemplo, un pipeline de transformación podría depender de que los datos hayan sido copiados con éxito desde el origen.</li>
 </ul>
-<p>Las dependencias entre pipelines deben gestionarse cuidadosamente. Por ejemplo, el pipeline de orquestación podría asegurarse de que los pipelines de ingesta de datos se completen antes de proceder con cualquier proceso de transformación o análisis.</p>
-<p><strong>5. Riesgos Identificados y Recomendaciones de Mitigación</strong></p>
-<p>Se han identificado varios riesgos en las fuentes de datos, incluyendo la calidad de los datos, la seguridad y la privacidad, especialmente para los datos de clientes y preferencias. Para mitigar estos riesgos:</p>
+<h4>5. Riesgos Identificados y Recomendaciones de Mitigación</h4>
 <ul>
-<li><strong>Validación de Calidad de Datos</strong>: Implementar un proceso de validación y limpieza de datos antes de la ingesta para asegurar la calidad y consistencia de los datos.</li>
-<li><strong>Medidas de Seguridad</strong>: Implementar medidas robustas de seguridad y privacidad para proteger los datos de clientes y preferencias, como cifrado, acceso controlado y cumplimiento de regulaciones como el GDPR.</li>
-<li><strong>Acuerdos con Terceros</strong>: Asegurarse de tener acuerdos claros y actualizados con terceros para el uso de sus datos, especialmente para datos de mercado y competencia.</li>
-<li><strong>Capacitación del Personal</strong>: Capacitar al personal sobre las mejores prácticas de manejo y seguridad de datos para minimizar el riesgo de errores humanos.</li>
+<li><strong>Riesgo de Calidad de Datos</strong>: La calidad de los datos en las fuentes puede variar, lo que podría afectar la precisión del análisis. <strong>Recomendación</strong>: Realizar una evaluación detallada de la calidad de los datos y aplicar transformaciones y validaciones necesarias en los pipelines de ADF.</li>
+<li><strong>Riesgo de Integración</strong>: La integración de sistemas y la compatibilidad de los conectores pueden ser desafíos. <strong>Recomendación</strong>: Desarrollar o adquirir conectores personalizados si es necesario y realizar pruebas exhaustivas para asegurar la integración exitosa.</li>
+<li><strong>Riesgo de Seguridad y Permiso</strong>: El acceso a los datos y la seguridad son cruciales. <strong>Recomendación</strong>: Trabajar con los departamentos de IT y seguridad para asegurar que todos los permisos y protocolos de seguridad estén en lugar antes de comenzar la ingesta de datos.</li>
 </ul>
-<p>Al adoptar esta estrategia de ingesta de datos, FarmaNorte podrá asegurar una ingesta eficiente, segura y de alta calidad de sus fuentes de datos, lo que será fundamental para el éxito de su proyecto de lakehouse y modelo de previsión de demanda.</p></div>
+<p>Al considerar estos factores y diseñar una estrategia de ingesta de datos sólida con Azure Data Factory, FarmaNorte puede asegurar una base de datos robusta y confiable para su análisis y toma de decisiones, mitigando los riesgos asociados con la calidad, la integración y la seguridad de los datos.</p></div>
 </div>
 </div>
 <div class="section-card collapsed" id="card-roadmap-storage">
@@ -875,45 +881,43 @@
 <div class="section-body">
 <div class="prose" id="roadmap-storage"><h3>Propuesta de Arquitectura de Almacenamiento para FarmaNorte</h3>
 <h4>1. Decisión y Justificación sobre la Estructura de Capas</h4>
-<p>Basándome en el análisis de las fuentes de datos y la estrategia de ingesta definida, recomiendo una arquitectura de almacenamiento que utilice una estructura de capas medallion simplificada, específicamente Bronze y Silver, en lugar de la arquitectura completa Bronze/Silver/Gold. Esta decisión se justifica por el volumen moderado de datos y la madurez del equipo del cliente.</p>
-<p>La capa Bronze se utilizará para almacenar los datos raw, tal como se ingieren de las fuentes, sin transformaciones significativas. La capa Silver será utilizada para almacenar los datos transformados y preparados para el análisis. Esta estructura permitirá una buena calidad de datos y una mayor eficiencia en el procesamiento, sin la necesidad de una capa Gold que implica una mayor complejidad y madurez en el uso de los datos.</p>
+<p>Basándonos en el análisis de fuentes de datos y la estrategia de ingesta definida, recomendamos una arquitectura de almacenamiento que sigue un enfoque simplificado de dos capas, en lugar de la arquitectura medallion completa (Bronze, Silver, Gold). Esta decisión se justifica por varios motivos:</p>
+<ul>
+<li><strong>Volumen y Complejidad de Datos</strong>: El volumen de datos estimado y la complejidad de las fuentes sugieren que una arquitectura de dos capas (similar a Bronze y Gold) podría ser suficiente para satisfacer las necesidades de FarmaNorte, sin la necesidad de una capa intermedia (Silver) que añadiría complejidad adicional.</li>
+<li><strong>Nivel de Madurez del Cliente</strong>: Considerando el nivel de madurez actual de FarmaNorte en términos de gestión de datos y análisis, una arquitectura más simple facilitará la adopción y operación continua.</li>
+<li><strong>Requisitos del Proyecto</strong>: Los objetivos del proyecto se centran en la integración de datos de ventas, stock y logística, y el desarrollo de un modelo predictivo de previsión de demanda. Una arquitectura de dos capas apoyará estos objetivos de manera efectiva.</li>
+</ul>
 <h4>2. Servicios de Azure Recomendados y Justificación</h4>
 <ul>
-<li><strong>Azure Data Lake Storage Gen2 (ADLS Gen2)</strong>: Será utilizado como almacenamiento principal para los datos, tanto en la capa Bronze como en la Silver. ADLS Gen2 ofrece una gran escalabilidad, seguridad y compatibilidad con diversos servicios de Azure.</li>
-<li><strong>Azure Data Factory (ADF)</strong>: Se utilizará para la ingesta de datos y para orquestar las transformaciones entre las capas Bronze y Silver. ADF es ideal para la integración de datos y ofrece una amplia gama de conectores.</li>
-<li><strong>Azure Synapse Analytics</strong>: Será utilizado para el análisis de datos. Synapse Analytics ofrece capacidades de procesamiento de datos en batch y en tiempo real, así como integración con Power BI para la visualización.</li>
+<li><strong>Azure Data Lake Storage (ADLS) Gen2</strong>: Para el almacenamiento de datos. ADLS Gen2 ofrece un almacenamiento escalable y seguro para todo tipo de datos, y se integra bien con otros servicios de Azure como Azure Data Factory (ADF) y Azure Synapse Analytics.</li>
+<li><strong>Azure Data Factory (ADF)</strong>: Para la ingesta y transformación de datos. ADF permite la creación de pipelines para mover y transformar datos desde diversas fuentes hasta ADLS Gen2.</li>
+<li><strong>Azure Synapse Analytics</strong>: Para el análisis y procesamiento de datos. Synapse Analytics proporciona capacidades de análisis avanzado y machine learning, integrándose con ADLS Gen2 para procesar y analizar los datos almacenados.</li>
 </ul>
 <h4>3. Estructura de Carpetas y Estrategia de Particionado</h4>
-<p>La estructura de carpetas en ADLS Gen2 se organizará de la siguiente manera:</p>
 <ul>
-<li><code>/bronze/</code>: Almacenará los datos raw de cada fuente.</li>
-<li><code>/bronze/ventas/</code>: Datos de ventas.</li>
-<li><code>/bronze/inventarios/</code>: Datos de inventarios.</li>
-<li><code>/bronze/logistica/</code>: Datos de logística y distribución.</li>
-<li><code>/silver/</code>: Almacenará los datos transformados y preparados para el análisis.</li>
-<li><code>/silver/ventas/</code>: Datos de ventas transformados.</li>
-<li><code>/silver/inventarios/</code>: Datos de inventarios transformados.</li>
-<li><code>/silver/logistica/</code>: Datos de logística y distribución transformados.</li>
+<li><strong>Estructura de Carpetas</strong>: Se propone una estructura de carpetas en ADLS Gen2 que refleje las diferentes áreas de datos:</li>
+<li><code>/raw</code>: Para datos crudos e ingestados directamente desde las fuentes.</li>
+<li><code>/processed</code>: Para datos procesados y transformados, listos para análisis.</li>
+<li><strong>Estrategia de Particionado</strong>: Se recomienda particionar los datos basado en la fecha de ingesta o la fecha de evento, lo que facilitará la gestión y el análisis de grandes conjuntos de datos.</li>
 </ul>
-<p>La estrategia de particionado se basará en la fecha de ingesta y en la naturaleza de los datos. Por ejemplo, los datos de ventas podrían particionarse por fecha de venta y tipo de producto.</p>
 <h4>4. Políticas de Retención y Tier de Acceso</h4>
 <ul>
-<li><strong>Políticas de Retención</strong>: Se establecerán políticas de retención basadas en la relevancia de los datos para el negocio y los requisitos legales. Por ejemplo, los datos de ventas y inventarios podrían retenerse durante 5 años, mientras que los datos de logística podrían retenerse durante 2 años.</li>
-<li><strong>Tier de Acceso</strong>: Se utilizarán diferentes tiers de acceso en ADLS Gen2 para gestionar el costo y el acceso a los datos. Los datos más recientes y frecuentemente accedidos se almacenarán en un tier de acceso rápido, mientras que los datos menos recientes se moverán a un tier de acceso más lento y económico.</li>
+<li><strong>Políticas de Retención</strong>: Establecer políticas de retención basadas en los requisitos legales y de negocio de FarmaNorte. Por ejemplo, datos de transacciones podrían retenerse por un período determinado según regulaciones específicas.</li>
+<li><strong>Tier de Acceso</strong>: Implementar una estrategia de tier de acceso para optimizar el costo. Los datos más recientemente utilizados o de acceso frecuente se almacenarán en un tier de acceso rápido, mientras que los datos menos frecuentemente accedidos se moverán a tiers más económicos.</li>
 </ul>
 <h4>5. Consideraciones de Seguridad y Gobierno de Acceso</h4>
 <ul>
-<li><strong>Autenticación y Autorización</strong>: Se implementarán medidas de autenticación y autorización utilizando Azure Active Directory (AAD) para controlar quién puede acceder y modificar los datos.</li>
-<li><strong>Cifrado</strong>: Todos los datos en tránsito y en reposo estarán cifrados utilizando tecnologías como SSL/TLS y Azure Storage Service Encryption.</li>
-<li><strong>Gobierno de Datos</strong>: Se establecerán políticas de gobierno de datos claras, definiendo roles y responsabilidades para la gestión de la calidad, seguridad y privacidad de los datos.</li>
+<li><strong>Autenticación y Autorización</strong>: Utilizar Azure Active Directory (AAD) para la autenticación y autorización de usuarios y servicios, asegurando que solo los usuarios autorizados puedan acceder a los datos.</li>
+<li><strong>Cifrado de Datos</strong>: Implementar el cifrado de datos tanto en tránsito como en reposo, utilizando tecnologías como Azure Storage Service Encryption.</li>
+<li><strong>Gobierno de Datos</strong>: Establecer políticas de gobierno de datos claras, definiendo roles y responsabilidades para la gestión de datos, calidad de datos y seguridad.</li>
 </ul>
 <h4>6. Riesgos y Recomendaciones Operativas</h4>
 <ul>
-<li><strong>Monitoreo Continuo</strong>: Es crucial monitorear continuamente la arquitectura para identificar posibles problemas de rendimiento, seguridad o calidad de datos.</li>
-<li><strong>Capacitación del Personal</strong>: Se recomienda capacitar al personal en las mejores prácticas de manejo de datos, seguridad y uso de los servicios de Azure.</li>
-<li><strong>Escalabilidad</strong>: La arquitectura debe ser escalable para adaptarse al crecimiento futuro de los datos y las necesidades del negocio.</li>
+<li><strong>Monitoreo y Alertas</strong>: Configurar monitoreo y alertas en ADF y Synapse Analytics para detectar problemas de ingesta o análisis de datos.</li>
+<li><strong>Capacitación y Soporte</strong>: Proporcionar capacitación al equipo de FarmaNorte sobre la operación y mantenimiento de la arquitectura de datos propuesta.</li>
+<li><strong>Revisión y Ajuste</strong>: Regularmente revisar la arquitectura y las políticas de gestión de datos para asegurarse de que siguen alineadas con las necesidades cambiantes de FarmaNorte.</li>
 </ul>
-<p>Esta propuesta de arquitectura de almacenamiento está diseñada para satisfacer las necesidades de FarmaNorte, ofreciendo una solución escalable, segura y eficiente para la gestión de sus datos.</p></div>
+<p>Esta propuesta de arquitectura de almacenamiento está diseñada para ser escalable, segura y alineada con los objetivos de FarmaNorte, proporcionando una base sólida para el análisis de datos y la toma de decisiones informadas.</p></div>
 </div>
 </div>
 <div class="section-card collapsed" id="card-roadmap-etl">
@@ -931,49 +935,69 @@
 <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
 </div>
 <div class="section-body">
-<div class="prose" id="roadmap-etl"><p><strong>Capa de Procesamiento y ETL para FarmaNorte</strong></p>
-<p>Basándonos en el análisis previo de fuentes, ingesta y almacenamiento, y considerando el perfil del cliente, volumen de datos y complejidad de las transformaciones, se decidirá entre Databricks y Azure Synapse Analytics para diseñar la capa de procesamiento.</p>
-<h4>1. Decisión y justificación entre Databricks y Synapse</h4>
-<p>Después de evaluar las necesidades específicas de FarmaNorte, se concluye que Azure Synapse Analytics es suficiente para manejar el volumen de datos y la complejidad de las transformaciones requeridas. Synapse ofrece una plataforma escalable y eficiente para el procesamiento de datos, y su integración con otros servicios de Azure, como Azure Data Factory y Power BI, facilita la orquestación y la visualización de los datos. Además, el equipo de FarmaNorte puede operar Synapse sin necesidad de ingenieros de datos senior, lo que reduce la complejidad operativa y los costos.</p>
-<p>No se justifica el uso de Databricks en este caso, ya que el volumen de datos y la complejidad de las transformaciones no requieren la potencia adicional que ofrece Spark en Databricks. Además, el equipo de FarmaNorte no tiene la necesidad de procesar grandes conjuntos de datos en un entorno de Big Data, lo que reduce la necesidad de una solución como Databricks.</p>
-<h4>2. Transformaciones principales por capa</h4>
-<p>La capa de procesamiento se dividirá en tres capas: Bronze, Silver y Gold.</p>
+<div class="prose" id="roadmap-etl"><h3>Propuesta de Capa de Procesamiento y ETL</h3>
+<h4>Decisión y justificación entre Databricks y Synapse</h4>
+<p>Basándonos en la arquitectura de almacenamiento y la estrategia de ingesta definidas en el análisis previo, y considerando el perfil del cliente y el volumen de datos, decidimos que Azure Synapse Analytics es suficiente para cubrir las necesidades de procesamiento y transformación de datos de FarmaNorte. La justificación de esta decisión se basa en varios factores: </p>
+<ol>
+<li><strong>Volumen de datos</strong>: Aunque no se proporciona un volumen específico, el análisis inicial sugiere que se trata de un conjunto de datos manejable para Synapse, especialmente considerando que los orígenes de datos incluyen sistemas de gestión como SAP Business One, SQL Server y Salesforce, que normalmente generan cantidades significativas pero no masivas de datos.</li>
+</ol>
+<ol>
+<li><strong>Complejidad de las transformaciones</strong>: Las transformaciones necesarias, como la integración de datos de ventas, stock y logística, y el desarrollo de un modelo predictivo de previsión de demanda, pueden ser manejadas efectivamente por Synapse. Synapse ofrece capacidades de procesamiento de datos y análisis avanzados, incluyendo la integración con Azure Machine Learning para tareas de machine learning, lo que cubre las necesidades identificadas.</li>
+</ol>
+<ol>
+<li><strong>Capacidad del equipo</strong>: Considerando que el equipo de FarmaNorte no cuenta con ingenieros de datos senior, y basándonos en el objetivo de diseñar una solución que el equipo pueda operar en seis meses sin nuestra supervisión directa, Synapse ofrece una plataforma más integrada y fácil de usar, con herramientas visuales para el diseño de pipelines de datos y la creación de workflows, lo que facilita su adopción y operación.</li>
+</ol>
+<h4>Transformaciones principales por capa</h4>
+<p>Las transformaciones de datos se dividen en varias capas, cada una con sus objetivos específicos:</p>
 <ul>
-<li><strong>Capa Bronze</strong>: En esta capa, se realizarán las transformaciones básicas de datos, como la limpieza y el formato de los datos. Se utilizarán Azure Data Factory y Azure Synapse Analytics para realizar estas transformaciones.</li>
-<li><strong>Capa Silver</strong>: En esta capa, se realizarán transformaciones más complejas, como la agregación y el análisis de los datos. Se utilizarán Azure Synapse Analytics y Azure Machine Learning para realizar estas transformaciones.</li>
-<li><strong>Capa Gold</strong>: En esta capa, se almacenarán los datos transformados y listos para su análisis y visualización. Se utilizará Azure Synapse Analytics y Power BI para realizar la visualización y el análisis de los datos.</li>
+<li><strong>Capa Bronze (Raw)</strong>: En esta capa, se ingieren los datos desde las fuentes originales (SAP Business One, SQL Server y Salesforce) utilizando Azure Data Factory. Los datos se almacenan en su forma bruta en el Data Lake (Azure Data Lake Storage Gen2) para su posterior procesamiento.</li>
 </ul>
-<p>Las transformaciones principales que deben ocurrir en esta capa incluyen:</p>
 <ul>
-<li>La limpieza y el formato de los datos de ventas, stock y logística.</li>
-<li>La agregación de los datos de ventas y stock por región y producto.</li>
-<li>La creación de un modelo de previsión de demanda utilizando Azure Machine Learning.</li>
-<li>La integración de los datos de logística y stock para reducir roturas de stock y capital inmovilizado en almacén.</li>
+<li><strong>Capa Silver (Transformed)</strong>: Aquí, se aplican las transformaciones necesarias a los datos brutos para prepararlos para el análisis. Esto incluye la limpieza de datos, el manejo de valores nulos, la normalización y la agregación de datos según sea necesario. Synapse Analytics se utiliza para ejecutar estos procesos de transformación.</li>
 </ul>
-<h4>3. Estrategia de calidad de datos y validaciones</h4>
-<p>La estrategia de calidad de datos y validaciones incluirá las siguientes etapas:</p>
 <ul>
-<li><strong>Validación de datos</strong>: Se validarán los datos de entrada para asegurarse de que sean correctos y completos.</li>
-<li><strong>Detección de anomalías</strong>: Se detectarán las anomalías en los datos y se alertará al equipo de FarmaNorte para su revisión y corrección.</li>
-<li><strong>Reconciliación de datos</strong>: Se reconciliarán los datos de diferentes fuentes para asegurarse de que sean consistentes y precisos.</li>
-<li><strong>Monitoreo de la calidad de los datos</strong>: Se monitoreará la calidad de los datos en tiempo real para detectar cualquier problema o anomalía.</li>
+<li><strong>Capa Gold (Refined)</strong>: En esta capa, los datos transformados se refinan aún más para satisfacer las necesidades específicas de los modelos de análisis y los dashboards. Esto puede incluir la creación de vistas, la aplicación de lógica de negocio adicional y la preparación de datos para la visualización.</li>
 </ul>
-<h4>4. Orquestación y scheduling de jobs</h4>
-<p>La orquestación y el scheduling de jobs se realizarán utilizando Azure Data Factory y Azure Synapse Analytics. Los jobs se programarán para ejecutarse automáticamente en intervalos regulares, como diariamente o semanalmente, dependiendo de las necesidades de FarmaNorte.</p>
-<h4>5. Riesgos operativos y recomendaciones de mantenimiento</h4>
-<p>Los riesgos operativos incluyen:</p>
+<h4>Estrategia de calidad de datos y validaciones</h4>
+<p>La estrategia de calidad de datos incluye:</p>
 <ul>
-<li><strong>Fallas en la ingesta de datos</strong>: Se pueden producir fallos en la ingesta de datos debido a problemas con las fuentes de datos o con la infraestructura de Azure.</li>
-<li><strong>Problemas de rendimiento</strong>: Se pueden producir problemas de rendimiento debido a la gran cantidad de datos o a la complejidad de las transformaciones.</li>
-<li><strong>Fallas en la seguridad</strong>: Se pueden producir fallos en la seguridad debido a la falta de cumplimiento con las políticas de seguridad de Azure.</li>
+<li><strong>Validaciones de ingreso</strong>: Se verifican los datos al ingresarse a la capa Bronze para asegurarse de quecumplen con los criterios básicos de formato y estructura.</li>
 </ul>
-<p>Para mitigar estos riesgos, se recomienda:</p>
 <ul>
-<li><strong>Monitorear la ingesta de datos y la infraestructura de Azure</strong>: Se debe monitorear la ingesta de datos y la infraestructura de Azure para detectar cualquier problema o anomalía.</li>
-<li><strong>Realizar pruebas y validaciones</strong>: Se deben realizar pruebas y validaciones regulares para asegurarse de que los jobs se ejecutan correctamente y que los datos son precisos.</li>
-<li><strong>Cumplir con las políticas de seguridad de Azure</strong>: Se debe cumplir con las políticas de seguridad de Azure para asegurarse de que los datos estén seguros y protegidos.</li>
+<li><strong>Detección de anomalías</strong>: Se implementan reglas y algoritmos para detectar datos anómalos o inconsistentes en las capas Silver y Gold.</li>
 </ul>
-<p>En resumen, la capa de procesamiento y ETL para FarmaNorte se diseñará utilizando Azure Synapse Analytics y Azure Data Factory. Se realizarán transformaciones básicas y complejas en las capas Bronze, Silver y Gold, y se utilizará Azure Machine Learning para crear un modelo de previsión de demanda. La estrategia de calidad de datos y validaciones incluirá la validación de datos, la detección de anomalías, la reconciliación de datos y el monitoreo de la calidad de los datos. La orquestación y el scheduling de jobs se realizarán utilizando Azure Data Factory y Azure Synapse Analytics, y se mitigarán los riesgos operativos mediante la monitorización, las pruebas y validaciones, y el cumplimiento con las políticas de seguridad de Azure.</p></div>
+<ul>
+<li><strong>Reconciliación de datos</strong>: Se comparan los datos transformados con los datos originales para asegurarse de que las transformaciones se han realizado correctamente y no se han introducido errores.</li>
+</ul>
+<ul>
+<li><strong>Monitoreo continuo</strong>: Se establecen procesos para monitorear la calidad de los datos de manera continua, identificando y corrigiendo cualquier problema de manera proactiva.</li>
+</ul>
+<h4>Orquestación y scheduling de jobs</h4>
+<p>La orquestación y programación de los trabajos de procesamiento se realizarán mediante Azure Data Factory, que ofrece herramientas visuales para diseñar, programar y administrar pipelines de datos. Esto Permitirá:</p>
+<ul>
+<li><strong>Automatización</strong>: Automatizar los flujos de trabajo para que los datos se procesen y transformen de manera regular y consistente.</li>
+</ul>
+<ul>
+<li><strong>Programación</strong>: Programar los trabajos para que se ejecuten en momentos específicos del día o la semana, asegurando que los datos estén actualizados y listos para el análisis cuando sea necesario.</li>
+</ul>
+<ul>
+<li><strong>Monitoreo</strong>: Monitorear los trabajos para detectar cualquier error o problema, permitiendo una respuesta rápida y minimizando el tiempo de inactividad.</li>
+</ul>
+<h4>Riesgos operativos y recomendaciones de mantenimiento</h4>
+<p>Para mitigar los riesgos operativos y asegurar el mantenimiento adecuado de la capa de procesamiento y ETL, se recomiendan las siguientes acciones:</p>
+<ul>
+<li><strong>Capacitación del equipo</strong>: Proporcionar capacitación adecuada al equipo de FarmaNorte sobre el uso y el mantenimiento de la plataforma Synapse, así como sobre las mejores prácticas para la gestión de datos.</li>
+</ul>
+<ul>
+<li><strong>Monitoreo y respuesta</strong>: Establecer procesos de monitoreo continuo y tener un plan de respuesta para abordar cualquier problema que surja, minimizando el impacto en la operación.</li>
+</ul>
+<ul>
+<li><strong>Actualizaciones y parches</strong>: Mantener la plataforma y las herramientas actualizadas con los últimos parches de seguridad y actualizaciones de funcionalidad, asegurando la protección y la eficiencia del sistema.</li>
+</ul>
+<ul>
+<li><strong>Documentación</strong>: Mantener una documentación detallada y actualizada sobre la arquitectura, los procesos y las configuraciones, facilitando la resolución de problemas y el mantenimiento a largo plazo.</li>
+</ul>
+<p>Al seguir esta propuesta, FarmaNorte podrá implementar una capa de procesamiento y ETL eficaz y sostenible, que satisfaga sus necesidades de análisis de datos y apoye su toma de decisiones empresariales.</p></div>
 </div>
 </div>
 <div class="section-card collapsed" id="card-roadmap-modeling">
@@ -991,37 +1015,43 @@
 <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
 </div>
 <div class="section-body">
-<div class="prose" id="roadmap-modeling"><h3>1️⃣ Decisión sobre el tipo de modelo analítico y justificación  </h3>
-<p>| Opción | Ventajas | Desventajas | Por qué la elegimos |<br/>|--------|----------|-------------|---------------------|<br/>| <strong>Esquema en estrella clásico</strong> (Fact + Dimensiones) | - Muy fácil de entender para usuarios de negocio.&lt;br&gt;- Buen rendimiento en consultas agregadas.&lt;br&gt;- Compatibilidad nativa con Power BI y Azure Analysis Services.&lt;br&gt;- Permite precalcular métricas y aplicar <em>aggregations</em> sin perder claridad. | - Menor flexibilidad ante cambios de atributos.&lt;br&gt;- Puede generar redundancia ligera en dimensiones “slowly changing”. | El objetivo prioritario es <strong>usabilidad</strong>. Los analistas de FarmaNorte están acostumbrados a modelos tabulares y a “tablas de hechos” en Power BI. Un esquema en estrella satisface esa expectativa y, al estar respaldado por Synapse SQL Pool, escala sin problemas. |<br/>| <strong>Modelo dimensional “snowflake”</strong> | - Reduce redundancia de atributos muy compartidos.&lt;br&gt;- Mejor normalización. | - Más joins → mayor complejidad de modelo y menor performance en BI. | No necesario porque la complejidad de atributos es moderada y la claridad supera la ganancia de espacio. |<br/>| <strong>Capa semántica directa en Power BI / Azure Analysis Services</strong> | - No se necesita modelado físico adicional; la capa semántica puede mapear directamente a tablas de Gold.&lt;br&gt;- Rápida puesta en marcha. | - Menor control de historización y de pre‑agregaciones.&lt;br&gt;- Dependencia total del motor de Power BI para performance. | Se usará <strong>Analysis Services (AS) en modo Tabular</strong> como capa semántica intermedia: permite definir medidas DAX, roles de seguridad y <em>perspectives</em> sin sacrificar la robustez del modelo dimensional en Synapse. Además, facilita la reutilización de ese mismo modelo por Power BI, Azure ML y APIs. |</p>
-<p>&gt; <strong>Decisión final:</strong> Diseñar un <strong>modelo dimensional en estrella</strong> almacenado en <strong>Synapse Dedicated SQL Pool</strong> y exponerlo a través de <strong>Azure Analysis Services (Tabular)</strong>. Power BI consumirá la capa AS y, opcionalmente, los usuarios avanzados podrán conectarse directamente al pool vía ODBC/JDBC o a la capa AS mediante REST/JSON para APIs y procesos de ML.</p>
+<div class="prose" id="roadmap-modeling"><h3>1. Decisión sobre el tipo de modelo analítico y justificación  </h3>
+<p>| Opción | Ventajas | Desventajas / Riesgos | Decisión para FarmaNorte |<br/>|--------|----------|-----------------------|--------------------------|<br/>| <strong>Esquema en estrella clásico en Synapse (DW → Fact + Dim)</strong> | • Modelo familiar para analistas y usuarios de negocio  &lt;br&gt;• Excelente rendimiento con índices columnstore y particiones  &lt;br&gt;• Fácil de documentar y validar contra los requerimientos de negocio  &lt;br&gt;• Permite crear agregados materializados para KPIs críticos | • Requiere un paso de modelado “extra” antes de la capa semántica  &lt;br&gt;• Si el negocio pide mucha flexibilidad en atributos ad‑hoc, el modelo rígido puede generar “snowflaking” no deseado | <strong>Sí</strong> – se implementa un <strong>esquema en estrella</strong> como núcleo del Data Warehouse.  |<br/>| <strong>Modelo “flexible” (Data Vault + hub‑link‑satélite)</strong> | • Muy adaptable a cambios de fuente y a nuevas entidades &lt;br&gt;• Buen historial de auditoría y trazabilidad | • Más complejo de entender para el negocio &lt;br&gt;• Necesita mayor esfuerzo de capacitación y de mantenimiento &lt;br&gt;• Menor rendimiento en consultas agregadas típicas de reporting | No – la prioridad es la <strong>comprensibilidad</strong> y la rapidez de adopción. |<br/>| <strong>Capa semántica directa en Power BI (datasets Premium)</strong> | • No se necesita DW físico; Power BI gestiona modelado y agregados &lt;br&gt;• Tiempo de puesta en marcha rápido &lt;br&gt;• Auto‑cache y optimizaciones internas | • Escalabilidad limitada cuando el volumen crece &lt;br&gt;• Dependencia de Power BI para toda la lógica (pérdida de reutilización en APIs/ML) &lt;br&gt;• Menor control de seguridad a nivel de tabla | No – se usará <strong>Power BI</strong> como capa de consumo, pero <strong>no</strong> como única fuente del modelo. |<br/>| <strong>Capa semántica en Azure Analysis Services (Tabular)</strong> | • Separación clara entre almacenamiento (Synapse) y presentación (AS) &lt;br&gt;• Reutilizable por BI, APIs y modelos ML (via XMLA) &lt;br&gt;• Soporta medidas DAX, roles de seguridad y caché | • Coste adicional de AS (o Power BI Premium) &lt;br&gt;• Necesita gestión de versiones del modelo | <strong>Sí</strong> – se implementará una <strong>capa semántica en Azure Analysis Services</strong> (o Power BI Premium Gen2) sobre el esquema en estrella.  |</p>
+<p><strong>Resumen:</strong> </p>
+<ol>
+<li><strong>DW en Synapse</strong> → esquema en estrella (Fact + Dim).  </li>
+<li><strong>Capa semántica</strong> en Azure Analysis Services (tabular) que expone el modelo a Power BI, a APIs y a consumidores de ML.  </li>
+<li>Esta arquitectura combina <strong>rendimiento de un data‑warehouse tradicional</strong> con la <strong>usabilidad y gobernanza centralizada</strong> de un modelo tabular, alineado con la necesidad de que los usuarios de negocio comprendan y confíen en los datos.</li>
+</ol>
 <hr/>
-<h3>2️⃣ Entidades principales del modelo (hechos, dimensiones o equivalentes)</h3>
-<h4>2.1 Tabla de Hechos  </h4>
-<p>| Nombre | Descripción | Granularidad | Columnas clave (ejemplo) |<br/>|--------|-------------|--------------|--------------------------|<br/>| <strong>FactVentas</strong> | Cada línea de venta (pedido) confirmada. | Por línea de pedido (producto × fecha × tienda). | <code>VentaID</code>, <code>FechaID</code>, <code>ProductoID</code>, <code>ClienteID</code>, <code>TiendaID</code>, <code>CanalID</code>, <code>Cantidad</code>, <code>PrecioUnitario</code>, <code>Descuento</code>, <code>Costo</code>, <code>Ingresos</code>, <code>MargenBruto</code>. |<br/>| <strong>FactInventario</strong> | Estado de stock al cierre de cada día por ubicación. | Por día × producto × ubicación. | <code>InventarioID</code>, <code>FechaID</code>, <code>ProductoID</code>, <code>AlmacenID</code>, <code>CantidadDisponible</code>, <code>CantidadReservada</code>, <code>ValorInventario</code>. |<br/>| <strong>FactLogistica</strong> | Movimientos de mercancía (recepciones, transferencias, entregas). | Por movimiento. | <code>LogisticaID</code>, <code>FechaID</code>, <code>ProductoID</code>, <code>AlmacenOrigenID</code>, <code>AlmacenDestinoID</code>, <code>TipoMovimiento</code>, <code>Cantidad</code>, <code>CostoTransporte</code>. |<br/>| <strong>FactPronostico</strong> | Resultado del modelo de demanda (diario por producto y zona). | Por día × producto × zona. | <code>PronosticoID</code>, <code>FechaID</code>, <code>ProductoID</code>, <code>ZonaID</code>, <code>DemandaPrevista</code>, <code>CI<em>Lower</em></code>, <code>CIUpper</code>. |</p>
-<p>&gt; <strong>Nota:</strong> Cada tabla de hechos contiene <strong>columnas de tipo “degenerate”</strong> (p. ej. <code>VentaID</code>) para permitir trazabilidad a los sistemas origen sin crear dimensiones adicionales.</p>
-<h4>2.2 Dimensiones  </h4>
-<p>| Dimensión | Propósito | Clave principal | Atributos clave (ejemplo) |<br/>|-----------|-----------|-----------------|---------------------------|<br/>| <strong>DimFecha</strong> | Calendaría completa, soporta periodos contables y de pronóstico. | <code>FechaID</code> | <code>Fecha</code>, <code>Año</code>, <code>Mes</code>, <code>Trimestre</code>, <code>SemanaFiscal</code>, <code>DiaSemana</code>, <code>EsFinDeSemana</code>, <code>EsFestivo</code>. |<br/>| <strong>DimProducto</strong> | Catálogo de fármacos y materiales. | <code>ProductoID</code> | <code>CodigoSKU</code>, <code>Descripcion</code>, <code>Categoria</code>, <code>Subcategoria</code>, <code>Marca</code>, <code>TipoProducto</code> (medicamento, insumo), <code>FechaLanzamiento</code>, <code>FechaDescontinuacion</code>, <code>PrecioBase</code>, <code>UmbralRotura</code>. |<br/>| <strong>DimCliente</strong> | Clientes (farmacias, hospitales, distribuidores). | <code>ClienteID</code> | <code>Nombre</code>, <code>TipoCliente</code>, <code>Segmento</code>, <code>RegionID</code>, <code>Ciudad</code>, <code>ClasificacionRiesgo</code>, <code>VolumenAnual</code>. |<br/>| <strong>DimTienda</strong> | Puntos de venta (farmacias) y sucursales. | <code>TiendaID</code> | <code>CodigoTienda</code>, <code>NombreTienda</code>, <code>RegionID</code>, <code>Ciudad</code>, <code>TipoTienda</code> (propia, franquicia). |<br/>| <strong>DimAlmacen</strong> | Depósitos y centros de distribución. | <code>AlmacenID</code> | <code>CodigoAlmacen</code>, <code>Nombre</code>, <code>TipoAlmacen</code> (central, regional), <code>RegionID</code>, <code>CapacidadM3</code>. |<br/>| <strong>DimCanal</strong> | Canal de venta (prescripción, venta libre, e‑commerce). | <code>CanalID</code> | <code>NombreCanal</code>, <code>Descripcion</code>. |<br/>| <strong>DimRegion</strong> | Agrupación geográfica para análisis de demanda y rotura. | <code>RegionID</code> | <code>NombreRegion</code>, <code>Pais</code>, <code>NivelJerarquico</code> (Nacional &gt; Regional &gt; Local). |<br/>| <strong>DimTipoMovimiento</strong> | Tipo de transacción logística. | <code>TipoMovimientoID</code> | <code>Descripcion</code>, <code>EsEntrada</code>, <code>EsSalida</code>. |<br/>| <strong>DimUsuario</strong> (opcional) | Seguridad y auditoría. | <code>UsuarioID</code> | <code>Login</code>, <code>Nombre</code>, <code>Rol</code>, <code>Dominio</code>. |</p>
-<p>Todas las dimensiones se modelan con <strong>carga lenta (SCD Type 2)</strong> para preservar historización de atributos críticos (p. ej. cambio de categoría de producto o reasignación de cliente a otra región).  </p>
+<h3>2. Entidades principales del modelo (hechos y dimensiones)</h3>
+<h4>2.1. Tablas de hechos  </h4>
+<p>| Fact | Descripción breve | Claves foráneas | Medidas principales |<br/>|------|-------------------|-----------------|---------------------|<br/>| <strong>FactSales</strong> | Cada línea de factura / oportunidad de venta. | DimDate, DimProduct, DimCustomer, DimChannel, DimStore, DimSalesRep | QtySold, NetRevenue, GrossRevenue, DiscountAmt, CostOfGoodsSold, Margin, UnitsReturned |<br/>| <strong>FactInventory</strong> | Snapshot diario del stock disponible por producto y almacén. | DimDate, DimProduct, DimWarehouse, DimStore | StockOnHand, StockValue, ReservedQty, InTransitQty |<br/>| <strong>FactStockMovement</strong> | Movimientos de inventario (recepciones, ajustes, transferencias). | DimDate, DimProduct, DimWarehouse, DimMovementType | QtyMoved, MoveCost |<br/>| <strong>FactLogistics</strong> | Información de envíos y entregas (fecha de salida, llegada, transportista). | DimDate, DimProduct, DimWarehouse, DimStore, DimCarrier | QtyShipped, ShippingCost, LeadTimeDays |<br/>| <strong>FactDemandForecast</strong> | Pronóstico de demanda generado por AML (por producto, tienda y horizonte). | DimDate (forecast horizon), DimProduct, DimStore | ForecastQty, ForecastConfidence, ModelVersion |<br/>| <strong>FactStockShortage</strong> (tabla de eventos) | Incidencias de rotura de stock detectadas. | DimDate, DimProduct, DimStore | ShortageQty, DurationDays, LostRevenue (estimado) |</p>
+<p>&gt; <strong>Nota:</strong> Cada tabla de hecho está almacenada como <strong>columna‑store</strong> y particionada por <code>DimDate</code> (año‑mes) para acelerar las consultas de series temporales.</p>
+<h4>2.2. Tablas de dimensiones  </h4>
+<p>| Dimensión | Propósito | Columnas clave (ejemplo) |<br/>|-----------|-----------|--------------------------|<br/>| <strong>DimDate</strong> | Calendario completo, atributos de tiempo (día, semana, mes, trimestre, año fiscal, día laborable, etc.) | DateKey (YYYYMMDD), Date, DayOfWeek, IsHoliday, FiscalMonth, FiscalQuarter |<br/>| <strong>DimProduct</strong> | Catálogo de productos farmacéuticos. | ProductKey, SKU, ProductName, ATCCode, TherapeuticClass, UnitOfMeasure, PackSize, ShelfLife, IsActive |<br/>| <strong>DimCustomer</strong> | Clientes (farmacias, hospitales, distribuidores). | CustomerKey, CustomerName, Type (Retail/Institutional), Segment, Region, City, PostalCode, AccountStatus |<br/>| <strong>DimStore</strong> | Puntos de venta/tiendas físicas y virtuales. | StoreKey, StoreName, StoreType, Region, Country, Latitude, Longitude, OpeningDate |<br/>| <strong>DimWarehouse</strong> | Centros logísticos y almacenes. | WarehouseKey, WarehouseName, Location, Capacity, Manager |<br/>| <strong>DimChannel</strong> | Canal de venta (Direct, Distributor, Online, Pharmacy Network). | ChannelKey, ChannelName, Description |<br/>| <strong>DimSalesRep</strong> | Representantes comerciales. | SalesRepKey, Name, Territory, HireDate, Role |<br/>| <strong>DimMovementType</strong> | Tipo de movimiento de inventario (Receipt, Issue, Adjustment, Transfer, Return). | MovementTypeKey, Description |<br/>| <strong>DimCarrier</strong> | Transportista/logística. | CarrierKey, CarrierName, Mode (Road, Air, Sea), SLA_Days |<br/>| <strong>DimModelVersion</strong> | Versiones del modelo de previsión de demanda. | ModelVersionKey, VersionNumber, TrainingDate, Algorithm, Parameters, AccuracyScore |</p>
+<p>Todas las dimensiones son <strong>slow‑changing‑type 2</strong> (SCD‑2) donde sea necesario (p. ej., DimProduct para cambios de clasificación ATC, DimCustomer para cambios de segmento), de modo que el historial de análisis siempre sea consistente.</p>
 <hr/>
-<h3>3️⃣ Métricas de negocio clave y cálculos precalculados  </h3>
-<p>| Métrica | Fórmula (DAX/SQL) | Tipo | Comentario de precálculo |<br/>|---------|-------------------|------|--------------------------|<br/>| <strong>Ingresos Totales</strong> | <code>SUM(FactVentas.Ingresos)</code> | Medida | Se almacena en la tabla de hechos (<code>Ingresos = Cantidad <em> PrecioUnitario </em> (1‑Descuento)</code>). |<br/>| <strong>Margen Bruto</strong> | <code>SUM(FactVentas.MargenBruto)</code> | Medida | <code>MargenBruto = Ingresos – Costo</code>. |<br/>| <strong>Rotura de Stock (Days Out of Stock)</strong> | <code>COUNTROWS(FILTER(FactInventario, CantidadDisponible = 0))</code> por producto/fecha | Medida | Se calcula sobre la tabla de inventario; se crea una tabla agregada <em>FactRotura</em> con el número de días sin stock por mes para acelerar los dashboards ejecutivos. |<br/>| <strong>Inventario Inmovilizado (€)</strong> | <code>SUM(FactInventario.ValorInventario)</code> | Medida | Precálculo diario en <code>FactInventario</code>. |<br/>| <strong>Cobertura de Demanda</strong> | <code>DIVIDE(SUM(FactVentas.Cantidad), SUM(FactPronostico.DemandaPrevista), 0)</code> | Medida | Permite comparar ventas reales vs. pronóstico. |<br/>| <strong>Error Absoluto del Pronóstico (MAE)</strong> | <code>AVG(ABS(FactVentas.Cantidad - FactPronostico.DemandaPrevista))</code> | Medida | Se materializa en tabla <em>FactPronosticoError</em> a nivel semanal. |<br/>| <strong>Tasa de Cumplimiento de Pedidos</strong> | <code>DIVIDE(SUM(CASE WHEN FactVentas.CantidadEntregada &gt;= FactVentas.Cantidad THEN 1 ELSE 0 END), COUNT(FactVentas.VentaID))</code> | Medida | Se guarda en tabla de hechos <em>FactCumplimiento</em>. |<br/>| <strong>Ciclo de Reposición (días)</strong> | <code>DATEDIFF(MIN(FactLogistica.FechaEntrada), MAX(FactLogistica.FechaSalida), DAY)</code> por producto/almacén | Medida | Se precalcula en tabla <em>FactCicloReposicion</em> (una fila por mes). |<br/>| <strong>Valor de Stock por Región</strong> | <code>SUMX(RELATEDTABLE(FactInventario), FactInventario.ValorInventario)</code> | Medida | Disponible en el modelo a nivel de dimensión <em>DimRegion</em>. |<br/>| <strong>KPIs de Ventas por Canal</strong> | <code>SUM(FactVentas.Ingresos)</code>, <code>SUM(FactVentas.Cantidad)</code> filtrados por <code>DimCanal</code> | Medida | Se exponen como <em>perspectives</em> en AS. |</p>
-<p><strong>Estrategia de pre‑agregación</strong> </p>
+<h3>3. Métricas de negocio clave y cálculos precalculados  </h3>
+<p>| Métrica (KPIs) | Tabla de origen | Cálculo (pre‑agregado o medida DAX) | Comentario de negocio |<br/>|----------------|----------------|------------------------------------|-----------------------|<br/>| <strong>Roturas de Stock</strong> | FactStockShortage | <code>SUM(ShortageQty)</code> y <code>AVG(DurationDays)</code> | Se muestra por producto, tienda y período. |<br/>| <strong>Inventario Inmovilizado</strong> | FactInventory | <code>SUM(CASE WHEN DaysInStock &gt; 180 THEN StockValue ELSE 0 END)</code> | Días en stock calculado a partir de <code>DimDate</code> – <code>LastMovementDate</code>. |<br/>| <strong>Exactitud del Forecast</strong> | FactDemandForecast vs FactSales (real) | <strong>MAE</strong> = <code>AVG(ABS(ForecastQty - ActualQty))</code> ; <strong>MAPE</strong> = <code>AVG(ABS(ForecastQty - ActualQty)/ActualQty)</code> | Se calcula a nivel de producto‑tienda‑mes. |<br/>| <strong>Cobertura de Demanda</strong> | FactSales vs FactInventory (stock disponible) | <code>SUM(QtySold) / NULLIF(SUM(StockOnHand + InTransitQty),0)</code> | Indicador de capacidad de atender la demanda. |<br/>| <strong>Margen Bruto</strong> | FactSales | <code>(GrossRevenue - CostOfGoodsSold) / GrossRevenue</code> | Expone rentabilidad por producto y canal. |<br/>| <strong>Lead Time Logístico</strong> | FactLogistics | <code>AVG(LeadTimeDays)</code> | Permite detectar cuellos de botella en la cadena. |<br/>| <strong>Ventas por Canal</strong> | FactSales | <code>SUM(NetRevenue) GROUP BY Channel</code> | Dashboard ejecutivo. |<br/>| <strong>Días de Inventario (Days of Inventory – DOI)</strong> | FactInventory | <code>AVG(StockOnHand / (AVG(QtySold)/30))</code> | Medida de rotación de inventario. |<br/>| <strong>Coste de Stock‑out</strong> | FactStockShortage (estimado) | <code>SUM(LostRevenue)</code> | Calculado con base en margen histórico. |<br/>| <strong>Indicadores de Calidad de Datos</strong> | (Gold tables) | <code>COUNT(*) WHERE ValidationFlag = 0</code> | Métrica de calidad para el Data Steward. |</p>
+<p><strong>Implementación:</strong> </p>
 <ul>
-<li><strong>Tablas de agregados</strong> (<code>FactVentas<em>Mes</em></code>, <code>FactInventarioMes</code>, <code>FactRotura_Mes</code>) se generan nightly con <strong>CTAS</strong> en Synapse.  </li>
-<li>Estas tablas alimentan directamente los <em>visuales</em> de nivel de alta granularidad (dashboards ejecutivos) y reducen el tiempo de respuesta a &lt; 2 s.  </li>
-<li>En la capa AS, se definen <strong>measure groups</strong> que apuntan a la tabla de detalle y a las tablas de agregados, con la opción <strong>“Aggregation Awareness”</strong>.</li>
+<li>En <strong>Synapse</strong> se crean <strong>tablas agregadas</strong> (materialized views) para los KPIs que requieren alta frecuencia (roturas de stock, inventario inmovilizado, lead time).  </li>
+<li>En <strong>Analysis Services</strong> (o Power BI) se definen <strong>medidas DAX</strong> que reutilizan esas tablas agregadas y añaden cálculos context‑aware (p.ej., “% de cobertura” con filtros de fecha y canal).  </li>
+<li>Las métricas críticas se precalculan <strong>diariamente</strong> (carga incremental) para evitar cálculos on‑the‑fly en los dashboards.</li>
 </ul>
 <hr/>
-<h3>4️⃣ Estrategia de actualización y latencia de datos  </h3>
-<p>| Tipo de datos | Frecuencia | Origen | Proceso de carga | Ventana de disponibilidad |<br/>|----------------|------------|--------|------------------|----------------------------|<br/>| <strong>Ventas diarias</strong> | <strong>Near‑real‑time (5‑15 min)</strong> | Sistema ERP / POS (API) | <strong>ADF → Synapse Streaming / COPY</strong> → tabla <em>StgVentas</em> → MERGE incremental a <em>FactVentas</em> (SCD 0). | &lt; 30 min después del cierre del ticket. |<br/>| <strong>Inventario (stock)</strong> | <strong>Diario (cierre del día)</strong> | Sistema WMS | ADF batch nightly → <em>StgInventario</em> → MERGE a <em>FactInventario</em> (SCD 1). | Disponible a las 08:00 h del día siguiente. |<br/>| <strong>Logística (movimientos)</strong> | <strong>Diario</strong> | Sistema TMS | ADF → <em>StgLogistica</em> → INSERT a <em>FactLogistica</em>. | Disponible a las 09:00 h. |<br/>| <strong>Pronóstico de demanda</strong> | <strong>Semanal (lunes 02:00 h)</strong> | Azure ML pipeline | Modelo escribe resultados en <em>StgPronostico</em> → REPLACE en <em>FactPronostico</em>. | Visible en Power BI a las 04:00 h. |<br/>| <strong>Dimensiones (cambios de atributos)</strong> | <strong>Cada 6 h</strong> | Sistemas maestros | CDC (Change Data Capture) → <em>StgDim</em> → SCD 2 MERGE en dimensiones. | Latencia ≤ 6 h. |<br/>| <strong>Tablas de agregados</strong> | <strong>Nightly (02:30 h)</strong> | Fact tables | <strong>CTAS</strong> + <strong>INSERT OVERWRITE</strong> en Synapse. | Refrescadas antes de la jornada laboral. |</p>
+<h3>4. Estrategia de actualización y latencia de datos  </h3>
+<p>| Nivel | Frecuencia | Tipo de carga | Detalles técnicos |<br/>|-------|------------|---------------|-------------------|<br/>| <strong>Bronze → Silver</strong> | Cada 15 min (near‑real‑time) | <strong>Copy incremental</strong> desde origen usando ADF + Change Data Capture (CDC) donde el origen lo soporte (SQL Server, SAP). | Los archivos <em>parquet</em> se versionan en ADLS Gen2. |<br/>| <strong>Silver → Gold (DW)</strong> | <strong>Batch diario</strong> (ej. 02:00 h) y <strong>incremental cada hora</strong> para tablas críticas (FactSales, FactInventory). | <strong>Synapse Pipelines</strong> con <em>MERGE</em> y particiones por <code>DimDate</code>. | Se usan <strong>staging tables</strong> temporales y <code>HASH</code> de claves para detectar cambios. |<br/>| <strong>Gold → Agregados (materialized views)</strong> | <strong>Refresh incremental</strong> cada 30 min (para KPI de roturas y stock) y <strong>refresh completo</strong> nocturno (para métricas históricas). | <code>CREATE MATERIALIZED VIEW … WITH (REFRESH = ON DEMAND)</code> y <strong>Azure Synapse Spark</strong> para cálculos pesados. |<br/>| <strong>Gold → Analysis Services</strong> | <strong>Procesamiento completo</strong> cada 4 h (para datos operacionales) y <strong>process full</strong> al día (para histórico). | <strong>Azure Synapse Link</strong> + <strong>AS processing schedule</strong> (XMLA endpoint). |<br/>| <strong>Modelos ML</strong> | <strong>Retraining</strong> semanal (lunes 04:00 h) usando datos de la última semana. | <strong>Azure Machine Learning pipelines</strong> que leen directamente de <code>FactDemandForecast</code> y <code>FactSales</code>. |<br/>| <strong>API / Export</strong> | <strong>Copia near‑real‑time</strong> (cada 15 min) a una tabla <em>exposición</em> en Synapse (SQL pool) o a un <strong>Azure Cosmos DB</strong> para consultas de alta concurrencia. | Se habilita <strong>Synapse Link</strong> + <strong>Change Feed</strong> para el API. |</p>
+<p><strong>Latencia objetivo:</strong> </p>
 <ul>
-<li><strong>Persistencia</strong>: Todas las tablas están en <strong>Synapse Dedicated SQL Pool</strong> con distribución hash en las columnas de mayor cardinalidad (<code>ProductoID</code>, <code>FechaID</code>) y distribución round‑robin en tablas de dimensiones.  </li>
-<li><strong>Control de calidad</strong>: Cada carga ejecuta <strong>procedimientos almacenados de validación</strong> (checksums, recuentos) y escribe resultados en tabla de auditoría <code>FactCargaLog</code>. Si falla, se envía alerta a Teams/Power Automate.  </li>
-<li><strong>Reprocesamiento</strong>: En caso de corrección de datos fuente, se permite <strong>re‑ejecución puntual</strong> de los pipelines ADF con parámetros de rango de fechas, sin impactar el resto de la carga.</li>
+<li><strong>Operacional (dashboards de operaciones):</strong> ≤ 15 min desde la transacción original.  </li>
+<li><strong>Ejecutivo (dashboards de dirección):</strong> ≤ 4 h (datos consolidados del día).  </li>
+<li><strong>ML (re‑entrenamiento):</strong> semanal, con datos históricos completos.</li>
 </ul>
 <hr/>
-<h3>5️⃣ Exposición de datos para BI, ML y APIs  </h3>
-<p>| Consumidor | Punto de acceso | Tecnologías | Detalles de implementación |<br/>|------------|----------------|-------------|-----------------------------|<br/>| <strong>Power BI (usuarios de negocio)</strong> | <strong>Azure Analysis Services (Tabular)</strong> | Conexión <em>Live</em> a AS (DirectQuery). | - Modelos <em>perspectives</em> para Ejecutivos, Operaciones y Forecast.&lt;br&gt;- Roles de seguridad basados en <code>DimUsuario</code> y <code>DimRegion</code> (RLS).&lt;br&gt;- Parámetros de fecha y zona para que el usuario pueda “drill‑through”. |<br/>| <strong>Power BI (modelos de datos avanzados / Dataflows)</strong> | <strong>Dataset de Power BI</strong> (importado) | Power BI Dataflows → <strong>Synapse</strong> como origen. | Se importan sólo tablas de agregados mensuales para permitir análisis de tendencias offline. |<br/>| <strong>APIs externas (portales de socios, apps móviles)</strong> | <strong>Azure Synapse Serverless SQL endpoint</strong> o <strong>Azure SQL Managed Instance</strong> (exposición de vistas). | REST API (Azure Function) → consulta T‑SQL a vistas. | - Vistas seguras (<code>vw<em>ventas</em>region</code>, <code>vw<em>stock</em>disponible</code>).&lt;br&gt;- Token de Azure AD + políticas de firewall. |<br/>| <strong>Modelos de Machine Learning (Azure ML, notebooks)</strong> | <strong>Synapse Dedicated SQL Pool</strong> (ODBC/JDBC) + **Azure Data Lake (Parquet</p></div>
+<h3>5. Exposición de datos para BI, ML y APIs  </h3>
+<p>| Consumidor | Punto de acceso | Tecnologías | Qué se expone |<br/>|------------|----------------|-------------|---------------|<br/>| <strong>Power BI (usuarios de negocio)</strong> | Dataset <strong>Premium Gen2</strong> (modelado en Analysis Services) | <strong>Azure Analysis Services</strong> → <strong>XMLA endpoint</strong> → <strong>Power BI Service</strong> (Live Connection) | Modelo tabular completo (hechos, dimensiones, medidas DAX). Seguridad fila‑a‑fila (RLS) basada en <code>DimStore</code>/<code>DimRegion</code>. |<br/>| <strong>Self‑service BI (Power BI Desktop)</strong> | Conexión <strong>DirectQuery</strong> a</p></div>
 </div>
 </div>
 <div class="section-card collapsed" id="card-roadmap-ml">
@@ -1039,74 +1069,78 @@
 <svg class="chevron" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
 </div>
 <div class="section-body">
-<div class="prose" id="roadmap-ml"><p><strong>Estrategia de Machine Learning y MLOps para FarmaNorte</strong></p>
-<hr/>
-<h4>1. Casos de uso de ML priorizados y tipo de modelo recomendado por caso  </h4>
-<p><strong>1.1 Pronóstico de demanda diaria por producto y zona</strong> </p>
+<div class="prose" id="roadmap-ml"><p><strong>1. Casos de uso de ML priorizados y tipo de modelo recomendado por caso</strong> </p>
 <ul>
-<li><strong>Tipo de modelo</strong>: Prophet (o ARIMA con ajuste de calendarios y festividades).  </li>
-<li><em>Justificación</em>: Los volúmenes de ventas son moderados y la serie temporal es estable. Prophet permite incluir calendarios de fin de semana y días festivos, se adapta bien a datos con estacionalidad diaria y es de bajo coste computacional, lo que facilita el reentrenamiento frecuente sin sobrecargar la infraestructura.  </li>
-<li><strong>Objetivo de negocio</strong>: Reducir roturas de stock en un 15 % y optimizar la rotación de inventario, logrando una cobertura de demanda ≥ 95 % en los puntos de venta.</li>
+<li><strong>Pronóstico de demanda de productos por tienda y por horizonte de 1‑3 meses</strong> </li>
+<li><em>Tipo de modelo:</em> 1️⃣ <strong>Prophet</strong> como punto de partida por su capacidad de modelar estacionalidad y eventos especiales sin requerir ingeniería de features compleja. 2️⃣ Una vez consolidados los datos, se introducirá <strong>XGBoost / LightGBM</strong> sobre features temporales, de inventario y de logística, que suele ofrecer una mejora de 10‑20 % en MAE respecto a Prophet cuando se dispone de suficiente volumen histórico.  </li>
+<li><em>Justificación:</em> La curva de aprendizaje del equipo es mínima, los modelos se pueden entrenar en minutos, y ambos tienen implementaciones nativas en Azure ML (Python y R). Además, ambos son interpretables con SHAP o con los parámetros internos de importancia de variables.  </li>
 </ul>
-<p><strong>1.2 Identificación de patrones de ruptura de stock (anomalías)</strong> </p>
 <ul>
-<li><strong>Tipo de modelo</strong>: Auto‑encoder de series temporales (modelo de aprendizaje profundo ligero, por ejemplo, LSTM auto‑encoder) o algoritmo de detección de anomalías basado en aislamiento de bosque (Isolation Forest) aplicado a métricas de stock.  </li>
-<li><em>Justificación</em>: Se necesita un modelo que pueda trabajar con datos de inventario diarios y detectar desviaciones anómalas sin requerir grandes volúmenes de datos de entrenamiento. Isolation Forest es simple, rápido y no necesita ajustes de hiperparámetros complicados.  </li>
-<li><strong>Objetivo de negocio</strong>: Alertar a los equipos de logística al menos 24 h antes de una ruptura, reduciendo los costos asociados a la pérdida de ventas y a la gestión de pedidos urgentes.</li>
+<li><strong>Detección de roturas de stock en tiempo real</strong> </li>
+<li><em>Tipo de modelo:</em> <strong>Isolation Forest</strong> o <strong>One‑Class SVM</strong> sobre características de inventario (stock on‑hand, días en stock, velocidad de venta) y sobre métricas de demanda histórica.  </li>
+<li><em>Justificación:</em> El objetivo es generar alertas cuando el stock cae por debajo de un umbral de seguridad; los modelos de detección de anomalías son rápidos de entrenar y fáciles de interpretar.  </li>
 </ul>
-<p><strong>1.3 Optimización de la cadena de suministro (reorden automático)</strong> </p>
 <ul>
-<li><strong>Tipo de modelo</strong>: Regresión lineal con variables de control (promociones, fecha de vencimiento, capacidad de almacén) o modelo de aprendizaje por refuerzo simple (policy gradient) para decidir órdenes de reabastecimiento.  </li>
-<li><em>Justificación</em>: El objetivo es obtener una regla de reorden que minimice el costo de inventario y el de faltas. Una regresión lineal es interpretable y fácil de mantener, mientras que la RL puede mejorar la toma de decisiones en escenarios dinámicos, pero requiere mayor madurez de datos (promociones, precios dinámicos).  </li>
-<li><strong>Objetivo de negocio</strong>: Reducir el capital inmovilizado en inventario en un 10 % manteniendo la cobertura de demanda.</li>
+<li><strong>Optimización de inventario (re‑orden y nivel de stock de seguridad)</strong> </li>
+<li><em>Tipo de modelo:</em> <strong>Regresión de Gradient Boosting</strong> (XGBoost/LightGBM) que predice el punto de re‑orden y el nivel de stock de seguridad óptimo.  </li>
+<li><em>Justificación:</em> Se necesita un modelo que combine demanda, lead time y variabilidad; el Boosted Tree logra capturar interacciones sin requerir una gran cantidad de datos estructurados.  </li>
 </ul>
-<hr/>
-<h4>2. Datos de entrenamiento necesarios y disponibilidad real  </h4>
-<p>| Caso de uso | Variables de entrada | Origen y disponibilidad | Observaciones |<br/>|-------------|----------------------|--------------------------|---------------|<br/>| <strong>Pronóstico de demanda</strong> | Cantidad vendida, fecha, producto, zona, calendario de festividades, promociones (si existen), precios de venta y coste de inventario. | Ventas diarias en la capa Silver (FactVentas), DimProducto, DimRegion, calendario en DimFecha. | Datos históricos de al menos 12 meses disponibles. Promociones y precios están parcialmente consolidados; se requiere completar el registro de promociones para un mejor ajuste. |<br/>| <strong>Anomalías de ruptura</strong> | Cantidad disponible, cantidad reservada, fecha, producto, almacén, movimiento de stock. | FactInventario y FactLogistica. | Disponibilidad diaria de inventario; la calidad de los datos de “cantidad reservada” debe ser validada, ya que se utiliza para la detección de ruptura. |<br/>| <strong>Optimización de reorden</strong> | Cantidad vendida, stock disponible, tiempo de reposición, precio de compra, precio de venta, capacidad de almacén, datos de promociones y fechas de vencimiento. | FactVentas, FactInventario, DimProducto, DimAlmacen, DimCanal. | Necesidad de consolidar los datos de promociones y vencimientos de producto; se estima un periodo de 3 meses para obtener registros consistentes. |</p>
-<p><strong>Disponibilidad actual</strong> </p>
 <ul>
-<li>Datos históricos de ventas y stock están completamente consolidados en la capa Gold (Synapse Dedicated SQL Pool).  </li>
-<li>Información de promociones y precios dinámicos está parcialmente disponible; se requiere una fase de “data wrangling” para completar la tabla DimProducto con la columna <em>PromociónActiva</em> y <em>PrecioPromoción</em>.  </li>
-<li>Los datos de tiempo de reposición y capacidad de almacén son estáticos en DimAlmacen; se necesita un mecanismo de actualización para reflejar cambios de infraestructura.</li>
+<li><strong>Predicción de lead time logístico</strong> </li>
+<li><em>Tipo de modelo:</em> <strong>Regresión Random Forest</strong> o <strong>Linear Regression con polinomios</strong> que utiliza variables de origen, destino, transportista, condiciones climáticas y de tráfico (si están disponibles).  </li>
+<li><em>Justificación:</em> Permite estimar de forma rápida el tiempo de entrega, fundamental para el cálculo del stock de seguridad.  </li>
 </ul>
-<hr/>
-<h4>3. Infraestructura Azure ML requerida  </h4>
-<p>| Elemento | Descripción | Recomendaciones |<br/>|----------|-------------|-----------------|<br/>| <strong>Compute</strong> | Clúster de Azure ML con VMs de tipo <strong>Standard<em>D4s</em>v3</strong> (4 CPU, 16 GB RAM) para entrenamiento de Prophet y Isolation Forest; para modelos de LSTM, usar <strong>Standard_NC6</strong> (GPU) en un clúster temporal (ejecutar 1‑2 h/semana). | Escalado automático de clúster en función de la demanda de entrenamiento (mínimo 1 nodo, máximo 4). |<br/>| <strong>Environment</strong> | Docker con <code>azureml/standard</code> + <code>pandas</code>, <code>numpy</code>, <code>prophet</code>, <code>scikit‑learn</code>, <code>tensorflow</code> (para LSTM). | Versionado de entorno mediante conda y registro en el Workspace. |<br/>| <strong>Dataset</strong> | Registro de datasets en el Workspace: <code>ds-ventas</code>, <code>ds-inventario</code>, <code>ds-promociones</code>. | Utilizar <code>DataReference</code> para acceder a tablas de Synapse con <code>spark</code> o <code>sql</code>. |<br/>| <strong>Experiments</strong> | <code>exp-pronostico-demanda</code>, <code>exp-anomalias-ruptura</code>, <code>exp-optim-reorden</code>. | Tracking con MLflow (pipeline, métricas, artefactos). |<br/>| <strong>Endpoints</strong> |  </p>
+<p><strong>2. Datos de entrenamiento necesarios y disponibilidad real</strong> </p>
 <ul>
-<li><strong>Real‑time</strong> (para pronóstico y reorden): Managed endpoint con autoscaling, 2 A/B variants (Prophet vs. XGBoost).  </li>
-<li><strong>Batch</strong> (para análisis de rupturas): Azure ML batch endpoint, ejecutado nightly. | Utilizar <code>score.py</code> con <code>init()</code> y <code>run()</code> siguiendo la convención de Azure. |</li>
+<li><strong>Pronóstico de demanda</strong> </li>
+<li>Ventas históricas (líneas de factura) con fecha, SKU, tienda y canal (disponibles en SAP y Salesforce).  </li>
+<li>Inventario diario (stock on‑hand, en tránsito, reservado).  </li>
+<li>Eventos de temporada (festivos, promociones) extraídos de un calendario empresarial.  </li>
+<li><strong>Disponibilidad:</strong> Los datos de ventas y stock están en la capa Silver en formato parquet; la disponibilidad de eventos de temporada es parcial y requerirá enriquecimiento externo (Calendario Nacional).  </li>
 </ul>
-<p>| <strong>Orchestration</strong> | Azure Data Factory y Synapse Pipelines para disparar entrenamiento semanal y actualizaciones de modelos. | Integrar <code>MLflow</code> con ADF mediante <code>Custom Activity</code> o <code>Databricks Notebook</code> para ejecutar scripts de entrenamiento. |<br/>| <strong>Monitoring</strong> | Azure Monitor + Application Insights + Azure ML model monitoring (score, drift). | Configurar alertas para métricas de precisión (MAE) y drift de características (p. ej. distribución de ventas diarias). |</p>
-<hr/>
-<h4>4. Ciclo de vida del modelo: entrenamiento, despliegue y monitorización  </h4>
+<ul>
+<li><strong>Detección de roturas</strong> </li>
+<li>Inventario diario y transacciones de inventario (movi‑mientos).  </li>
+<li>Historial de roturas registradas (FactStockShortage).  </li>
+<li><strong>Disponibilidad:</strong> La tabla de stock diaria se mantiene en la capa Gold; los eventos de rotura están en la tabla FactStockShortage, pero su cobertura es incompleta (solo se registra cuando el cliente lo reporta).  </li>
+</ul>
+<ul>
+<li><strong>Optimización de inventario</strong> </li>
+<li>Demanda histórica, lead time por transportista, variabilidad de la demanda, costos de holding y de stock‑out.  </li>
+<li><strong>Disponibilidad:</strong> Lead time y costos de holding están parcialmente en FactLogistics y FactInventory; falta un histórico completo de costos de stock‑out (se estima a partir de márgenes).  </li>
+</ul>
+<ul>
+<li><strong>Lead time logístico</strong> </li>
+<li>Información de envíos: fecha de salida, llegada, transportista, distancia, tiempo real.  </li>
+<li>Variables externas (clima, tráfico).  </li>
+<li><strong>Disponibilidad:</strong> La tabla FactLogistics contiene la mayoría de estos datos; las variables externas deben obtenerse de un servicio externo (Azure Maps, API climáticas).  </li>
+</ul>
+<p><strong>3. Infraestructura Azure ML requerida</strong> </p>
+<ul>
+<li><strong>Workspace</strong>: Azure Machine Learning con conexión a la cuenta de almacenamiento ADLS Gen2 y al SQL Pool de Synapse.  </li>
+<li><strong>Compute</strong>:  </li>
+<li><em>AmlCompute cluster</em> (CPU, 4–8 nodos, 4 vCPU, 16 GB RAM) para entrenamiento de Prophet y Gradient Boosting.  </li>
+<li><em>GPU cluster</em> (NVIDIA V100) solo si se decide probar modelos de deep learning (CNN de series temporales).  </li>
+<li><strong>Environments</strong>:  </li>
+<li>Docker base con Python 3.10, pandas, numpy, scikit‑learn, Prophet, XGBoost, lightgbm.  </li>
+<li>Configuración de conda con <code>requirements.txt</code> y <code>conda.yml</code> para reproducibilidad.  </li>
+<li><strong>Pipelines</strong>:  </li>
+<li><em>AML Pipelines</em> (classic) para: ingestión de datos desde Synapse → pre‑procesamiento → entrenamiento → registro de modelo → despliegue.  </li>
+<li>Orquestación con Azure Data Factory para disparar pipelines cuando la tabla de ventas se actualiza (cada 15 min).  </li>
+<li><strong>Endpoints</strong>:  </li>
+<li><em>Managed endpoint (AKS)</em> para producción: 1 pod con autoscaling mínimo 1, máximo 4.  </li>
+<li><em>ACI endpoint</em> para pruebas A/B.  </li>
+<li><strong>Monitoring</strong>:  </li>
+<li><em>Azure Monitor</em> y <em>Log Analytics</em> para capturar métricas de latencia, errores y uso de recursos.  </li>
+<li><em>Model monitoring</em> en AML: registro de distribución de features, error de predicción (MAE, MAPE), drift de datos.  </li>
+<li><strong>Governance</strong>:  </li>
+<li>Registro de experimentos en AML, tags con <code>env: prod</code> y <code>project: FarmaNorte</code>.  </li>
+<li>Azure Key Vault para credenciales de origen de datos y para el endpoint de Power BI.  </li>
+</ul>
+<p><strong>4. Ciclo de vida del modelo: entrenamiento, despliegue y monitorización</strong> </p>
 <ol>
-<li><strong>Entrenamiento</strong> </li>
-</ol>
-<ul>
-<li><strong>Pronóstico</strong>: Cada lunes a las 02:00 h, ADF dispara un pipeline que ejecuta el script de Prophet sobre los últimos 12 meses de ventas. El modelo y los artefactos (pickle, parámetros) se registran en MLflow.  </li>
-<li><strong>Anomalías</strong>: Cada día a las 04:00 h, el pipeline extrae la última semana de inventario, entrena Isolation Forest con 100 estimadores y registra el modelo.  </li>
-<li><strong>Optimización de reorden</strong>: Cada fin de mes, se ejecuta una regresión con datos de los últimos 3 meses. El modelo se guarda en MLflow y se genera un reporte de parámetros.  </li>
-</ul>
-<ol>
-<li><strong>Validación</strong> </li>
-</ol>
-<ul>
-<li>Se compara la predicción con las ventas reales en el período posterior (back‑testing). Se calculan MAE, RMSE y Coverage de demanda.  </li>
-<li>Para anomalías, se mide la precisión de detección (TP, FP, FN) contra un conjunto etiquetado manualmente por el equipo de operaciones.  </li>
-</ul>
-<ol>
-<li><strong>Despliegue</strong> </li>
-</ol>
-<ul>
-<li>Los modelos se despliegan a endpoints managed (Real‑time y Batch) mediante <code>az ml model deploy</code>.  </li>
-<li>Se configura <strong>autoscaling</strong> basado en el tráfico de API (para pronóstico) y en la carga de batch (para análisis de rupturas).  </li>
-</ul>
-<ol>
-<li><strong>Monitorización</strong> </li>
-</ol>
-<ul>
-<li><strong>Score Drift</strong>: Se registra cada predicción en un dataset <code>ds-forecast-scoring</code> con</li>
-</ul></div>
+<li>**Recopil</li>
+</ol></div>
 </div>
 </div>
 <div class="section-card collapsed" id="card-roadmap-bi">
@@ -1125,48 +1159,71 @@
 </div>
 <div class="section-body">
 <div class="prose" id="roadmap-bi"><h3>1. Arquitectura de Power BI: modo de conexión y justificación</h3>
-<p>La arquitectura de Power BI se diseñará para conectar con la capa de datos subyacente en Azure Synapse Analytics. Debido al volumen de datos y la frecuencia de actualización, se recomienda utilizar el modo <strong>DirectQuery</strong>. Esto permitirá a los usuarios interactuar con los datos en tiempo real y obtener información actualizada sin necesidad de cargar los datos en Power BI.</p>
-<p>La justificación para esta decisión es que el volumen de datos es moderado y la frecuencia de actualización es diaria, lo que no requiere un gran esfuerzo de procesamiento para actualizar los datos en Power BI. Además, el uso de DirectQuery permite una mayor flexibilidad y escalabilidad en la conexión con la capa de datos subyacente.</p>
-<h3>2. Estructura de workspaces y modelo de gobernanza</h3>
-<p>La estructura de workspaces de Power BI se diseñará para reflejar la organización y los roles de los usuarios dentro de FarmaNorte. Se crearán workspaces separados para cada departamento o equipo, como:</p>
+<p>La arquitectura de Power BI se basará en una conexión a la capa semántica en Azure Analysis Services (o Power BI Premium Gen2), que a su vez se conecta al esquema en estrella en Synapse Analytics. El modo de conexión más adecuado para esta arquitectura es <strong>Import</strong>. </p>
+<p>La justificación de esta decisión se basa en varios factores:</p>
 <ul>
-<li><strong>Dirección</strong>: Workspace para la dirección y los equipos de liderazgo.</li>
-<li><strong>Operaciones</strong>: Workspace para los equipos de operaciones y logística.</li>
-<li><strong>Análisis</strong>: Workspace para los equipos de análisis y reporting.</li>
+<li><strong>Volumen de datos</strong>: Aunque el volumen de datos es significativo, la capa semántica en Azure Analysis Services ya ha procesado y agregado los datos, lo que reduce la cantidad de datos que Power BI necesita manejar.</li>
+<li><strong>Frecuencia de actualización</strong>: La actualización de los datos se realiza de manera incremental y periódica, lo que permite a Power BI importar los datos actualizados de manera eficiente.</li>
+<li><strong>Complejidad de las consultas</strong>: Las consultas en Power BI se beneficiarán de la capa semántica en Azure Analysis Services, que proporciona un modelo tabular optimizado para consultas.</li>
 </ul>
-<p>Cada workspace tendrá un propietario y un conjunto de miembros con permisos definidos para garantizar la seguridad y el control de acceso a los datos.</p>
-<p>El modelo de gobernanza se basará en roles y responsabilidades claras, con un propietario de datos y un equipo de stewards de datos que serán responsables de la calidad, la seguridad y el cumplimiento normativo de los datos.</p>
-<h3>3. Catálogo de informes y dashboards por perfil de usuario</h3>
-<p>Se diseñarán informes y dashboards personalizados para cada perfil de usuario:</p>
+<h3>2. Estructura de workspaces y modelo de gobernanza</h3>
+<p>La estructura de workspaces en Power BI se organizará de la siguiente manera:</p>
 <ul>
-<li><strong>Dirección</strong>:</li>
-<li>Dashboard de KPI's generales (rotura de stock, inventario inmovilizado, exactitud del modelo de previsión de demanda).</li>
-<li>Informe de ventas y stock por región y producto.</li>
-<li><strong>Operaciones</strong>:</li>
-<li>Dashboard de operaciones detallado (inventario diario, movimientos de stock, logística).</li>
-<li>Informe de roturas de stock y análisis de causas.</li>
-<li><strong>Análisis</strong>:</li>
-<li>Dashboard de análisis de datos (tendencias de ventas, análisis de stock, modelo de previsión de demanda).</li>
-<li>Informe de error absoluto del pronóstico y cobertura de demanda.</li>
+<li><strong>Workspace principal</strong>: FarmaNorte</li>
+<li><strong>Grupos de trabajo</strong>: </li>
+<li><strong>Dirección</strong>: acceso a dashboards ejecutivos y métricas clave.</li>
+<li><strong>Operaciones</strong>: acceso a dashboards de operaciones detallados y análisis de roturas de stock.</li>
+<li><strong>Analistas</strong>: acceso a datasets y modelos para análisis avanzados.</li>
+</ul>
+<p>El modelo de gobernanza incluirá:</p>
+<ul>
+<li><strong>Roles y responsabilidades</strong>: Data Owner, Data Steward, AI Ethicist.</li>
+<li><strong>Políticas de gobernanza del dato</strong>: política de calidad de datos, política de seguridad de datos, política de cumplimiento normativo.</li>
+</ul>
+<h3>3. Catálogo de informes y dashboards por perfil de usuario</h3>
+<p><strong>Perfil de dirección</strong>:</p>
+<ul>
+<li><strong>Dashboard ejecutivo</strong>: visión general de las métricas clave de negocio (roturas de stock, inventario inmovilizado, exactitud del modelo de previsión de demanda).</li>
+<li><strong>Informe de ventas</strong>: análisis de ventas por canal y producto.</li>
+</ul>
+<p><strong>Perfil de operaciones</strong>:</p>
+<ul>
+<li><strong>Dashboard de operaciones detallado</strong>: análisis de roturas de stock, inventario disponible y movimientos de stock.</li>
+<li><strong>Informe de logística</strong>: análisis de lead time logístico y envíos.</li>
+</ul>
+<p><strong>Perfil de analistas</strong>:</p>
+<ul>
+<li><strong>Dataset de análisis</strong>: acceso a datasets para análisis avanzados y creación de modelos.</li>
+<li><strong>Informe de calidad de datos</strong>: análisis de calidad de datos y detección de anomalías.</li>
 </ul>
 <h3>4. Plan de adopción: formación, rollout y métricas de éxito</h3>
-<p>El plan de adopción incluirá:</p>
+<p><strong>Formación</strong>:</p>
 <ul>
-<li><strong>Formación</strong>: Sesiones de formación para los usuarios finales sobre el uso de Power BI y la interpretación de los informes y dashboards.</li>
-<li><strong>Rollout</strong>: Implementación gradual de la solución de Power BI en cada departamento o equipo.</li>
-<li><strong>Métricas de éxito</strong>: Seguimiento de métricas como la adopción del usuario, la frecuencia de uso y la satisfacción del usuario.</li>
+<li><strong>Curso de introducción a Power BI</strong>: para todos los usuarios.</li>
+<li><strong>Curso avanzado de análisis de datos</strong>: para analistas.</li>
+</ul>
+<p><strong>Rollout</strong>:</p>
+<ul>
+<li><strong>Fase de prueba</strong>: implementación en un grupo pequeño de usuarios.</li>
+<li><strong>Fase de despliegue</strong>: implementación en toda la organización.</li>
+</ul>
+<p><strong>Métricas de éxito</strong>:</p>
+<ul>
+<li><strong>Uso del dashboard</strong>: número de usuarios que acceden al dashboard.</li>
+<li><strong>Satisfacción del usuario</strong>: encuestas de satisfacción.</li>
+<li><strong>Adopción de decisiones basadas en datos</strong>: seguimiento de la adopción de decisiones basadas en datos.</li>
 </ul>
 <h3>5. Riesgos de adopción y recomendaciones</h3>
-<p>Los riesgos de adopción incluyen:</p>
+<p><strong>Riesgos</strong>:</p>
 <ul>
-<li><strong>Resistencia al cambio</strong>: Los usuarios pueden resistirse al cambio de herramientas y procesos.</li>
-<li><strong>Falta de comprensión</strong>: Los usuarios pueden no comprender cómo utilizar la herramienta o interpretar los informes y dashboards.</li>
+<li><strong>Resistencia al cambio</strong>: algunos usuarios pueden resistirse al cambio.</li>
+<li><strong>Falta de comprensión de los datos</strong>: algunos usuarios pueden no comprender los datos.</li>
 </ul>
-<p>Para mitigar estos riesgos, se recomienda:</p>
+<p><strong>Recomendaciones</strong>:</p>
 <ul>
-<li><strong>Comunicación clara</strong>: Comunicar claramente los beneficios y el propósito de la solución de Power BI.</li>
-<li><strong>Formación y soporte</strong>: Proporcionar formación y soporte adecuados a los usuarios finales.</li>
-<li><strong>Monitoreo y ajuste</strong>: Monitorear la adopción y ajustar la estrategia según sea necesario.</li>
+<li><strong>Comunicación efectiva</strong>: comunicar los beneficios de la adopción de Power BI.</li>
+<li><strong>Formación y soporte</strong>: proporcionar formación y soporte adecuados.</li>
+<li><strong>Monitoreo y evaluación</strong>: monitorear y evaluar el uso y la adopción de Power BI.</li>
 </ul></div>
 </div>
 </div>

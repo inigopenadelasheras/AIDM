@@ -111,36 +111,146 @@ class EstimationResult(BaseModel):
     team_profiles: str
 
 
-def _format_cost_report(report: CostEstimationReport) -> str:
+def _format_cost_report(report: CostEstimationReport, infracost_raw: str = "") -> str:
     r = report.resumen_ejecutivo
-    lines = [
-        "## Resumen Ejecutivo",
-        f"- **Coste total estimado:** {r.coste_total_minimo} – {r.coste_total_maximo}",
-        f"- **Horizonte temporal:** {r.horizonte_temporal}",
-        f"- **Nivel de confianza:** {r.nivel_confianza.capitalize()} — {r.justificacion_confianza}",
-        "",
-        "## Supuestos",
-    ]
-    for supuesto in report.supuestos:
-        lines.append(f"- {supuesto}")
+
+    # Semantic confidence colors, harmonized with the template warm palette
+    confidence_map = {
+        "bajo":  ("25%",  "#dc2626"),           # red — universally "low"
+        "medio": ("60%",  "#b45309"),           # amber — matches template warm tones
+        "alto":  ("100%", "var(--accent)"),     # template gold — clearly "good"
+    }
+    conf_pct, conf_color = confidence_map.get(r.nivel_confianza, ("50%", "var(--muted)"))
+
+    def _extract_val(text: str) -> float:
+        m = re.search(r'[€$]\s*([\d][0-9.,]*)', text)
+        if m:
+            try:
+                return float(m.group(1).replace('.', '').replace(',', '.'))
+            except ValueError:
+                pass
+        return 0.0
 
     d = report.desglose_por_categoria
-    lines += [
-        "",
-        "## Desglose por Categoría",
-        f"**Licencias y herramientas:** {d.licencias_y_herramientas}",
-        f"**Formación y onboarding:** {d.formacion_y_onboarding}",
-        f"**Mantenimiento y soporte:** {d.mantenimiento_y_soporte}",
-        f"**Desarrollo e implantación:** {d.desarrollo_e_implantacion}",
-        "",
-        "## Precio por Componentes de Infraestructura",
+    # Bar colors reuse the template icon-section palette
+    cat_data = [
+        ("Licencias y herramientas",  d.licencias_y_herramientas,  "#1d4ed8"),  # blue
+        ("Formación y onboarding",    d.formacion_y_onboarding,    "#b45309"),  # amber
+        ("Mantenimiento y soporte",   d.mantenimiento_y_soporte,   "#6d28d9"),  # purple
+        ("Desarrollo e implantación", d.desarrollo_e_implantacion, "#0f766e"),  # teal
     ]
-    for item in report.precio_por_componentes:
-        lines.append(
-            f"- **{item.servicio}** ({item.sku}): "
-            f"{item.precio_unitario} × {item.unidades_estimadas} = {item.coste_mensual_estimado}"
+    cat_vals = [(_extract_val(raw), color, label, raw) for label, raw, color in cat_data]
+    max_val = max((v for v, *_ in cat_vals), default=1) or 1
+
+    bars_html = ""
+    for val, color, label, raw_text in cat_vals:
+        pct = round(val / max_val * 100) if val else 20
+        short = raw_text[:80] + ("…" if len(raw_text) > 80 else "")
+        bars_html += (
+            f'<div style="margin-bottom:0.875rem;">'
+            f'<span style="font-size:0.78rem;color:var(--muted);">{label}</span>'
+            f'<div title="{raw_text}" style="background:var(--border);border-radius:4px;height:8px;overflow:hidden;margin:4px 0 2px;">'
+            f'<div style="background:{color};width:{pct}%;height:100%;border-radius:4px;"></div></div>'
+            f'<div style="font-size:0.72rem;color:var(--muted);opacity:0.8;">{short}</div>'
+            f'</div>'
         )
-    return "\n".join(lines)
+
+    cards_html = ""
+    for item in report.precio_por_componentes:
+        cards_html += (
+            f'<div style="background:var(--surface);border:1px solid var(--border);border-radius:9px;'
+            f'padding:0.75rem;min-width:150px;flex:1;box-shadow:var(--shadow);">'
+            f'<div style="font-size:0.75rem;color:var(--muted);margin-bottom:3px;">{item.servicio}</div>'
+            f'<div style="font-size:1rem;font-weight:700;color:var(--text);">{item.coste_mensual_estimado}</div>'
+            f'<div style="font-size:0.7rem;color:var(--muted);margin-top:3px;opacity:0.75;">'
+            f'{item.precio_unitario} × {item.unidades_estimadas}</div>'
+            f'<div style="font-size:0.7rem;color:var(--muted);opacity:0.5;">{item.sku}</div>'
+            f'</div>'
+        )
+
+    supuestos_html = ""
+    for s in report.supuestos:
+        supuestos_html += (
+            f'<div style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.5rem 0.875rem;'
+            f'background:var(--tag-bg);border-left:3px solid var(--accent);'
+            f'border-radius:0 6px 6px 0;margin-bottom:0.5rem;">'
+            f'<span style="color:var(--accent);font-weight:700;flex-shrink:0;">&#x2139;</span>'
+            f'<span style="font-size:0.85rem;color:var(--text);">{s}</span>'
+            f'</div>'
+        )
+
+    infracost_block = ""
+    if infracost_raw:
+        escaped = infracost_raw.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        infracost_block = (
+            f'<div style="margin-top:1.5rem;">'
+            f'<div style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;'
+            f'color:var(--muted);margin-bottom:0.5rem;padding-left:10px;'
+            f'border-left:3px solid var(--accent);">Referencia Infracost</div>'
+            f'<div style="background:#0f172a;border:1px solid var(--border-strong);border-radius:9px;'
+            f'padding:1rem;overflow-x:auto;">'
+            f'<pre style="color:#94a3b8;margin:0;font-size:0.78rem;white-space:pre;'
+            f'font-family:\'Cascadia Code\',\'Fira Code\',\'Courier New\',monospace;line-height:1.5;">'
+            f'{escaped}</pre>'
+            f'</div></div>'
+        )
+
+    # Section label style matches .prose h4 from the template
+    lbl = ('font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;'
+           'color:var(--muted);margin:0 0 0.875rem;padding-left:10px;border-left:3px solid var(--accent);')
+
+    return (
+        f'<div style="color:var(--text);">'
+
+        # ── Resumen Ejecutivo ──
+        f'<div style="background:var(--surface-alt);border:1px solid var(--border);'
+        f'border-radius:12px;padding:1.5rem;margin-bottom:1.25rem;">'
+        f'<div style="{lbl}">Resumen Ejecutivo</div>'
+        f'<div style="display:flex;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap;">'
+        f'<div style="flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);'
+        f'border-radius:9px;padding:1.1rem;text-align:center;box-shadow:var(--shadow);">'
+        f'<div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Coste estimado</div>'
+        f'<div style="font-size:1.5rem;font-weight:700;color:var(--text);">'
+        f'{r.coste_total_minimo} – {r.coste_total_maximo}</div></div>'
+        f'<div style="flex:1;min-width:140px;background:var(--surface);border:1px solid var(--border);'
+        f'border-radius:9px;padding:1.1rem;text-align:center;box-shadow:var(--shadow);">'
+        f'<div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Horizonte temporal</div>'
+        f'<div style="font-size:1.5rem;font-weight:700;color:var(--text);">'
+        f'{r.horizonte_temporal}</div></div>'
+        f'</div>'
+        f'<div style="margin-bottom:0.875rem;">'
+        f'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">'
+        f'<span style="font-size:0.82rem;color:var(--muted);">Nivel de confianza</span>'
+        f'<span style="font-size:0.82rem;font-weight:600;color:{conf_color};">{r.nivel_confianza.capitalize()}</span>'
+        f'</div>'
+        f'<div style="background:var(--border);border-radius:999px;height:9px;overflow:hidden;">'
+        f'<div style="background:{conf_color};width:{conf_pct};height:100%;border-radius:999px;"></div>'
+        f'</div></div>'
+        f'<p style="color:var(--muted);font-size:0.875rem;margin:0;font-style:italic;">{r.justificacion_confianza}</p>'
+        f'</div>'
+
+        # ── Supuestos ──
+        f'<div style="margin-bottom:1.25rem;">'
+        f'<div style="{lbl}">Supuestos</div>'
+        f'{supuestos_html}'
+        f'</div>'
+
+        # ── Desglose + Componentes ──
+        f'<div style="display:flex;gap:1.25rem;margin-bottom:1.25rem;flex-wrap:wrap;align-items:flex-start;">'
+        f'<div style="flex:1;min-width:220px;background:var(--surface-alt);border:1px solid var(--border);'
+        f'border-radius:12px;padding:1.25rem;">'
+        f'<div style="{lbl}">Desglose por Categoría</div>'
+        f'{bars_html}'
+        f'</div>'
+        f'<div style="flex:2;min-width:260px;">'
+        f'<div style="{lbl}">Componentes de Infraestructura</div>'
+        f'<div style="display:flex;flex-wrap:wrap;gap:0.75rem;">{cards_html}</div>'
+        f'</div>'
+        f'</div>'
+
+        f'{infracost_block}'
+        f'</div>'
+    )
 
 
 def _resolve_infracost_binary() -> str | None:
@@ -351,7 +461,7 @@ def run_estimation_crew(
     # Extraer output de costos: preferir pydantic validado, fallback a raw
     report_pydantic = getattr(getattr(cost_report_task, "output", None), "pydantic", None)
     if isinstance(report_pydantic, CostEstimationReport):
-        cost_estimation = _format_cost_report(report_pydantic)
+        cost_estimation = _format_cost_report(report_pydantic, infracost_prices or "")
     else:
         raw_obj = getattr(cost_report_task, "output", None)
         cost_estimation = getattr(raw_obj, "raw", "") or str(raw_obj or "")

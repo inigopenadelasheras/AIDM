@@ -57,7 +57,7 @@ def _inject_into_html(
         _SECTION_IDS["governance"]:      md_to_html(governance_output),
         _SECTION_IDS["data_ai"]:         md_to_html(data_ai_output),
         _SECTION_IDS["bi"]:              md_to_html(bi_visualization_output),
-        _SECTION_IDS["cost_estimation"]: md_to_html(cost_estimation_output),
+        _SECTION_IDS["cost_estimation"]: cost_estimation_output,
         _SECTION_IDS["team_profiles"]:   md_to_html(team_profiles_output),
     }
 
